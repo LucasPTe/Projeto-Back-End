@@ -5,3 +5,10 @@
 
 - PHP
 - MySQL
+
+## Integrantes:
+
+- Hugo Daniel Ferrete (HD-TI)
+- Kaua Bezerra (Kbezerra)
+- Lucas Lopes (LucasPTe)
+- Annibal Gulias (annibalgulias)
