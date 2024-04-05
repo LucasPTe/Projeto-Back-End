@@ -1,0 +1,86 @@
+body {
+    margin: 0px;
+    font-family: "Jost", sans-serif;
+  }
+  
+  .box-area {
+    width: 700px;
+  }
+  
+  .right-box {
+    padding: 10px;
+  }
+  
+  ::placeholder {
+    font-size: 16px;
+  }
+  
+  @media only screen and(max-width: 768) {
+    .box-area {
+      margin: 0 10px;
+    }
+  
+    .left-box {
+      height: 100px;
+      overflow: hidden;
+    }
+  
+    .right-box {
+      padding: 20px;
+    }
+  }
+  
+  .botao_voltar {
+    color: #fff;
+    background-color: #4682B4;
+    font-size: 16px;
+  }
+  
+  .btn {
+    background-color: #4682B4;
+    border: none;
+  }
+  
+  .btn:hover {
+    background-color: #66CDAA;
+    border: none;
+  }
+
+  .botao button {
+
+    margin-top: 30px;
+    font-size: 18px;
+
+    }
+
+    .btn-secondary {
+
+    margin-left: 2px;
+    
+    }
+
+    .botao_card {
+
+    font-size: 18px;
+
+    }
+
+  .cadastro_titulo {
+    color: #4682B4;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .sexo_titulo {
+    margin-bottom: 0px;
+  }
+  
+  #botao_voltar a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  body {
+    background-image: linear-gradient(white, #66CDAA, #4682B4);
+  }
+  
