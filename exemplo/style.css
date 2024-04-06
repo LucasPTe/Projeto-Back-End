@@ -1,0 +1,564 @@
+body {
+  margin: 0px;
+  font-family: "Jost", sans-serif;
+}
+
+/* NAVBAR */
+
+.nav-bar-fundo {
+  background-color: #2d3f6c;
+}
+
+#logo_navbar {
+  width: 70%;
+}
+
+.navbar-brand {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+.login-button {
+  text-align: center;
+  background-color: #2fade3;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s background-color;
+}
+
+.voltar_botao {
+  text-decoration: none;
+}
+
+.login-button:hover {
+  background-color: #bce5f5;
+}
+
+.navbar-toggler {
+  border: none;
+  font-size: 1.25rem;
+}
+
+.navbar-toggler:focus,
+.btn-close:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.nav-link {
+  color: #ffffff;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #a0b6b9;
+}
+
+@media (min-width: 991px) {
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #ffffff;
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+  }
+
+  .nav-link:hover::before,
+  .nav-link.active::before {
+    width: 100%;
+    visibility: visible;
+  }
+}
+
+.sec_titulo {
+  border-bottom: solid 3px #8cd8f7;
+}
+
+.italico {
+  font-style: italic;
+}
+
+.distancia_navbar {
+  padding-top: 175px;
+}
+
+/* LANDING PAGE */
+.home {
+  background-color: #6ec6c0;
+}
+
+.home img {
+  width: 550px;
+  margin-top: -20px;
+}
+
+.titulo_landing {
+  margin-top: -250px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 50px;
+  text-shadow: 3px 3px 11px rgba(0, 0, 0, 0.55);
+}
+
+.texto_landing {
+  color: #ffffff;
+  font-size: 20px;
+  font-style: italic;
+  text-shadow: 3px 3px 11px rgba(0, 0, 0, 0.55);
+}
+
+.div_especialista {
+  margin-top: -320px;
+  margin-right: 40px;
+}
+
+.especialista_busca {
+  padding: 7px;
+  padding-right: 50px;
+  font-size: 37px;
+  border-width: 0px;
+  border-color: #cccccc;
+  background-color: #ffffff;
+  color: #000000;
+  border-style: solid;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
+}
+
+.div_localidade {
+  margin-left: -450px;
+  margin-top: -320px;
+}
+
+.localidade_busca {
+  padding: 7px;
+  padding-right: 50px;
+  font-size: 37px;
+  border-width: 0px;
+  border-color: #cccccc;
+  background-color: #ffffff;
+  color: #000000;
+  border-style: solid;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
+}
+
+.div_botao {
+  margin-left: -450px;
+  margin-top: -320px;
+}
+
+.botao_buscar {
+  margin-left: 40px;
+  color: #ffffff;
+  background-color: #2d3f6c;
+}
+
+.botao_buscar:hover {
+  color: #ffffff;
+  background-color: #5068a5;
+}
+
+.btn-drop:focus {
+  background-color: #8cd8f7;
+}
+
+.btn-fonte {
+  background-color: #0062a2;
+  border: none;
+}
+
+.btn-fonte:hover {
+  background-color: #2fade3;
+  border: none;
+}
+/* main */
+
+.oq_cpaas {
+  margin-top: 55px;
+  font-size: 32px;
+  color: #0274be;
+  font-weight: bold;
+}
+
+.texto_oq_cpaas {
+  font-size: 20px;
+  color: #54595f;
+}
+
+.titulo_solucoes {
+  font-size: 36px;
+  color: #0062a2;
+  font-weight: bold;
+}
+
+.texto_solucoes {
+  margin-top: -5px;
+  margin-bottom: 25px;
+  font-size: 20px;
+  color: #54595f;
+}
+
+.logo_card {
+  margin-top: 15px;
+  margin-left: 15px;
+  width: 16%;
+}
+
+.titulo_card {
+  font-weight: bold;
+}
+
+.texto_card {
+  color: #727272;
+}
+
+.container-main {
+  background-color: #f6f6f6;
+}
+
+.card {
+  border: none;
+  box-shadow: 8px 10px 58px -17px rgba(0, 0, 0, 0.27);
+  -webkit-box-shadow: 8px 10px 58px -17px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 8px 10px 58px -17px rgba(0, 0, 0, 0.27);
+}
+
+.solucoes .cards {
+  display: flex;
+  justify-content: center;
+}
+
+.botao_card {
+  background-color: #0274be;
+  border: none;
+}
+
+.botao_card:hover {
+  transition: 468ms;
+  background-color: #fff;
+  color: #0274be;
+  border: solid 2px #0274be;
+}
+
+.usos2 {
+  font-size: 32px;
+  color: #0062a2;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.usos_img {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 60%;
+}
+
+.usos_titulo {
+  margin-bottom: 10px;
+  font-size: 30px;
+  color: #0062a2;
+  font-weight: bold;
+}
+
+.usos_texto {
+  font-size: 20px;
+  color: #54595f;
+}
+
+/* MAIN - SOBRE */
+
+.pq_modavo {
+  font-size: 36px;
+  color: #0062a2;
+  font-weight: bold;
+}
+
+.about .espaco_entre {
+  padding: 0;
+}
+
+.about .borda {
+  font-size: 25px;
+}
+
+/* FIM - MAIN - SOBRE*/
+
+/* 2FA - INICIO*/
+
+.subtitle_landing {
+  color: #0062a2;
+  font-weight: bold;
+}
+
+.subtitle_landing_ita {
+  color: #727272;
+  font-style: italic;
+  font-size: 24px;
+}
+
+.home_2fa img {
+  width: 550px;
+  padding-bottom: 20px;
+}
+
+.desc_2fa {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  color: #0062a2;
+  font-weight: bold;
+}
+
+.descs_2fa {
+  display: flex;
+  justify-content: center;
+}
+
+.descs_2fa1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.percent {
+  padding-top: 30px;
+  color: #0062a2;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.percent_text {
+  color: #54595f;
+  font-size: 20px;
+}
+
+.oioi {
+  color: #54595f;
+  font-size: 20px;
+}
+
+/* FIM DO INICIO*/
+
+/* MAIN - INICIO*/
+
+.como_funciona {
+  font-size: 32px;
+  color: #0062a2;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.como_funciona_img {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.como_funciona_text {
+  font-size: 20px;
+  color: #54595f;
+  margin-bottom: 29px;
+}
+
+.beneficios_2fa_titulo {
+  margin-top: 100px;
+  font-size: 36px;
+  color: #0062a2;
+  font-weight: bold;
+}
+
+.beneficios_2fa_texto {
+  font-size: 24px;
+  color: #54595f;
+}
+
+.borda_2fa {
+  font-size: 25px;
+}
+
+/* FIM - MAIN - INICIO*/
+
+/* MAIN - FINAL*/
+
+.quem_usa {
+  font-size: 32px;
+  color: #0062a2;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.card_titulo_quem_usa {
+  font-size: 20px;
+  color: #0062a2;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 25px;
+}
+
+.img_card_quem_usa {
+  padding-top: 30px;
+  width: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card_texto_quem_usa {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #54595f;
+}
+
+/* MAIN - FIM - FINAL*/
+
+/* NUMERO MASCARA*/
+
+.como_funciona_nm {
+  margin-top: 60px;
+  font-size: 32px;
+  color: #0062a2;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.quem_usa_titutlo_nm {
+  font-size: 22px;
+  color: #0062a2;
+  font-weight: bold;
+}
+
+.quem_mais {
+  margin-top: 60px;
+  font-size: 32px;
+  color: #0062a2;
+  font-weight: bold;
+}
+
+.pd_usar_txt {
+  font-size: 22px;
+}
+
+/*FIM NUMERO MASCARA */
+
+/* GOOGLE */
+
+.beneficios_google {
+  margin-top: 80px;
+  font-size: 32px;
+  color: #0062a2;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.usos_titulo_g {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-style: italic;
+}
+
+.img_cliente {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.beneficios_sms {
+  margin-top: 60px;
+  font-size: 32px;
+  color: #0062a2;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.usos_titulo_sms {
+  margin-bottom: 10px;
+  font-size: 30px;
+  color: #0062a2;
+  font-weight: bold;
+}
+
+footer {
+  background: #d6d6d6;
+  padding: 86px 0;
+}
+.single-content {
+  text-align: center;
+  padding: 115px 0;
+}
+.single-box p {
+  color: #8b8b8b;
+  line-height: 1.9;
+}
+.single-box h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #8b8b8b;
+}
+.single-box .card-area i {
+  color: #8b8b8b;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.single-box ul {
+  list-style: none;
+  padding: 0;
+}
+.single-box ul li a {
+  text-decoration: none;
+  color: #8b8b8b;
+  line-height: 2.5;
+  font-weight: 100;
+}
+.single-box h2 {
+  color: #8b8b8b;
+  font-size: 20px;
+  font-weight: 700;
+}
+#basic-addon2 {
+  background: #2fade3;
+  color: #8b8b8b;
+}
+.socials i {
+  font-size: 18px;
+  margin-right: 15px;
+}
+@media (max-width: 767px) {
+  .single-box {
+    margin-bottom: 50px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .single-box {
+    margin-bottom: 50px;
+  }
+}
+
+#modavo_logo {
+  width: 65%;
+  padding-bottom: 5%;
+}
+
+.video {
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+.sair_botao {
+  margin-right: 10px;
+}
