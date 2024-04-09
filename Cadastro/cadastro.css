@@ -16,6 +16,11 @@ body {
   font-size: 16px;
 }
 
+#exampleRadios1 {
+
+  margin-right: 20px;
+
+}
 
 @media only screen and(max-width: 768) {
   .box-area {
