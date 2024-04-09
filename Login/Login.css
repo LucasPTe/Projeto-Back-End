@@ -6,7 +6,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-     background-image: linear-gradient(white, #66CDAA, #4682B4);
+    background-image: linear-gradient(#66CDAA, #0062a2);
   }
   
   .login_titulo {
@@ -43,7 +43,6 @@ body {
     border-bottom: 1px solid white;
   }
   
-  
   #conteiner_fundo {
     display: grid;
     place-items: center;
@@ -52,11 +51,6 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
-  #conteiner_img_telecall {
-    text-align: center;
-  }
-  
   
   #entrar {
     font-family: "Jost", sans-serif;
@@ -69,6 +63,13 @@ body {
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+  }
+
+  #limpar {
+
+    margin-top: 10px;
+
+
   }
   
   #login_titulo {
@@ -100,13 +101,8 @@ body {
   }
   
   .btn:hover {
-    background-color: #1979b9;
+    background-color: #66CDAA;
     border: none;
-  }
-  
-  #botao_voltar a {
-    text-decoration: none;
-    color: #fff;
   }
   
   #botao_cadastrar {
@@ -115,8 +111,6 @@ body {
   }
   
   .login_botao {
-   
-    width: 100px;
     margin-top: 20px;
     display: block;
     margin-left: auto;
@@ -125,16 +119,6 @@ body {
     background-color: #0062a2;
     font-size: 18px;
   }
-
-  #Limpar {
-
-    display: flex;
-    color: #fff;
-    background-color: #0062a2;
-    font-size: 18px;
-
-  }
-
   
   .cadastro_botao {
     margin-top: 0px;

@@ -1,86 +1,61 @@
 body {
-    margin: 0px;
-    font-family: "Jost", sans-serif;
-  }
-  
+  margin: 0px;
+  font-family: "Jost", sans-serif;
+  background-image: linear-gradient(#66CDAA, #0062a2); 
+}
+
+.box-area {
+  width: 600px;
+}
+
+.right-box {
+  padding: 10px;
+}
+
+::placeholder {
+  font-size: 16px;
+}
+
+#exampleRadios1 {
+
+  margin-right: 20px;
+
+}
+
+@media only screen and(max-width: 768) {
   .box-area {
-    width: 700px;
+    margin: 0 10px;
   }
-  
+
+  .left-box {
+    height: 100px;
+    overflow: hidden;
+  }
+
   .right-box {
-    padding: 10px;
+    padding: 20px;
   }
-  
-  ::placeholder {
-    font-size: 16px;
-  }
-  
-  @media only screen and(max-width: 768) {
-    .box-area {
-      margin: 0 10px;
-    }
-  
-    .left-box {
-      height: 100px;
-      overflow: hidden;
-    }
-  
-    .right-box {
-      padding: 20px;
-    }
-  }
-  
-  .botao_voltar {
-    color: #fff;
-    background-color: #4682B4;
-    font-size: 16px;
-  }
-  
-  .btn {
-    background-color: #4682B4;
-    border: none;
-  }
-  
-  .btn:hover {
-    background-color: #66CDAA;
-    border: none;
-  }
+}
 
-  .botao button {
+.btn {
+  background-color: #0062a2;
+  border: none;
+}
 
-    margin-top: 30px;
-    font-size: 18px;
+.btn:hover {
+  background-color: #66CDAA;
+  border: none;
+}
 
-    }
+.cadastro_titulo {
+  color: #0062a2;
+  font-weight: bold;
+  font-size: 20px;
+}
 
-    .btn-secondary {
+.sexo_titulo {
+  margin-bottom: 0px;
+}
 
-    margin-left: 2px;
-    
-    }
 
-    .botao_card {
 
-    font-size: 18px;
-
-    }
-
-  .cadastro_titulo {
-    color: #4682B4;
-    font-weight: bold;
-    font-size: 20px;
-  }
-  
-  .sexo_titulo {
-    margin-bottom: 0px;
-  }
-  
-  #botao_voltar a {
-    text-decoration: none;
-    color: #fff;
-  }
-  
-  body {
-    background-image: linear-gradient(white, #66CDAA, #4682B4);
-  }
-  
