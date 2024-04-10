@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modavo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/Tela inicial/archives/telecall.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/Tela inicial/sobre.css">
+    <link rel="stylesheet" href="dark-mode.css" id="dark-mode-stylesheet">
+    <script src="dark-mode.js"></script>
+
+</head>
+
+<body id="body">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Navbar -->
+    <header>
+        <div id="aa">
+            <nav class="navbar navbar-expand-lg fixed-top nav-bar-fundo">
+                <div class="container-fluid">
+                    <a class="navbar-brand me-auto" href="/Tela inicial/index.html"> Dr.Agenda<!--<img src="/Tela inicial/archives/modavo_logo.png" id="logo_navbar" class="img-fluid" alt="Logo_Modavo">--></a>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body" id="drop">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+                                <li class="nav-item">
+                                    <a class="nav-link mx-lg-2 text-nav" aria-current="page" href="/Tela inicial/index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-lg-2 text-nav" href="/Tela inicial/sobre.html">Sobre</a>
+                                </li>
+                                <!--<li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-nav" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Serviços
+                                    </a>
+                                    <ul class="dropdown-menu btn-drop" id="drop">
+                                        <li><a class="dropdown-item btn-drop text_dark" href="/Tela inicial/2FA.html">2FA</a></li>
+                                        <li><a class="dropdown-item btn-drop text_dark" href="/Tela inicial/numero_mascara.html">Número Máscara</a></li>
+                                        <li><a class="dropdown-item btn-drop text_dark" href="/Tela inicial/google.html">Google Verified Calls</a></li>
+                                        <li><a class="dropdown-item btn-drop text_dark" href="/Tela inicial/sms.html">SMS Programável</a></li>
+                                    </ul>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="container-dark">
+                        <label class="switch">
+                            <input type="checkbox" id="darkModeToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <button class="btn btn-primary border-3 m-0 mx-0 btn-fonte" id="increaseFontBtn">
+                        A+
+                    </button>
+                </div>
+                <div class="nav-item">
+                    <button class="btn btn-primary border-3 m-0 mx-1 btn-fonte" id="decreaseFontBtn">
+                        a-
+                    </button>
+                </div>
+                <button class="btn btn-danger ms-2 sair_botao" onclick="sair()">Sair</button>
+                <a href="/Login/login.html" class="login-button">Área do Cliente</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+        </div>
+        </nav>
+        </div>
+        <!-- Fim Navbar -->
+
+    </header>
+    <article>
+
+
+        <!-- Seção Sobre-->
+
+        <section class="d-flex allign-items-center h-75 home">
+            <div class="container distancia_navbar">
+                <div class="row d-flex align-items-center">
+                    <div class="col-sm-6">
+                        <h1 class="titulo_landing">Praticidade para buscar o melhor para sua saúde!</h1>
+                        <p class="texto_landing">Encontre médicos próximos a você e agende
+                            consultas com facilidade e rapidez. </p>
+                    </div>
+                    <div class="col-sm-6 d-flex justify-content-end">
+                        <img src="/Tela inicial/archives/Med_logo_1.png" class="img-fluid" alt="modavo_solucoes">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 div_especialista">
+                            <label for="Especialista" id="labelUsuario"></label>
+                            <div class="input-group mb-6">
+                                <input type="text" class="bg-light fs-6 especialista_busca" id="Especialista" placeholder="Especialista">
+                            </div>
+                        </div>
+                        <div class="col-md-6 div_localidade">
+                            <label for="senha" id="labelLocalidade"></label>
+                            <div class="input-group mb-6">
+                                <input type="text" class="bg-light fs-6 localidade_busca" id="Localidade" placeholder="Localidade">
+                            </div>
+                        </div>
+                        <div class="col-md-6 div_botao">
+                            <label for="senha" id="labelBotaoBuscar"></label>
+                            <div class="input-group mb-6">
+                                <a href="/Login/cadastro.html" id="botao_cadastrar"><input type="button" value="Buscar" class="btn botao_buscar"></a>
+                            </div>
+                        </div>
+                        aaa
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- FIM Seção Sobre-->
+
+
+        <!--MAIN-->
