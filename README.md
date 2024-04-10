@@ -12,3 +12,8 @@
 - Kaua Bezerra (Kbezerra)
 - Lucas Lopes (LucasPTe)
 - Annibal Gulias (annibalgulias)
+
+## Banco de Dados
+
+Obs: Caso pedir senha, estarei deixando aqui.
+- senha: Projeto1234
