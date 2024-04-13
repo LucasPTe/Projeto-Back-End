@@ -1,3 +1,12 @@
+<?php
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -35,37 +44,46 @@
             </div>
             
             <!--Right Box-->
-            <div class="col-md-6 right-box">
-                <div class="row align-items-center">
-                    
-                    <div class="input-group mb-3">
-                        <button type="button" class="btn btn-primary" id="limpar">Limpar Dados</button>
-                    </div>
-                    
-                    <div class="header-text mb-4">
-                        <p style="font-size: 25px;" class="bem_vindo d-flex justify-content-center">Entre em sua conta</p>
-                    </div>
-                    
-                    <label for="nome_de_usuario" id="labelUsuario">Usuário</label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" id="usuario">
 
-                    </div>
-                    
-                    <label for="senha" id="labelSenha">Senha</label>
-                    <div class="input-group mb-1">
-                        <input type="password" class="form-control form-control-lg bg-light fs-6" minlength="8" maxlength="8" id="senha">
-                    </div>
+            
 
-                    <div class="input-group mb-3">
-                        <button type="button" class="btn btn-primary login_botao">Acessar</button>
-                    </div>
-                    
-                    <p>Não possui conta?</p>
-                    
-                    <div>
-                        <a href="http://localhost/Projeto-Back-End/Cadastro/cadastro.php" id="botao_cadastrar"><input type="button" value="Cadastrar-se" class="btn btn-lg btn-primary fs-6 cadastro_botao"></a>
-                    </div>
+                <div class="col-md-6 right-box">
+
+            <form action="Login_config.php" method="POST">
+
+                    <div class="row align-items-center">
+                        
+                        <div class="input-group mb-3">
+                            <button type="button" class="btn btn-primary" id="limpar">Limpar Dados</button>
+                        </div>
+                        
+                        <div class="header-text mb-4">
+                            <p style="font-size: 25px;" class="bem_vindo d-flex justify-content-center">Entre em sua conta</p>
+                        </div>
+                        
+                        <label for="nome_de_usuario" id="labelUsuario">Usuário</label>
+                        
+                        <div class="input-group mb-3">      
+                            <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" id="usuario" name="usuario" autocomplete="off" placeholder="Digite seu login">
+                        </div>
+                        
+                        <label for="senha" id="labelSenha">Senha</label>
+                        
+                        <div class="input-group mb-1">
+                            <input type="password" class="form-control form-control-lg bg-light fs-6" minlength="8" maxlength="8" id="senha" name="senha" autocomplete="off" placeholder="Digite sua senha">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="submit" name="submit" class="btn btn-primary login_botao" value="Acessar">
+                        </div>
+                        
+                        <p>Não possui conta ?</p>
+                        
+                        <div>
+                            <a href="http://localhost/Projeto-Back-End/Cadastro/cadastro.php" id="botao_cadastrar"><input type="button" value="Cadastrar-se" class="btn btn-lg btn-primary fs-6 cadastro_botao"></a>
+                        </div>
+
+            </form>
                     
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

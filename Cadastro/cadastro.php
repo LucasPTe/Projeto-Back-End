@@ -1,41 +1,48 @@
 <?php
 
+    // banco de dados:
+
 if(isset($_POST["cadastrar"]))
 {
 
-    //print_r('Nome: ' . $_POST['nome_completo']);
-    //print_r('<br>');
-    //print_r('Data de Nascimento: ' . $_POST['data']);
-    //print_r('<br>');
-    //print_r('E-mail: ' . $_POST['email']);
-    //print_r('<br>');
-    //print_r('Gênero: ' . $_POST['exampleRadios']);
-    //print_r('<br>');
-    //print_r('Nome da Mãe: ' . $_POST['mae']);
-    //print_r('<br>');
-    //print_r('CPF: ' . $_POST['cpf']);
-    //print_r('<br>');
-    //print_r('Número do Celular: ' . $_POST['celular']);
-    //print_r('<br>');
-    //print_r('Número do Telefone: ' . $_POST['fixo']);
-    //print_r('<br>');
-    //print_r('CEP: ' . $_POST['cep']);
-    //print_r('<br>');
-    //print_r('Bairro: ' . $_POST['bairro']);
-    //print_r('<br>');
-    //print_r('Estado: ' . $_POST['estado']);
-    //print_r('<br>');
-    //print_r('Endereço: ' . $_POST['endereco']);
-    //print_r('<br>');
-    //print_r('Número do Local: ' . $_POST['numero']);
-    //print_r('<br>');
-    //print_r('Login: ' . $_POST['login']);
-    //print_r('<br>');
-    //print_r('Senha: ' . $_POST['senha']);
-    //print_r('<br>');
-    //print_r('Senha Confirmada: ' . $_POST['confirmsenha']);
 
-    include_once('config.php');
+    // Teste de conexão com o banco de dados
+
+    /*print_r('Nome: ' . $_POST['nome_completo']);
+    print_r('<br>');
+    print_r('Data de Nascimento: ' . $_POST['data']);
+    print_r('<br>');
+    print_r('E-mail: ' . $_POST['email']);
+    print_r('<br>');
+    print_r('Gênero: ' . $_POST['exampleRadios']);
+    print_r('<br>');
+    print_r('Nome da Mãe: ' . $_POST['mae']);
+    print_r('<br>');
+    print_r('CPF: ' . $_POST['cpf']);
+    print_r('<br>');
+    print_r('Número do Celular: ' . $_POST['celular']);
+    print_r('<br>');
+    print_r('Número do Telefone: ' . $_POST['fixo']);
+    print_r('<br>');
+    print_r('CEP: ' . $_POST['cep']);
+    print_r('<br>');
+    print_r('Bairro: ' . $_POST['bairro']);
+    print_r('<br>');
+    print_r('Municipio: ' . $_POST['municipio']);
+    print_r('<br>');
+    print_r('Estado: ' . $_POST['estado']);
+    print_r('<br>');
+    print_r('Endereço: ' . $_POST['endereco']);
+    print_r('<br>');
+    print_r('Número do Local: ' . $_POST['numero']);
+    print_r('<br>');
+    print_r('Login: ' . $_POST['usuario']);
+    print_r('<br>');
+    print_r('Senha: ' . $_POST['senha']);
+    print_r('<br>');
+    print_r('Senha Confirmada: ' . $_POST['confirmsenha']);*/
+    
+    include_once('cadastro_config.php');
 
     $nome_completo = $_POST['nome_completo'];
     $data = $_POST['data'];
@@ -47,19 +54,18 @@ if(isset($_POST["cadastrar"]))
     $telefone = $_POST['fixo'];
     $CEP = $_POST['cep'];
     $bairro = $_POST['bairro'];
+    $municipio = $_POST['municipio'];
     $estado = $_POST['estado'];
     $endereco = $_POST['endereco'];
     $numero = $_POST['numero'];
-    $login = $_POST['login'];
+    $login = $_POST['usuario'];
     $senha = $_POST['senha'];
     $confirm = $_POST['confirmsenha'];
     
-    $result = mysqli_query($conexao, "INSERT INTO usuarios(nome_completo,data_nasc,email,sexo,nome_mae,CPF,numero_cel,numero_tel,CEP,bairro,estado,endereco,numero,login,senha,confirm_senha) 
-    VALUES ('$nome_completo','$data','$email','$genero','$nome_da_mae','$CPF','$celular','$telefone','$CEP','$bairro','$estado','$endereco','$numero','$login','$senha','$confirm')");
+    $result = mysqli_query($conexao, "INSERT INTO usuarios(nome_completo,data_nasc,email,sexo,nome_mae,CPF,numero_cel,numero_tel,CEP,bairro,municipio,estado,endereco,numero,usuario,senha,confirm_senha) 
+    VALUES ('$nome_completo','$data','$email','$genero','$nome_da_mae','$CPF','$celular','$telefone','$CEP','$bairro','$municipio','$estado','$endereco','$numero','$login','$senha','$confirm')");
 
-
-}
-
+ }
 
 
 ?>
@@ -156,7 +162,7 @@ if(isset($_POST["cadastrar"]))
                             
                             <label for="CPF" id="labelCpf">CPF</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control form-control-lg bg-light fs-6" required id="cpf" name="cpf" autocomplete="off" placeholder="">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" required id="cpf" name="cpf" maxlength="11" autocomplete="off" placeholder="">
                             </div>
                             
                             <label for="numero_de_celular" id="labelCelular">Número de Celular</label>
@@ -167,6 +173,11 @@ if(isset($_POST["cadastrar"]))
                             <label for="telefone_fixo" id="labelFixo">Telefone Fixo</label>
                             <div class="input-group mb-3">
                                 <input type="tel" class="form-control form-control-lg bg-light fs-6" minlength="10" maxlength="10" required id="fixo" name="fixo" autocomplete="off" placeholder="">
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-block">
+                                <button style="font-size: 18px;" class="btn btn-primary" name="cadastrar" type="submit">Cadastre-se</button>
+                                <button style="font-size: 18px;" class="btn btn-primary" name="limpar" type="submit">Limpar Dados</button>
                             </div>
                         
                         </div>
@@ -187,12 +198,17 @@ if(isset($_POST["cadastrar"]))
                                 <input type="text" class="form-control form-control-lg bg-light fs-6" required id="bairro" name="bairro" autocomplete="off" placeholder="">
                             </div>
 
+                            <label for="municipio" id="labelMinicipio">Município</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" required id="municipio" name="municipio" autocomplete="off" placeholder="">
+                            </div>
+
                             <label for="estado" id="labelEstado">Estado</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control form-control-lg bg-light fs-6" required id="estado" name="estado" autocomplete="off" placeholder="">
                             </div>
 
-                            <label for="endereco" id="labelRua">Endereço</label>
+                            <label for="endereco" id="labelEndereco">Endereço</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control form-control-lg bg-light fs-6" required id="endereco" name="endereco" autocomplete="off" placeholder="Ex: Rua Castro">
                             </div>
@@ -204,7 +220,7 @@ if(isset($_POST["cadastrar"]))
 
                             <label for="nome_de_usuario" id="labelUsuario">Login</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" required id="usuario" name="login" autocomplete="off" placeholder="">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" id="usuario" name="usuario" autocomplete="off" required placeholder="">
                             </div>
 
                             <label for="senha" id="labelSenha">Senha</label>
@@ -218,13 +234,8 @@ if(isset($_POST["cadastrar"]))
                             </div>
 
                         </div>
-                        
-                        <div style="margin-top: 15px;" class="d-grid gap-2 d-md-block">
-                            <button style="font-size: 18px;" class="btn btn-primary" name="cadastrar" type="submit">Cadastre-se</button>
-                            <button style="font-size: 18px;" class="btn btn-primary" name="limpar" type="submit">Limpar Dados</button>
-                        </div>
                 
-                    </div>    
+                    </div>
 
             </div>
 
