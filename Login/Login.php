@@ -64,13 +64,13 @@
                         <label for="nome_de_usuario" id="labelUsuario">Usuário</label>
                         
                         <div class="input-group mb-3">      
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" id="usuario" name="usuario" autocomplete="off" placeholder="Digite seu login">
+                            <input required type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" id="usuario" name="usuario" autocomplete="off" placeholder="Digite seu login">
                         </div>
                         
                         <label for="senha" id="labelSenha">Senha</label>
                         
                         <div class="input-group mb-1">
-                            <input type="password" class="form-control form-control-lg bg-light fs-6" minlength="8" maxlength="8" id="senha" name="senha" autocomplete="off" placeholder="Digite sua senha">
+                            <input required type="password" class="form-control form-control-lg bg-light fs-6" minlength="8" maxlength="8" id="senha" name="senha" autocomplete="off" placeholder="Digite sua senha">
                         </div>
 
                         <div class="input-group mb-3">

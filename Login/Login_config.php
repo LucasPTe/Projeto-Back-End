@@ -45,7 +45,7 @@
                                 if(mysqli_num_rows($result) < 1)
                                 {
 
-                                    header('Location: http://localhost/Projeto-Back-End/Login/Login.php');
+                                    header('Location: http://localhost/Projeto-Back-End/Login/Tela_aviso.php');
 
                                 }
                                 else

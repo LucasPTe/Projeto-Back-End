@@ -4,7 +4,7 @@
     
     $dbHost = 'localhost:3312';
     $dbUsername = 'root';
-    $dbPassword = 'Projeto1234';
+    $dbPassword = '';
     $dbName = 'cadastro';
 
 // Conexão com o banco de dados
