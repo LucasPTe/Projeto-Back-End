@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tela de Alerta</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="Tela_aviso.css">
+    <link rel="stylesheet" href="Tela_erro.css">
     <link rel="stylesheet" href="fonts/stylesheet.css">
 </head>
 <body>
@@ -14,15 +14,14 @@
 
         <div class="card">
     <div class="card-header">
-        Erro de conexão!
+        Algo deu errado!
     </div>
     <div class="card-body">
-        <h5 class="card-title">Login ou senha incorretos!</h5>
-        <p class="card-text">Por favor, tente novamente ou crie uma conta agora mesmo</p>
+        <h5 class="card-title">Sua conta não foi criada</h5>
+        <p class="card-text">Por favor, tente novamente ou verifique sua conexão com a internet.</p>
         
         <div class="botoes">
 
-        <a href="http://localhost/Projeto-Back-End/Login/Login.php" class="btn btn-primary">Tela de Login</a>
         <a href="http://localhost/Projeto-Back-End/Cadastro/cadastro.php" class="btn btn-primary">Tela de Cadastro</a>
 
         </div>

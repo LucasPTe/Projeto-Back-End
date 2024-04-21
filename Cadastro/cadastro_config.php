@@ -17,7 +17,8 @@
         
         // Exibe uma mensagem de erro caso haja algum problema de conexão
         
-            echo "Erro: " . $conexao->connect_error;
+            //echo "Erro: " . $conexao->connect_error;
+            header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_erro.php');
     } 
 
     else {

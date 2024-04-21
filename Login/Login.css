@@ -52,28 +52,11 @@ body {
     transform: translate(-50%, -50%);
   }
   
-  #entrar {
-    font-family: "Jost", sans-serif;
-    font-size: 16px;
-    background-color: #0062a2;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    padding: 7px 20px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
 
   #limpar {
 
     margin-top: 10px;
 
-
-  }
-  
-  #login_titulo {
-    border-bottom: 1px solid white;
   }
   
   input[type="text"],
@@ -105,11 +88,6 @@ body {
     border: none;
   }
   
-  #botao_cadastrar {
-    text-decoration: none;
-    color: #fff;
-  }
-  
   .login_botao {
     margin-top: 20px;
     display: block;
@@ -125,8 +103,6 @@ body {
     color: #fff;
     background-color: #0062a2;
     font-size: 18px;
+    text-decoration: none;
   }
   
-  .marg_btn {
-    margin-top: 10px;
-  }

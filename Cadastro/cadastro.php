@@ -190,7 +190,7 @@ if(isset($_POST["cadastrar"]))
 
                             <label for="CEP" id="labelCep">CEP</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control form-control-lg bg-light fs-6" required id="CEP" name="cep" autocomplete="off" placeholder="">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" required id="CEP" name="cep" maxlength="8" autocomplete="off" placeholder="">
                             </div>
 
                             <label for="bairro" id="labelBairro">Bairro</label>
@@ -225,12 +225,12 @@ if(isset($_POST["cadastrar"]))
 
                             <label for="senha" id="labelSenha">Senha</label>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control form-control-lg bg-light fs-6" required id="senha" name="senha" minlength="8" maxlength="16" autocomplete="off" placeholder="">
+                                <input type="password" class="form-control form-control-lg bg-light fs-6" required id="senha" name="senha" minlength="8" maxlength="8" autocomplete="off" placeholder="">
                             </div>
 
                             <label for="confirmar_senha" id="labelConfirmSenha">Confirmar Senha</label>
                             <div class="input-group mb-3">
-                                <input type="password" class="form-control form-control-lg bg-light fs-6" required id="confirmSenha" name="confirmsenha" minlength="8" maxlength="16" autocomplete="off" placeholder="">
+                                <input type="password" class="form-control form-control-lg bg-light fs-6" required id="confirmSenha" name="confirmsenha" minlength="8" maxlength="8" autocomplete="off" placeholder="">
                             </div>
 
                         </div>
