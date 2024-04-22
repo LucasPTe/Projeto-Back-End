@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     // Informações do banco de dados:
        
         $dbHost = 'localhost:3312';
@@ -45,12 +47,18 @@
                                 if(mysqli_num_rows($result) < 1)
                                 {
 
+                                // Se não estiver com web aberto e logado, será descartado as duas variáveis.
+                                    unset ($_SESSION['usuario']);
+                                    unset ($_SESSION['senha']);
                                     header('Location: http://localhost/Projeto-Back-End/Login/Tela_aviso.php');
 
                                 }
                                 else
                                 {
 
+                                // irá criar essas duas váriaveis quando o sistema for acessado.
+                                    $_SESSION['usuario'] = $login;
+                                    $_SESSION['senha'] = $senha;
                                     header('Location: http://localhost/Projeto-Back-End/Tela%20Principal/Principal.php');
 
                                 }

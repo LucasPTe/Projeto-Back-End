@@ -1,23 +1,16 @@
 *{
     padding: 0px;
     margin: 0px;
-    font-family: 'Roboto', sans-serif;
-    font-family: 'Roboto Condensed', sans-serif;
 }
 
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'poppinsbold', Arial, Helvetica, sans-serif;
     background-color: #0062a2;
 }
+
 #conteiner_header{
     border-bottom: 1px solid black;
     background-image: linear-gradient(0.2deg, #0062a2, #66CDAA)
-}
-#logo_modavo{
-    display: block;
-    max-width: 60%;
-    height: auto;
-    margin-bottom: 2px;
 }
 
 #collapsibleNavbar{
@@ -35,11 +28,7 @@ body{
     padding: 5px 10px 0px 10px;
     font-size: 20px;
 }
-.links_header:hover{
-    border-bottom: 2px solid black;
-    border-radius: 1px;
-    margin: 0px;
-}
+
 /* CAIXA DO MENU SUSPENSO */
 
 .dropdown-item:hover{
@@ -53,4 +42,11 @@ body{
     display: flex;
 }
 
+h1 {
 
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'poppinsblack', Arial, Helvetica, sans-serif;
+    color: #66CDAA;
+
+}
