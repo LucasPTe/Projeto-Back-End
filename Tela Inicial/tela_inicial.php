@@ -41,11 +41,11 @@
           </li>
           <!-- LOGIN -->
           <li class="nav-item dropdown links_header">
-            <a style="color: white;" class="nav-link" href="http://localhost/Projeto-Back-End/Login/Login.php" target="_blank">Login</a>
+            <a style="color: white;" class="nav-link" href="http://localhost/Projeto-Back-End/Login/Login.php">Login</a>
           </li>
           <!-- CADASTRO -->
           <li class="nav-item dropdown links_header">
-            <a style="color: white;" class="nav-link" href="http://localhost/Projeto-Back-End/Cadastro/cadastro.php" target="_blank">Cadastro</a>
+            <a style="color: white;" class="nav-link" href="http://localhost/Projeto-Back-End/Cadastro/cadastro.php">Cadastro</a>
           </li>
         </ul>
       </div>
