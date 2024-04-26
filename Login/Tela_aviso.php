@@ -18,12 +18,12 @@
     </div>
     <div class="card-body">
         <h5 class="card-title">Login ou senha incorretos!</h5>
-        <p class="card-text">Por favor, tente novamente ou crie uma conta agora mesmo</p>
+        <p style="font-size: 20px;" class="card-text">Por favor, tente novamente ou crie uma conta agora mesmo</p>
         
         <div class="botoes">
 
         <a href="http://localhost/Projeto-Back-End/Login/Login.php" class="btn btn-primary">Tela de Login</a>
-        <a href="http://localhost/Projeto-Back-End/Cadastro/cadastro.php" class="btn btn-primary">Tela de Cadastro</a>
+        <a href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php" class="btn btn-primary">Tela de Cadastro</a>
 
         </div>
     </div>

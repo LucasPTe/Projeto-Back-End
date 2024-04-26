@@ -1,11 +1,10 @@
 <?php
 
-    // banco de dados:
-
+// Assim que apertar o botão de cadastrar, ele irá executar:
 if(isset($_POST["cadastrar"]))
 {
 
-
+// Criando às variáveis para as colunas da tabela "medicos":
     include_once('medico_config.php');
 
     $nome_completo = $_POST['Nome_completo'];

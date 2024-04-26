@@ -1,47 +1,10 @@
 <?php
 
-    // banco de dados:
-
+// Assim que apertar o botão de cadastrar, ele irá executar:
 if(isset($_POST["cadastrar"]))
 {
 
-
-    // Teste de conexão com o banco de dados
-
-    /*print_r('Nome: ' . $_POST['nome_completo']);
-    print_r('<br>');
-    print_r('Data de Nascimento: ' . $_POST['data']);
-    print_r('<br>');
-    print_r('E-mail: ' . $_POST['email']);
-    print_r('<br>');
-    print_r('Gênero: ' . $_POST['exampleRadios']);
-    print_r('<br>');
-    print_r('Nome da Mãe: ' . $_POST['mae']);
-    print_r('<br>');
-    print_r('CPF: ' . $_POST['cpf']);
-    print_r('<br>');
-    print_r('Número do Celular: ' . $_POST['celular']);
-    print_r('<br>');
-    print_r('Número do Telefone: ' . $_POST['fixo']);
-    print_r('<br>');
-    print_r('CEP: ' . $_POST['cep']);
-    print_r('<br>');
-    print_r('Bairro: ' . $_POST['bairro']);
-    print_r('<br>');
-    print_r('Municipio: ' . $_POST['municipio']);
-    print_r('<br>');
-    print_r('Estado: ' . $_POST['estado']);
-    print_r('<br>');
-    print_r('Endereço: ' . $_POST['endereco']);
-    print_r('<br>');
-    print_r('Número do Local: ' . $_POST['numero']);
-    print_r('<br>');
-    print_r('Login: ' . $_POST['usuario']);
-    print_r('<br>');
-    print_r('Senha: ' . $_POST['senha']);
-    print_r('<br>');
-    print_r('Senha Confirmada: ' . $_POST['confirmsenha']);*/
-    
+// Criando às variáveis para as colunas da tabela "clientes":  
     include_once('cadastro_config.php');
 
     $nome_completo = $_POST['nome_completo'];

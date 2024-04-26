@@ -18,11 +18,11 @@
     </div>
     <div class="card-body">
         <h5 class="card-title">Sua conta não foi criada</h5>
-        <p class="card-text">Por favor, tente novamente ou verifique sua conexão com a internet.</p>
+        <p style="font-size: 20px;" class="card-text">Por favor, tente novamente ou verifique sua conexão com a internet.</p>
         
         <div class="botoes">
 
-        <a href="http://localhost/Projeto-Back-End/Cadastro/cadastro.php" class="btn btn-primary">Tela de Cadastro</a>
+        <a href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php" class="btn btn-primary">Tela de Cadastro</a>
 
         </div>
     </div>
