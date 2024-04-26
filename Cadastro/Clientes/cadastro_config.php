@@ -5,7 +5,7 @@
     $dbHost = 'localhost:3312';
     $dbUsername = 'root';
     $dbPassword = '';
-    $dbName = 'cadastro';
+    $dbName = 'dr_agenda';
 
 // Conexão com o banco de dados
 
@@ -27,5 +27,3 @@
         
             header('Location: http://localhost/Projeto-Back-End/Login/Login.php');
     }
-
-?>

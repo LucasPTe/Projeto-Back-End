@@ -7,7 +7,7 @@
         $dbHost = 'localhost:3312';
         $dbUsername = 'root';
         $dbPassword = '';
-        $dbName = 'cadastro';
+        $dbName = 'dr_agenda';
 
     // Conexão com o banco de dados
     
@@ -39,7 +39,7 @@
                                 $login = $_POST['usuario'];
                                 $senha = $_POST['senha'];
 
-                                $sql = "SELECT * FROM usuarios WHERE usuario = '$login' and senha = '$senha'";
+                                $sql = "SELECT * FROM clientes WHERE usuario = '$login' and senha = '$senha'";
 
                                 $result = $conexao->query($sql);
 

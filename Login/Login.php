@@ -67,7 +67,7 @@
                         <p>Não possui conta ?</p>
                         
                         <div>
-                            <a href="http://localhost/Projeto-Back-End/Cadastro/cadastro.php" id="botao_cadastrar"><input type="button" value="Cadastrar-se" class="btn btn-lg btn-primary fs-6 cadastro_botao"></a>
+                            <a href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php" id="botao_cadastrar"><input type="button" value="Cadastrar-se" class="btn btn-lg btn-primary fs-6 cadastro_botao"></a>
                         </div>
 
             </form>

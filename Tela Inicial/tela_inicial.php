@@ -41,11 +41,7 @@
           </li>
           <!-- LOGIN -->
           <li class="nav-item dropdown links_header">
-            <a style="color: white;" class="nav-link" href="http://localhost/Projeto-Back-End/Login/Login.php" target="_blank">Login</a>
-          </li>
-          <!-- CADASTRO -->
-          <li class="nav-item dropdown links_header">
-            <a style="color: white;" class="nav-link" href="http://localhost/Projeto-Back-End/Cadastro/cadastro.php" target="_blank">Cadastro</a>
+            <a style="color: white;" class="nav-link" target="_self" href="http://localhost/Projeto-Back-End/Login/Login.php" target="_blank">Login</a>
           </li>
         </ul>
       </div>

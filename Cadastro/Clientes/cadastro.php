@@ -62,7 +62,7 @@ if(isset($_POST["cadastrar"]))
     $senha = $_POST['senha'];
     $confirm = $_POST['confirmsenha'];
     
-    $result = mysqli_query($conexao, "INSERT INTO usuarios(nome_completo,data_nasc,email,sexo,nome_mae,CPF,numero_cel,numero_tel,CEP,bairro,municipio,estado,endereco,numero,usuario,senha,confirm_senha) 
+    $result = mysqli_query($conexao, "INSERT INTO clientes(nome_completo,data_nasc,email,sexo,nome_mae,CPF,numero_cel,numero_tel,CEP,bairro,municipio,estado,endereco,numero,usuario,senha,confirm_senha) 
     VALUES ('$nome_completo','$data','$email','$genero','$nome_da_mae','$CPF','$celular','$telefone','$CEP','$bairro','$municipio','$estado','$endereco','$numero','$login','$senha','$confirm')");
 
  }
@@ -79,16 +79,13 @@ if(isset($_POST["cadastrar"]))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Med+</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="cadastro.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style_cadastro.css">
+    <link rel="stylesheet" href="fonts/stylesheet.css">
 
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     
     <form action="cadastro.php" method="POST">
 
@@ -101,7 +98,10 @@ if(isset($_POST["cadastrar"]))
             <div class="row border rounded-5 p-3 bg-white shadow box-area" id="box-area">   
             
                     <div class="input-group mb-3">
-                        <a class="btn btn-primary botao_card" href="http://localhost/Projeto-Back-End/Login/Login.php" role="button">Tenho Login</a>
+                        
+                        <a style="border-radius: 15px" class="btn btn-primary botao_card" href="http://localhost/Projeto-Back-End/Login/Login.php" role="button">Tenho Login</a>
+                        <a style="margin-left: 20rem; border-radius: 15px;" class="btn btn-primary botao_card" id="botao_medic" href="http://localhost/Projeto-Back-End/Cadastro/Medico/cadastro_medic.php" role="button">Sou Médico</a>
+
                     </div>
                     
                     <p class="d-flex justify-content-center cadastro_titulo" id="cadastro_titulo">CADASTRE-SE</p>
@@ -243,7 +243,7 @@ if(isset($_POST["cadastrar"]))
 
     </form>
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
