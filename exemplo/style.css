@@ -509,8 +509,20 @@ body {
 }
 
 footer {
-  background: #d6d6d6;
-  padding: 86px 0;
+  background: #2D3F6C;
+  padding: 20px;
+  color: #FFFFFF;
+}
+footer h2 a{
+  font-size: 50px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+footer p{
+  font-weight: 100;
+}
+.link_alunos{
+  color: #6EC6C0;
 }
 .single-content {
   text-align: center;
@@ -578,4 +590,9 @@ footer {
 }
 .sair_botao {
   margin-right: 10px;
+}
+.conteiner_links_footer a{
+    color: white;
+    font-size: 2rem;
+    margin-left: 12px;
 }
