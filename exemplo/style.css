@@ -4,6 +4,18 @@ body {
 }
 
 /* NAVBAR */
+.conteiner_botao_fonts{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+}
+.botao_a-{
+  position: absolute;
+  bottom: 100%;
+}
+.botao_a{
+}
 
 .nav-bar-fundo {
   background-color: #2d3f6c;
