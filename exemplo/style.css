@@ -4,6 +4,18 @@ body {
 }
 
 /* NAVBAR */
+.conteiner_botao_fonts{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+}
+.botao_a-{
+  position: absolute;
+  bottom: 100%;
+}
+.botao_a{
+}
 
 .nav-bar-fundo {
   background-color: #2d3f6c;
@@ -104,7 +116,6 @@ body {
 }
 
 .titulo_landing {
-  margin-top: -250px;
   color: #ffffff;
   font-weight: bold;
   font-size: 50px;
@@ -136,11 +147,6 @@ body {
   box-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
 }
 
-.div_localidade {
-  margin-left: -450px;
-  margin-top: -320px;
-}
-
 .localidade_busca {
   padding: 7px;
   padding-right: 50px;
@@ -155,17 +161,18 @@ body {
 }
 
 .div_botao {
-  margin-left: -450px;
-  margin-top: -320px;
+  width: 100%;
+  text-align: center;
 }
 
 .botao_buscar {
-  margin-left: 40px;
+  border-color: #2d3f6c;
   color: #ffffff;
   background-color: #2d3f6c;
 }
 
 .botao_buscar:hover {
+  border-color: #2d3f6c
   color: #ffffff;
   background-color: #5068a5;
 }
@@ -217,6 +224,8 @@ body {
 }
 
 .titulo_card {
+  color:#2d3f6c;
+  text-align: center;
   font-weight: bold;
 }
 
@@ -269,8 +278,7 @@ body {
 .usos_titulo {
   margin-bottom: 10px;
   font-size: 30px;
-  color: #0062a2;
-  font-weight: bold;
+  color: #2D3F6C;
 }
 
 .usos_texto {
@@ -280,11 +288,32 @@ body {
 
 /* MAIN - SOBRE */
 
-.pq_modavo {
+.quem_somos {
+  font-style: italic;
   font-size: 36px;
-  color: #0062a2;
+  color: #2d3f6c;
   font-weight: bold;
 }
+
+.canais_atendimento_titulo{
+  display: flex;
+  justify-content: start;
+  font-size: 36px;
+  color: #2d3f6c;
+  font-weight: bold;
+
+}
+
+.texto_quem_somos{
+  color:#727272 ;
+  text-align: justify;
+  font-size: 24px;
+}
+
+.borda_baixo{
+  border-bottom: solid 3px #80cbd7 ;
+}
+
 
 .about .espaco_entre {
   padding: 0;
@@ -492,8 +521,20 @@ body {
 }
 
 footer {
-  background: #d6d6d6;
-  padding: 86px 0;
+  background: #2D3F6C;
+  padding: 20px;
+  color: #FFFFFF;
+}
+footer h2 a{
+  font-size: 50px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+footer p{
+  font-weight: 100;
+}
+.link_alunos{
+  color: #6EC6C0;
 }
 .single-content {
   text-align: center;
@@ -561,4 +602,9 @@ footer {
 }
 .sair_botao {
   margin-right: 10px;
+}
+.conteiner_links_footer a{
+    color: white;
+    font-size: 2rem;
+    margin-left: 12px;
 }
