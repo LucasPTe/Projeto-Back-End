@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/Tela inicial/sobre.css">
+    <link rel="stylesheet" href="/TelaInicial/sobre.css">
     <link rel="stylesheet" href="dark-mode.css" id="dark-mode-stylesheet">
     <script src="dark-mode.js"></script>
 
@@ -26,7 +26,7 @@
         <div id="aa">
             <nav class="navbar navbar-expand-lg fixed-top nav-bar-fundo">
                 <div class="container-fluid">
-                    <a class="navbar-brand me-auto" href="/Tela inicial/index.html"> Dr.Agenda<!--<img src="/Tela inicial/archives/modavo_logo.png" id="logo_navbar" class="img-fluid" alt="Logo_Modavo">--></a>
+                    <a class="navbar-brand me-auto" href="/TelaInicial/index.html"> Dr.Agenda<!--<img src="/TelaInicial/archives/modavo_logo.png" id="logo_navbar" class="img-fluid" alt="Logo_Modavo">--></a>
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                         <div class="offcanvas-header">
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 d-flex justify-content-end">
-                        <img src="/Projeto-Back-End/Tela Inicial/archives/Med_logo_1.png" class="img-fluid" alt="modavo_solucoes">
+                        <img src="/Projeto-Back-End/TelaInicial/archives/Med_logo_1.png" class="img-fluid" alt="modavo_solucoes">
                     </div>
 
                 </div>
@@ -155,7 +155,7 @@
                 <h2 class="text-center pb-5 quem_somos" id="quem_somos">Quem Somos?</h2>
                 <div class="row mb-5 pb-5">
                     <div class="col-xl-5 espaco_entre">
-                        <img src="/Projeto-Back-End/Tela Inicial/archives/dr_agenda.png" class="img-fluid" alt="dr_agenda_Imagem">
+                        <img src="/Projeto-Back-End/TelaInicial/archives/dr_agenda.png" class="img-fluid" alt="dr_agenda_Imagem">
                     </div>
                     <div class="col-xl-7 d-flex align-items-center borda">
                         <p class="texto_quem_somos">Nós, da equipe da Dr. Agenda, somos um grupo de estudantes comprometidos em simplificar e melhorar a vida cotidiana das pessoas por meio da tecnologia. Nosso objetivo é criar soluções que facilitem a rotina e promovam uma experiência mais eficiente e conveniente para todos. A base do nosso projeto é um site e um aplicativo que utilizam tecnologia de geolocalização para encontrar médicos e laboratórios próximos à sua localização, facilitando o acesso a consultas médicas e exames de forma rápida e conveniente. </p>

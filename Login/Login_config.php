@@ -54,14 +54,14 @@
                                     $_SESSION['senha'] = $senha;
 
                                     // Se a senha e o login estiverem no banco de dados, o usuário irá acessar a tela principal.
-                                    header('Location: http://localhost/Projeto-Back-End/Tela%20Inicial/tela_inicial.php');
+                                    header('Location: http://localhost/Projeto-Back-End/TelaInicial/tela_inicial.php');
                                 } elseif(mysqli_num_rows($medicos_result) > 0) {
                                     // Se a conta for de um médico, irá criar essas duas váriaveis quando o sistema for acessado, para manter o usuário ativo.
                                     $_SESSION['usuario'] = $login;
                                     $_SESSION['senha'] = $senha;
 
                                     // Se a senha e o login estiverem no banco de dados, o usuário irá acessar a tela do médico.
-                                    header('Location: http://localhost/Projeto-Back-End/Tela%20Principal/Principal_medic.php');
+                                    header('Location: http://localhost/Projeto-Back-End/Tela Principal/Principal_medic.php');
                                 } else {
                                     // Se não estiver com web aberto e logado, será descartado as duas variáveis.
                                     unset ($_SESSION['usuario']);
