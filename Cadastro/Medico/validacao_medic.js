@@ -59,16 +59,21 @@ inputNomeCompleto.addEventListener('input', function() {
         }
     });
 
-    // Adiciona um ouvinte de eventos para cada mudança de entrada no campo de especialização
-    document.getElementById('especializacao').addEventListener('input', function(event) {
-        // Obtém o valor atual do campo especialização
-        let value = event.target.value;
+   // Obtém o elemento de entrada de especialização
+    const inputEspecializacao = document.getElementById('especializacao');
 
-        // Remove todos os caracteres que não sejam letras ou espaços do valor
-        value = value.replace(/[^a-zA-Z\s]/g, '');
-
-        // Atualiza o valor do campo com os caracteres de letras e espaços apenas
-        event.target.value = value;
+    // Adiciona um ouvinte de evento de entrada ao campo de especialização
+    inputEspecializacao.addEventListener('input', function() {
+        // Verifica se o valor do campo tem pelo menos 3 caracteres
+        if (this.value.length < 3) {
+            // Se o valor for menor que 3 caracteres, adiciona a classe 'is-invalid' para destacar o campo
+            this.classList.remove('is-valid');
+            this.classList.add('is-invalid');
+        } else {
+            // Se o valor for válido, remove a classe 'is-invalid' e adiciona 'is-valid'
+            this.classList.remove('is-invalid');
+            this.classList.add('is-valid');
+        }
     });
 
     // Função para formatar o CPF no formato (xxx.xxx.xxx-xx)
@@ -212,16 +217,24 @@ inputNomeCompleto.addEventListener('input', function() {
     return /^(.)\1+$/.test(numero);
     }
 
-    // Adiciona um ouvinte de eventos para cada mudança de entrada no campo de CRM
-    document.getElementById('CRM').addEventListener('input', function(event) {
-        // Obtém o valor atual do campo CRM
-        let value = event.target.value;
+    // Obtém o elemento de entrada do CRM
+    const inputCRM = document.getElementById('CRM');
 
-        // Remove todos os caracteres não numéricos do valor
-        value = value.replace(/\D/g, '');
+    // Adiciona um ouvinte de evento de entrada ao campo do CRM
+    inputCRM.addEventListener('input', function() {
+        // Remove todos os caracteres que não são números usando expressão regular
+        this.value = this.value.replace(/\D/g, '');
 
-        // Atualiza o valor do campo com os caracteres numéricos apenas
-        event.target.value = value;
+        // Verifica se o comprimento do CRM é exatamente 6 caracteres
+        if (this.value.length !== 6) {
+            // Se o comprimento não for 6, adiciona a classe 'is-invalid' para destacar o campo
+            this.classList.remove('is-valid');
+            this.classList.add('is-invalid');
+        } else {
+            // Se o comprimento for 6, remove a classe 'is-invalid' e adiciona 'is-valid'
+            this.classList.remove('is-invalid');
+            this.classList.add('is-valid');
+        }
     });
 
     // Comando de busca do CEP no API do Correios:
