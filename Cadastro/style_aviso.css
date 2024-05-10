@@ -16,8 +16,8 @@ body{
     
     .card-header {
     
-    color: red;
-    background-color: yellow;
+    color: rgb(255, 255, 255);
+    background-color: #66CDAA;
     font-size: 25px;
     text-align: center;
     font-family: 'poppinsblack', Arial, Helvetica, sans-serif;
@@ -42,4 +42,11 @@ body{
         background-color: #66CDAA;
         border: none;
     
+    }
+
+    .btn-primary {
+
+    background-color: #0062a2;
+
+
     }

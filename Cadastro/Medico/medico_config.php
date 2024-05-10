@@ -13,18 +13,19 @@
 
 // Verifica se houve algum erro durante a conexão
 
-    if ($conexao->connect_errno) {
-        
-        // Exibe uma mensagem de erro caso haja algum problema de conexão
-        
-            //echo "Erro: " . $conexao->connect_error;
-            header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_erro.php');
-    } 
+if ($conexao->connect_errno) {
 
-    else {
+        // Captura o erro de conexão
+        $erro = $conexao->connect_error;
+    
+        // Exibe uma mensagem de erro detalhada para o usuário
+        echo "Erro ao conectar ao banco de dados: $erro";
+}  
+
+else {
         
-        // Envia o cliente para tela de login, caso a conta for criada:
-        
-            header('Location: http://localhost/Projeto-Back-End/Login/Login.php');
+        // Exibe uma mensagem informando que o banco de dados foi conectado com sucesso
+        echo "banco de dados conectado com sucesso";
+
     }
 

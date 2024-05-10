@@ -1,0 +1,52 @@
+body{
+
+    background-image: linear-gradient(#66CDAA, #0062a2);
+    font-family: 'poppinsbold', Arial, Helvetica, sans-serif;
+    
+    
+    }
+    
+    .container-fluid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Para ocupar toda a altura da tela */
+        
+    }
+    
+    .card-header {
+    
+    color: red;
+    background-color: yellow;
+    font-size: 25px;
+    text-align: center;
+    font-family: 'poppinsblack', Arial, Helvetica, sans-serif;
+    
+    }
+    
+    .card-body{
+    
+        background-color: white;
+        text-align: center;
+    
+    
+    }
+    
+    .botoes {
+        text-align: center;
+        align-items: center;
+      }
+    
+    .btn:hover {
+    
+        background-color: #66CDAA;
+        border: none;
+    
+    }
+
+    .btn-primary {
+
+        background-color: #0062a2;
+    
+    
+        }

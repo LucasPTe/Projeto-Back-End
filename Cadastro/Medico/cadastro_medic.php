@@ -30,6 +30,15 @@ if(isset($_POST["cadastrar"]))
     $result = mysqli_query($conexao, "INSERT INTO medicos(nome_completo_medic,data_nasc_medic,email_medic,especializacao,sexo_medic,nome_mae_medic,CPF_medic,numero_cel_medic,numero_tel_medic,CRM,CEP_medic,bairro_medic,municipio_medic,estado_medic,endereco_medic,numero_medic,usuario_medic,senha_medic,confirm_senha_medic) 
     VALUES ('$nome_completo','$data','$email','$especializacao','$genero','$nome_da_mae','$CPF','$celular','$telefone','$CRM','$CEP','$bairro','$municipio','$estado','$endereco','$numero','$login','$senha','$confirm')");
 
+    if ($result) {
+        // Se a conta foi criada com sucesso, irá redirecionar para tela de aviso
+        header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_aviso.php');
+    } else {
+        // Se houver um erro na execução da query, redireciona para a tela de erro
+        header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_erro.php');
+    }
+
+
  }
 
 
@@ -48,6 +57,7 @@ if(isset($_POST["cadastrar"]))
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style_medic.css">
     <link rel="stylesheet" href="fonts/stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
@@ -79,22 +89,22 @@ if(isset($_POST["cadastrar"]))
                             
                             <label for="nome_completo" id="labelNome">Nome completo</label>                   
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control form-control-lg bg-light fs-6" id="nome_completo" name="Nome_completo" minlength="15" maxlength="80" required placeholder="">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" id="nome_completo" name="Nome_completo" autocomplete="off" minlength="15" maxlength="80" required placeholder="">
                             </div>
                             
-                            <label for="data_de_nascimento" id="label-data">Data de Nascimento</label>                  
+                            <label for="data" id="label-data">Data de Nascimento</label>                  
                             <div class="input-group mb-3">
                                 <input type="date" class="form-control form-control-lg bg-light fs-6" id="data" name="Data" autocomplete="off" required placeholder="">
                             </div>
 
-                            <label for="e-mail">E-mail</label>
+                            <label for="email">E-mail</label>
                             <div class="input-group mb-3">
                                 <input type="e-mail" class="form-control form-control-lg bg-light fs-6" required id="email" name="Email" autocomplete="off" placeholder="">
                             </div>
 
-                            <label for="Especializacao" id="labelEspecializacao">Especialização</label>                   
+                            <label for="especializacao" id="labelEspecializacao">Especialização</label>                   
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control form-control-lg bg-light fs-6" id="Especializacao" name="Especializacao" required placeholder="">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" id="especializacao" autocomplete="off" name="Especializacao" required placeholder="">
                             </div>
 
                                     <p>Gênero</p>
@@ -108,7 +118,7 @@ if(isset($_POST["cadastrar"]))
 
                                     </div>
 
-                                    <div class="form-check" id="genero">
+                                    <div class="form-check" >
                                         
                                         <input class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Feminio" checked>
                                         <label class="form-check-label" for="exampleRadios1">
@@ -117,7 +127,7 @@ if(isset($_POST["cadastrar"]))
 
                                     </div>
 
-                                    <div class="form-check" id="genero">
+                                    <div class="form-check">
                                         
                                         <input class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Discreto" checked>
                                         <label class="form-check-label" for="exampleRadios1">
@@ -126,28 +136,28 @@ if(isset($_POST["cadastrar"]))
 
                                     </div>   
                             
-                            <label style="margin-top: 10px;" for="nome_da_mae" id="labelMae">Nome da Mãe</label>
+                            <label style="margin-top: 10px;" for="mae" id="labelMae">Nome da Mãe</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control form-control-lg bg-light fs-6" id="mae" name="Mae" autocomplete="off" minlength="15" maxlength="80" required placeholder="">
                             </div>
                             
-                            <label for="CPF" id="labelCpf">CPF</label>
+                            <label for="cpf" id="labelCpf">CPF</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control form-control-lg bg-light fs-6" required id="cpf" name="CPF" maxlength="11" autocomplete="off" placeholder="">
                             </div>
                             
-                            <label for="numero_de_celular" id="labelCelular">Número de Celular</label>
+                            <label for="celular" id="labelCelular">Número de Celular</label>
                             <div class="input-group mb-3">
                                 <input type="tel" class="form-control form-control-lg bg-light fs-6" minlength="11" maxlength="11" required id="celular" name="Celular" autocomplete="off" placeholder="">
                             </div>
 
-                            <label for="telefone_fixo" id="labelFixo">Telefone Fixo</label>
+                            <label for="fixo" id="labelFixo">Telefone Fixo</label>
                             <div class="input-group mb-3">
                                 <input type="tel" class="form-control form-control-lg bg-light fs-6" minlength="10" maxlength="10" required id="fixo" name="Fixo" autocomplete="off" placeholder="">
                             </div>
 
                             <div class="d-grid gap-2 d-md-block">
-                                <button style="font-size: 18px;" class="btn btn-primary" name="cadastrar" type="submit">Cadastre-se</button>
+                                <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
                                 <button style="font-size: 18px;" class="btn btn-primary" name="limpar" type="submit">Limpar Dados</button>
                             </div>
                         
@@ -194,7 +204,7 @@ if(isset($_POST["cadastrar"]))
                                 <input type="text" class="form-control form-control-lg bg-light fs-6" required id="numero" name="Numero" autocomplete="off" placeholder="Ex: n° 105">
                             </div>
 
-                            <label for="nome_de_usuario" id="labelUsuario">Login</label>
+                            <label for="usuario" id="labelUsuario">Login</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" id="usuario" name="Usuario" autocomplete="off" required placeholder="">
                             </div>
@@ -204,7 +214,7 @@ if(isset($_POST["cadastrar"]))
                                 <input type="password" class="form-control form-control-lg bg-light fs-6" required id="senha" name="Senha" minlength="8" maxlength="8" autocomplete="off" placeholder="">
                             </div>
 
-                            <label for="confirmar_senha" id="labelConfirmSenha">Confirmar Senha</label>
+                            <label for="confirmSenha" id="labelConfirmSenha">Confirmar Senha</label>
                             <div class="input-group mb-3">
                                 <input type="password" class="form-control form-control-lg bg-light fs-6" required id="confirmSenha" name="Confirmsenha" minlength="8" maxlength="8" autocomplete="off" placeholder="">
                             </div>
@@ -219,10 +229,24 @@ if(isset($_POST["cadastrar"]))
 
     </form>
 
+        <style>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        .is-invalid {
+            border-color: red;
+        }
+
+        .is-valid {
+            border-color: green;
+        }
+
+
+
+        </style>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="/Projeto-Back-End/Cadastro/Medico/medico.js"></script>
 </body>
 
 </html>
