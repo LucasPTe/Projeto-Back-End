@@ -44,7 +44,7 @@ CREATE TABLE `clientes` (
   `senha` varchar(16) NOT NULL,
   `confirm_senha` varchar(16) NOT NULL,
   PRIMARY KEY (`pacientes`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','test@gmail.com','Masculino','Rosangela  Ferrete dos Santos','191.761.947-28','(21) 9 7652-7831','(21) 2528-7475','25080030','Parque Paulicéia','Duque de Caxias','RJ','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143');
+INSERT INTO `clientes` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','test@clientel.com','Masculino','Rosangela  Ferrete dos Santos','191.761.947-28','(21) 9 7652-7831','(21) 2528-7475','25080030','Parque Paulicéia','Duque de Caxias','RJ','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143'),(82,'','2000-07-13','test@gmail.com','','Rosangela Ferrete de Souza','191.761.947-28','(21) 9 7652-7831','(21) 2525-4454','25454541','','','','',173,'HD-TI6','Hugo9143','Hugo9143');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +65,7 @@ DROP TABLE IF EXISTS `medicos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medicos` (
-  `doutor` int(11) NOT NULL AUTO_INCREMENT,
+  `doutor'a` int(11) NOT NULL AUTO_INCREMENT,
   `nome_completo_medic` varchar(80) NOT NULL,
   `data_nasc_medic` date NOT NULL,
   `email_medic` varchar(110) NOT NULL,
@@ -85,8 +85,8 @@ CREATE TABLE `medicos` (
   `usuario_medic` varchar(6) NOT NULL,
   `senha_medic` varchar(16) NOT NULL,
   `confirm_senha_medic` varchar(16) NOT NULL,
-  PRIMARY KEY (`doutor`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`doutor'a`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `medicos` (
 
 LOCK TABLES `medicos` WRITE;
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
-INSERT INTO `medicos` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','medic@gmail.com','Cardiologista','Masculino','Rosangela Ferreira dos Santos','19176194228','21976527831','2125287478','130720','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143');
+INSERT INTO `medicos` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','test@medic.com','Cardiologista','Masculino','Rosangela Ferrete de Souza','191.761.947-28','(21) 9 7652-783','(21) 2528-4454','151566','25080030','Parque Paulicéia','Duque de Caxias','RJ','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143');
 /*!40000 ALTER TABLE `medicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -108,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-29 13:24:09
+-- Dump completed on 2024-05-11 20:22:27

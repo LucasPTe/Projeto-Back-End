@@ -200,8 +200,8 @@ inputNomeCompleto.addEventListener('input', function() {
     return /^(.)\1+$/.test(numero);
     }
 
-        // Comando de busca do CEP no API do Correios:
-        document.getElementById('CEP').addEventListener('blur', function() {
+    // Comando de busca do CEP no API do Correios:
+    document.getElementById('CEP').addEventListener('blur', function() {
         const cep = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
 
         // Verifica se o CEP possui 8 dígitos
@@ -216,12 +216,23 @@ inputNomeCompleto.addEventListener('input', function() {
                         document.getElementById('municipio').value = data.localidade;
                         document.getElementById('estado').value = data.uf;
                         document.getElementById('endereco').value = data.logradouro;
+
+                        // Chama a função de validação para cada campo preenchido
+                        validarCampoTexto(document.getElementById('bairro'), 2, 50);
+                        validarCampoTexto(document.getElementById('municipio'), 2, 50);
+                        validarCampoTexto(document.getElementById('estado'), 2, 2);
+                        validarCampoTexto(document.getElementById('endereco'), 5, 100);
                     } else {
-                        // Se o CEP não for encontrado, limpa os campos
-                        document.getElementById('bairro').value = '';
-                        document.getElementById('municipio').value = '';
-                        document.getElementById('estado').value = '';
-                        document.getElementById('endereco').value = '';
+                        // Se o CEP não for encontrado, define os campos como inválidos
+                        document.getElementById('bairro').classList.remove('is-valid');
+                        document.getElementById('bairro').classList.add('is-invalid');
+                        document.getElementById('municipio').classList.remove('is-valid');
+                        document.getElementById('municipio').classList.add('is-invalid');
+                        document.getElementById('estado').classList.remove('is-valid');
+                        document.getElementById('estado').classList.add('is-invalid');
+                        document.getElementById('endereco').classList.remove('is-valid');
+                        document.getElementById('endereco').classList.add('is-invalid');
+
                         alert('CEP não encontrado.');
                     }
                 })
@@ -229,7 +240,7 @@ inputNomeCompleto.addEventListener('input', function() {
         }
     });
 
-    // Função para validar campos de texto
+// Função para validar campos de texto
     function validarCampoTexto(campo, min, max) {
         const valor = campo.value.trim();
         const isValid = valor.length >= min && valor.length <= max;
@@ -244,7 +255,7 @@ inputNomeCompleto.addEventListener('input', function() {
         }
     }
 
-    // Função para validar o CEP
+// Função para validar o CEP
     function validarCEP(cep) {
         // Adicione aqui a lógica de validação do CEP, se necessário
         // Por exemplo, você pode verificar se o CEP possui o formato correto
@@ -252,22 +263,22 @@ inputNomeCompleto.addEventListener('input', function() {
         return cep.length === 8 && /^[0-9]+$/.test(cep);
     }
 
-    // Função para preencher automaticamente os campos com base no CEP
+// Função para preencher automaticamente os campos com base no CEP
     function preencherCamposComCEP(cep) {
         
-        document.getElementById('bairro').value = 'EX bairro';
-        document.getElementById('municipio').value = 'EX Município';
-        document.getElementById('estado').value = 'EX';
-        document.getElementById('endereco').value = 'EX rua';
+        document.getElementById('bairro').value = '';
+        document.getElementById('municipio').value = '';
+        document.getElementById('estado').value = '';
+        document.getElementById('endereco').value = '';
 
         // Chama a função de validação para cada campo preenchido
-        validarCampoTexto(document.getElementById('bairro'), 2, 50);
-        validarCampoTexto(document.getElementById('municipio'), 2, 50);
+        validarCampoTexto(document.getElementById('bairro'), 3, 50);
+        validarCampoTexto(document.getElementById('municipio'), 4, 50);
         validarCampoTexto(document.getElementById('estado'), 2, 2);
         validarCampoTexto(document.getElementById('endereco'), 5, 100);
     }
 
-    // Adiciona ouvinte de evento de entrada para validar o CEP
+// Adiciona ouvinte de evento de entrada para validar o CEP
     document.getElementById('CEP').addEventListener('input', function() {
         if (validarCEP(this.value)) {
             this.classList.remove('is-invalid');
@@ -282,11 +293,11 @@ inputNomeCompleto.addEventListener('input', function() {
 
     // Adiciona ouvintes de eventos de entrada para validar campos de texto
     document.getElementById('bairro').addEventListener('input', function() {
-        validarCampoTexto(this, 2, 50);
+        validarCampoTexto(this, 3, 50);
     });
 
     document.getElementById('municipio').addEventListener('input', function() {
-        validarCampoTexto(this, 2, 50);
+        validarCampoTexto(this, 4, 50);
     });
 
     document.getElementById('estado').addEventListener('input', function() {
@@ -308,6 +319,87 @@ inputNomeCompleto.addEventListener('input', function() {
         } else {
             this.classList.remove('is-valid');
             this.classList.add('is-invalid');
+        }
+    });
+
+// Validação do login:
+document.getElementById('usuario').addEventListener('input', function(event) {
+    let usuario = this.value.trim(); // Remove espaços em branco do início e do final
+    let labelUsuario = document.getElementById('labelUsuario');
+
+    // Verifica se o usuário possui exatamente 6 caracteres alfanuméricos, hífen ou sublinhado
+    if (/^[\w\-_]{6}$/.test(usuario)) {
+        this.classList.remove('is-invalid');
+        this.classList.add('is-valid');
+        labelUsuario.textContent = "Login"; // Altera o texto do label para indicar que o login é válido
+    } else {
+        this.classList.remove('is-valid');
+        this.classList.add('is-invalid');
+        labelUsuario.textContent = "Login"; // Altera o texto do label para indicar que o login é inválido
+    }
+});
+
+// Adicione um listener de evento de input ao campo de senha
+    document.getElementById('senha').addEventListener('input', function(event) {
+        let senha = this.value.trim(); // Remove espaços em branco
+
+        // Verificar se a senha tem pelo menos 8 caracteres
+        if (senha.length < 8) {
+            this.classList.remove('is-valid');
+            this.classList.add('is-invalid');
+        } else {
+            this.classList.remove('is-invalid');
+            this.classList.add('is-valid');
+        }
+
+        // Verificar se a confirmação de senha é idêntica à senha
+        validarConfirmacaoSenha();
+    });
+
+    // Adicione um listener de evento de input ao campo de confirmação de senha
+    document.getElementById('confirmSenha').addEventListener('input', function(event) {
+        // Verificar se a confirmação de senha é idêntica à senha
+        validarConfirmacaoSenha();
+    });
+
+    // Função para validar a confirmação de senha
+    function validarConfirmacaoSenha() {
+        let senha = document.getElementById('senha').value;
+        let confirmacaoSenha = document.getElementById('confirmSenha').value;
+
+        // Verificar se a confirmação de senha é idêntica à senha
+        if (senha === confirmacaoSenha && senha.length >= 8) {
+            document.getElementById('confirmSenha').classList.remove('is-invalid');
+            document.getElementById('confirmSenha').classList.add('is-valid');
+        } else {
+            document.getElementById('confirmSenha').classList.remove('is-valid');
+            document.getElementById('confirmSenha').classList.add('is-invalid');
+        }
+    }
+
+    // Adicione um listener de evento de click ao botão limpar dados
+    function limparInputs() {
+        var inputs = document.querySelectorAll('input');
+        inputs.forEach(function(input) {
+            input.value = ''; // Limpa o valor de cada input
+            input.setCustomValidity('Este campo é inválido'); // Define a mensagem de validade personalizada como inválida
+            
+            // Adiciona a classe 'is-invalid' para indicar que o input é inválido
+            input.classList.add('is-invalid');
+            
+            // Remove a classe 'is-valid' se estiver presente
+            input.classList.remove('is-valid');
+            
+            // Disparar evento de entrada (input) para forçar a reavaliação da validação
+            input.dispatchEvent(new Event('input'));
+        });
+    }
+
+    // Adicione um listener de evento de click ao botão cadastrar
+    document.getElementById('cadastrar').addEventListener('click', function(event) {
+        // Impedir o envio do formulário se algum input estiver inválido, exceto para o campo de gênero
+        if (!validarFormulario()) {
+            event.preventDefault();
         }
     });
 
@@ -364,6 +456,47 @@ inputNomeCompleto.addEventListener('input', function() {
         document.getElementById('confirmSenha').classList.remove('is-valid');
         document.getElementById('confirmSenha').classList.add('is-invalid');
     }
+
+    }
+
+// Adicione um listener de evento de click ao botão limpar dados
+    document.getElementById('botaoLimpar').addEventListener('click', function() {
+        // Chama a função para limpar os inputs
+        limparInputs();
+
+        // Limpa o campo de data
+        document.getElementById('data').value = '';
+
+        // Limpa todas as validações
+        var inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(function(input) {
+            input.setCustomValidity(''); // Limpa a mensagem de validade personalizada
+            input.classList.remove('is-invalid'); // Remove a classe 'is-invalid'
+            input.classList.remove('is-valid'); // Remove a classe 'is-valid'
+        });
+    });
+
+    function limparInputs() {
+        var inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(function(input) {
+            // Verifica se o tipo do input é diferente de "date"
+            if (input.type !== 'date') {
+                // Limpa o valor de cada input
+                input.value = '';
+
+                // Define a mensagem de validade personalizada como inválida
+                input.setCustomValidity('Este campo é inválido');
+
+                // Remove a classe 'is-invalid' se estiver presente
+                input.classList.remove('is-invalid');
+
+                // Remove a classe 'is-valid' se estiver presente
+                input.classList.remove('is-valid');
+
+                // Disparar evento de entrada (input) para forçar a reavaliação da validação
+                input.dispatchEvent(new Event('input'));
+            }
+        });
     }
 
     // Adicione um listener de evento de click ao botão cadastrar

@@ -104,26 +104,26 @@ if(isset($_POST["cadastrar"]))
 
                                     <div class="form-check genero-input">
                                         
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Masculino" checked>
+                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Masculino" checked>
                                         <label class="form-check-label" for="exampleRadios1">
                                             Másculino
                                         </label>
 
                                     </div>
 
-                                    <div class="form-check genero-input" id="genero">
+                                    <div class="form-check genero-input">
                                         
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Feminio" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
+                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="exampleRadios" id="Radios2" value="Feminio" checked>
+                                        <label class="form-check-label" for="Radios2">
                                             Feminino
                                         </label>
 
                                     </div>
 
-                                    <div class="form-check genero-input" id="genero">
+                                    <div class="form-check genero-input">
                                         
-                                        <input class="form-check-input " type="radio" name="exampleRadios" id="exampleRadios1" value="Discreto" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
+                                        <input style="margin-right: 20px;" class="form-check-input " type="radio" name="exampleRadios" id="Radios3" value="Discreto" checked>
+                                        <label class="form-check-label" for="Radios3">
                                             Prefiro não dizer
                                         </label>
 
@@ -149,10 +149,12 @@ if(isset($_POST["cadastrar"]))
                                 <input type="tel" class="form-control form-control-lg bg-light fs-6" minlength="10" maxlength="10" required id="fixo" name="fixo" autocomplete="off" placeholder="">
                             </div>
 
-                            <div class="d-grid gap-2 d-md-block">
+                            
+                            <div class="button-group">
                                 <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
-                                <button style="font-size: 18px;" class="btn btn-primary" name="limpar" type="submit">Limpar Dados</button>
+                                <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
                             </div>
+
                         
                         </div>
 
@@ -216,6 +218,15 @@ if(isset($_POST["cadastrar"]))
         </div>
 
     </form>
+
+    <script>
+        function limparInputs() {
+            var inputs = document.querySelectorAll('input');
+            inputs.forEach(function(input) {
+                input.value = ''; // Limpa o valor de cada input
+            });
+        }
+    </script>
 
         <style>
 

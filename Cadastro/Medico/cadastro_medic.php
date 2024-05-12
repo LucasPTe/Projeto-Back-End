@@ -55,7 +55,7 @@ if(isset($_POST["cadastrar"]))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Med+</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style_medic.css">
+    <link rel="stylesheet" href="style_medicos.css">
     <link rel="stylesheet" href="fonts/stylesheet.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -120,8 +120,8 @@ if(isset($_POST["cadastrar"]))
 
                                     <div class="form-check" >
                                         
-                                        <input class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Feminio" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
+                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="ExampleRadios" id="Radios2" value="Feminio" checked>
+                                        <label class="form-check-label" for="Radios2">
                                             Feminino
                                         </label>
 
@@ -129,8 +129,8 @@ if(isset($_POST["cadastrar"]))
 
                                     <div class="form-check">
                                         
-                                        <input class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Discreto" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
+                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="ExampleRadios" id="Radios3" value="Discreto" checked>
+                                        <label class="form-check-label" for="Radios3">
                                             Prefiro não dizer
                                         </label>
 
@@ -158,7 +158,7 @@ if(isset($_POST["cadastrar"]))
 
                             <div class="d-grid gap-2 d-md-block">
                                 <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
-                                <button style="font-size: 18px;" class="btn btn-primary" name="limpar" type="submit">Limpar Dados</button>
+                                <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
                             </div>
                         
                         </div>
