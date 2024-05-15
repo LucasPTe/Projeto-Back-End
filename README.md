@@ -17,4 +17,4 @@
 
 Obs: Caso pedir senha, estarei deixando aqui.
 - porta: 3312
-- senha: Projeto1234
+- senha: (apenas deixe o campo vazio.)

@@ -50,7 +50,7 @@ if(isset($_POST["cadastrar"]))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Med+</title>
+    <title>Cadastro Dr.Agenda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style_cadastro.css">
     <link rel="stylesheet" href="fonts/stylesheet.css">
@@ -106,7 +106,7 @@ if(isset($_POST["cadastrar"]))
                                         
                                         <input style="margin-right: 20px;" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Masculino" checked>
                                         <label class="form-check-label" for="exampleRadios1">
-                                            Másculino
+                                            Masculino
                                         </label>
 
                                     </div>
