@@ -120,8 +120,8 @@ if(isset($_POST["cadastrar"]))
 
                                     <div class="form-check" >
                                         
-                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="ExampleRadios" id="Radios2" value="Feminio" checked>
-                                        <label class="form-check-label" for="Radios2">
+                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Feminio" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
                                             Feminino
                                         </label>
 
@@ -129,8 +129,8 @@ if(isset($_POST["cadastrar"]))
 
                                     <div class="form-check">
                                         
-                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="ExampleRadios" id="Radios3" value="Discreto" checked>
-                                        <label class="form-check-label" for="Radios3">
+                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Discreto" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
                                             Prefiro não dizer
                                         </label>
 

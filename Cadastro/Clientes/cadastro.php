@@ -4,6 +4,7 @@
 if(isset($_POST["cadastrar"]))
 {
 
+
 // Criando às variáveis para as colunas da tabela "clientes":  
     include_once('cadastro_config.php');
 
@@ -38,7 +39,6 @@ if(isset($_POST["cadastrar"]))
 
 
  }
-
 
 ?>
 
@@ -113,8 +113,8 @@ if(isset($_POST["cadastrar"]))
 
                                     <div class="form-check genero-input">
                                         
-                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="exampleRadios" id="Radios2" value="Feminio" checked>
-                                        <label class="form-check-label" for="Radios2">
+                                        <input style="margin-right: 20px;" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Feminio" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
                                             Feminino
                                         </label>
 
@@ -122,8 +122,8 @@ if(isset($_POST["cadastrar"]))
 
                                     <div class="form-check genero-input">
                                         
-                                        <input style="margin-right: 20px;" class="form-check-input " type="radio" name="exampleRadios" id="Radios3" value="Discreto" checked>
-                                        <label class="form-check-label" for="Radios3">
+                                        <input style="margin-right: 20px;" class="form-check-input " type="radio" name="exampleRadios" id="exampleRadios1" value="Discreto" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
                                             Prefiro não dizer
                                         </label>
 
@@ -219,15 +219,6 @@ if(isset($_POST["cadastrar"]))
 
     </form>
 
-    <script>
-        function limparInputs() {
-            var inputs = document.querySelectorAll('input');
-            inputs.forEach(function(input) {
-                input.value = ''; // Limpa o valor de cada input
-            });
-        }
-    </script>
-
         <style>
 
             .is-invalid {
@@ -245,7 +236,7 @@ if(isset($_POST["cadastrar"]))
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script src="/Projeto-Back-End/Cadastro/Clientes/validacao_cliente.js"></script>
+        <script src="/Projeto-Back-End/Cadastro/Clientes/validacao_usuario.js"></script>
 </body>
 
 </html>
