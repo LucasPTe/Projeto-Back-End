@@ -41,7 +41,7 @@
                     <div class="row align-items-center">
                         
                         <div class="input-group mb-3">
-                            <a type="button" class="btn btn-primary" href="http://localhost/Projeto-Back-End/Tela%20Inicial/index.html" id="home">Home</a>
+                            <a type="button" class="btn btn-primary" href="http://localhost/Projeto-Back-End/TelaInicial/index.html" id="home">Home</a>
                         </div>
                         
                         <div class="header-text mb-4">
