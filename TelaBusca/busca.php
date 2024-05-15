@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="stylesheet" href="/TelaInicial/sobre.css">
     <link rel="stylesheet" href="dark-mode.css" id="dark-mode-stylesheet">
     <script src="dark-mode.js"></script>
@@ -81,10 +81,20 @@
                         <h1 class="titulo_landing">Buscar e contratar nunca foi tão fácil!</h1>
                         <div class="row">
                             <div class="col-xl-5 mb-3 mb-sm-0">
-                                <label for="Especialista" id="labelUsuario"></label>
+                            <div class="form-floating conteiner_select">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                            <option value="1">Cardiologia</option>
+                            <option value="2">Ortopedia</option>
+                            <option value="3">Otorrinolaringologia</option>
+                            <option value="4">Nutrologia</option>
+                            <option value="5">Oftalmologia</option>
+                            </select>
+                            <label for="floatingSelect">Selecione Abaixo</label>
+                        </div>
+                                <!-- <label for="Especialista" id="labelUsuario"></label>
                                 <div class="input-group mb-6">
                                     <input type="text" class="bg-light fs-6 especialista_busca" id="Especialista" placeholder="Especialista">
-                                </div>
+                                </div> -->
                             </div>
                             <div class="col-xl-5 div_localidade">
                                 <label for="senha" id="labelLocalidade"></label>
@@ -105,21 +115,22 @@
         </section>
         <!-- FIM Seção Sobre-->
 
-        <div>
+        <div class="section_resultado">
             <h4>Resultado:</h4>
             <br>
 
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-12">
-                        <div class="card-body ll">
+                        <div class="card-body ll conteiner-cards">
                             <div class="row titulo_card">
-                                <div class="col-md-6">
-                                    <h5 class="card-title card_text">Dra. Paula Tejano</h5>
-                                </div>
-                                <div class="col-md-6">
+
+                                <div class="conteiner-titulo-card">
+                                    <h5 class="card-title card_text h5_doutor">Dra. Paula Tejano</h5>
+
                                     <h5 class="card-title card_text2">Cardiologia</h5>
                                 </div>
+
                             </div>
                             <p class="card-text">Rua Fora Tite, 84 - Gávea </p>
                             <p class="card-text">(21) 96969-6969 </p>
