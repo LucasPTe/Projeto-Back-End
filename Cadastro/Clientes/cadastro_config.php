@@ -2,10 +2,10 @@
 
 // Informações do banco de dados:
     
-    $dbHost = 'localhost:3312';
+    $dbHost = 'localhost:3306';
     $dbUsername = 'root';
     $dbPassword = '';
-    $dbName = 'cadastro';
+    $dbName = 'dr_agenda';
 
 // Conexão com o banco de dados
 $conexao = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
