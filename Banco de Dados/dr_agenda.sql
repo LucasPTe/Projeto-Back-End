@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: dr_agenda
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.32-MariaDB
+-- Server version	8.0.37
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,24 +23,24 @@ DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
-  `pacientes` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_completo` varchar(80) NOT NULL,
+  `pacientes` int NOT NULL AUTO_INCREMENT,
+  `nome_completo` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_nasc` date NOT NULL,
-  `email` varchar(110) NOT NULL,
-  `sexo` varchar(15) NOT NULL,
-  `nome_mae` varchar(80) NOT NULL,
-  `CPF` varchar(15) NOT NULL,
-  `numero_cel` varchar(11) NOT NULL,
-  `numero_tel` varchar(10) NOT NULL,
-  `CEP` varchar(10) NOT NULL,
-  `bairro` varchar(45) NOT NULL,
-  `municipio` varchar(45) NOT NULL,
-  `estado` varchar(45) NOT NULL,
-  `endereco` varchar(45) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `usuario` varchar(6) NOT NULL,
-  `senha` varchar(16) NOT NULL,
-  `confirm_senha` varchar(16) NOT NULL,
+  `email` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sexo` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nome_mae` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `CPF` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numero_cel` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numero_tel` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `CEP` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bairro` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `municipio` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `estado` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `endereco` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numero` int NOT NULL,
+  `usuario` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `senha` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `confirm_senha` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`pacientes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,26 +63,26 @@ DROP TABLE IF EXISTS `medicos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medicos` (
-  `doutor` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_completo_medic` varchar(80) NOT NULL,
+  `doutor` int NOT NULL AUTO_INCREMENT,
+  `nome_completo_medic` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_nasc_medic` date NOT NULL,
-  `email_medic` varchar(110) NOT NULL,
-  `especializacao` varchar(50) NOT NULL,
-  `sexo_medic` varchar(15) NOT NULL,
-  `nome_mae_medic` varchar(80) NOT NULL,
-  `CPF_medic` varchar(15) NOT NULL,
-  `numero_cel_medic` varchar(11) NOT NULL,
-  `numero_tel_medic` varchar(10) NOT NULL,
-  `CRM` varchar(6) NOT NULL,
-  `CEP_medic` varchar(10) NOT NULL,
-  `bairro_medic` varchar(45) NOT NULL,
-  `municipio_medic` varchar(45) NOT NULL,
-  `estado_medic` varchar(45) NOT NULL,
-  `endereco_medic` varchar(45) NOT NULL,
-  `numero_medic` int(11) NOT NULL,
-  `usuario_medic` varchar(6) NOT NULL,
-  `senha_medic` varchar(16) NOT NULL,
-  `confirm_senha_medic` varchar(16) NOT NULL,
+  `email_medic` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `especializacao` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sexo_medic` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nome_mae_medic` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `CPF_medic` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numero_cel_medic` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numero_tel_medic` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `CRM` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `CEP_medic` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bairro_medic` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `municipio_medic` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `estado_medic` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `endereco_medic` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numero_medic` int NOT NULL,
+  `usuario_medic` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `senha_medic` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `confirm_senha_medic` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`doutor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -106,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-15 17:56:31
+-- Dump completed on 2024-05-28 16:06:44
