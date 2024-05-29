@@ -62,7 +62,7 @@ $pic="esse.jpg"
                             <a class="nav-link" href="#">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="b" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</a>
+                            <a class="b" id="entrar" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</a>
                         </li>
                     </ul>
                 </div>
