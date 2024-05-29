@@ -61,7 +61,7 @@
                             <a class="nav-link active" aria-current="page" href="http://localhost/Projeto-Back-End/landingPage/index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/Projeto-Back-End/TeladeBusca/index.php">Busca</a>
+                            <a class="nav-link" href="http://localhost/Projeto-Back-End/Busca/index.php">Busca</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Sobre</a>
@@ -148,7 +148,7 @@
                 <a href="#" class="btn_1">Buscar</a>
             </div>
             <div class="col-lg-6 d-flex justify-content-end imagem">
-                <img src="http://localhost/Projeto-Back-End/TeladeBusca/imgs/mapa.png" class="img-fluid" alt="modavo_solucoes">
+                <img src="http://localhost/Projeto-Back-End/Busca/imgs/mapa.png" class="img-fluid" alt="mapa">
             </div>
         </div>
     </div>
