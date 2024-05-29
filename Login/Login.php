@@ -51,18 +51,20 @@ body {
                         <h2>Seja bem vindo</h2>
                         <p>Ficamos felizes em ver você por aqui</p>
                     </div>
-                    <form method="post" action="Login_config.php">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Usuário">
-                    </div>
-                    <div class="input-group mb-1 ">
-                        <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Senha">
-                    </div>
-
-                    <div class="input-group mb-3 conteiner_botão">
-                        <button class="btn btn-lg btn-primary w-100 fs-6">Entrar</button>
-                    </div>
-                    <small class="text-center small-cadastro">Não tem uma conta? cadastre-se como <a href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php">Paciente</a> ou <a href="http://localhost/Projeto-Back-End/Cadastro/Medico/cadastro_medic.php">Médico</a> aqui.</small></form>
+                    <form action="Login_config.php" method="POST">
+                        <label for="nome_de_usuario" id="labelUsuario">Usuário</label>
+                        <div class="input-group mb-3">
+                            <input required type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" id="usuario" name="usuario" autocomplete="off" placeholder="Digite seu login">
+                        </div>
+                        <label for="senha" id="labelSenha">Senha</label>
+                        <div class="input-group mb-1">
+                            <input required type="password" class="form-control form-control-lg bg-light fs-6" minlength="8" maxlength="8" id="senha" name="senha" autocomplete="off" placeholder="Digite sua senha">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="submit" name="submit" class="btn btn-primary login_botao" value="Acessar">
+                        </div>
+                    </form>
+                        <small class="text-center small-cadastro">Não tem uma conta? cadastre-se como <a href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php">Paciente</a> ou <a href="http://localhost/Projeto-Back-End/Cadastro/Medico/cadastro_medic.php">Médico</a> aqui.</small>
                 </div>
             </div>
         </div>

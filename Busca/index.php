@@ -126,11 +126,7 @@
                 <h1 class="title"><span>Buscar</span> especialistas nunca foi tão <span>fácil</span></h1>
                 <p class="descricao">Digite seu cep e a especialidade que deseja: </p>
                 <div class="row">
-                    <div class="col-lg-5 align-items-center d-flex">
-                        <div class="card-body-busca">
-                            <input class="input_busca" type="text" placeholder="Digite seu Cep">
-                        </div>
-                    </div>
+
                     <div class="col-lg-6">
                         <div class="card-body-busca">
                             <label for="especialidadeSelect" class="form-label"></label>
