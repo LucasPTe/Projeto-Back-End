@@ -54,7 +54,7 @@
                                     $_SESSION['senha'] = $senha;
 
                                     // Se a senha e o login estiverem no banco de dados, o usuário irá acessar a tela principal.
-                                    header('Location: http://localhost/Projeto-Back-End/landinPage/index.html');
+                                    header('Location: http://localhost/Projeto-Back-End/Busca/index.php');
                                 } elseif(mysqli_num_rows($medicos_result) > 0) {
                                     // Se a conta for de um médico, irá criar essas duas váriaveis quando o sistema for acessado, para manter o usuário ativo.
                                     $_SESSION['usuario'] = $login;

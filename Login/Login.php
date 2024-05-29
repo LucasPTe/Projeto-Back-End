@@ -51,6 +51,7 @@ body {
                         <h2>Seja bem vindo</h2>
                         <p>Ficamos felizes em ver você por aqui</p>
                     </div>
+                    <form method="post" action="Login_config.php">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Usuário">
                     </div>
@@ -61,7 +62,7 @@ body {
                     <div class="input-group mb-3 conteiner_botão">
                         <button class="btn btn-lg btn-primary w-100 fs-6">Entrar</button>
                     </div>
-                    <small class="text-center small-cadastro">Não tem uma conta? cadastre-se como <a href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php">Paciente</a> ou <a href="http://localhost/Projeto-Back-End/Cadastro/Medico/cadastro_medic.php">Médico</a> aqui.</small>
+                    <small class="text-center small-cadastro">Não tem uma conta? cadastre-se como <a href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php">Paciente</a> ou <a href="http://localhost/Projeto-Back-End/Cadastro/Medico/cadastro_medic.php">Médico</a> aqui.</small></form>
                 </div>
             </div>
         </div>
