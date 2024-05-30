@@ -61,6 +61,11 @@ $pic="esse.jpg"
                         <li class="nav-item">
                             <a class="nav-link" href="#">Sobre</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="btn btn-primary" href="/Projeto-Back-End/Sair.php" role="button">Sair</a>
+                        </li>
+                        
                         <li class="nav-item">
                             <a class="b" id="entrar" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</a>
                         </li>

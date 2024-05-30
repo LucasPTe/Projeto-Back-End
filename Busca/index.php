@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include_once('buscar.php');
     
     /* Informações de quem fez o login*/ 
     //print_r($_SESSION);
@@ -18,6 +19,11 @@
 
     // Irá manter o usuário logado na tela principal.
         $logado = $_SESSION['usuario'];
+        $pesquisa = $_GET['especialidade'];
+
+        $sql = "SELECT * FROM medicos WHERE '%$especialidade%'";
+        $result = $conexao->query($sql);
+
 
 
 ?>
@@ -86,6 +92,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost/Projeto-Back-End/TeladeBusca/index.php">Busca</a>
                     </li>
+
+                    <li class="nav-item">
+                            <a class="btn btn-primary" href="/Projeto-Back-End/Sair.php" role="button">Sair</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sobre</a>
                     </li>
@@ -124,24 +135,25 @@
         <div class="row align-items-center">
             <div class="col-lg-6 content">
                 <h1 class="title"><span>Buscar</span> especialistas nunca foi tão <span>fácil</span></h1>
-                <p class="descricao">Digite seu cep e a especialidade que deseja: </p>
-                <div class="row">
-
-                    <div class="col-lg-6">
-                        <div class="card-body-busca">
-                            <label for="especialidadeSelect" class="form-label"></label>
-                            <select class="form-select" id="especialidadeSelect">
+                <p class="descricao">Digite seu cep e a especialidade que deseja: </p>        
+                <form method="GET">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card-body-busca">
+                                <label for="especialidadeSelect" class="form-label"></label>
+                                <select name="especialidade" class="form-select" id="especialidadeSelect">
                                 <option value="" selected disabled hidden>Selecione uma especialidade</option>
                                 <option value="cardiologista">Cardiologista</option>
                                 <option value="nutricionista">Nutricionista</option>
                                 <option value="oftalmologista">Oftalmologista</option>
                                 <option value="psicologo">Psicólogo</option>
                                 <!-- Adicione mais especialidades conforme necessário -->
-                            </select>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <a href="#" class="btn_1">Buscar</a>
+                    <a href="/Projeto-Back-End/Busca/buscar.php" class="btn_1">Buscar</a>
+                </form>
             </div>
             <div class="col-lg-6 d-flex justify-content-end imagem">
                 <img src="http://localhost/Projeto-Back-End/Busca/imgs/mapa.png" class="img-fluid" alt="mapa">
