@@ -12,6 +12,28 @@
     </form>
 
     <?php
+
+
+    session_start();
+    
+    /* Informações de quem fez o login*/ 
+    //print_r($_SESSION);
+    
+
+    // Se não existir essas duas variáveis logadas no web aberto, irá retornar para a tela de login, caso tente acessar a tela principal por link.
+        if((!isset($_SESSION['usuario']) == true) and (!isset($_SESSION['senha']) == true))
+        {
+
+        // Irá descartar as duas variáveis e voltar para tela de login.
+            unset ($_SESSION['usuario']);
+            unset ($_SESSION['senha']);
+            header('Location: http://localhost/Projeto-Back-End/Login/Login.php');
+
+        }
+
+    // Irá manter o usuário logado na tela principal.
+        $logado = $_SESSION['usuario'];
+
     // Verifica se o formulário foi submetido
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Conexão com o banco de dados
