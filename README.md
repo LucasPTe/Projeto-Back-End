@@ -16,5 +16,5 @@
 ## Banco de Dados
 
 Obs: Caso pedir senha, estarei deixando aqui.
-- porta: 3312
+- porta: 3307
 - senha: (apenas deixe o campo vazio.)
