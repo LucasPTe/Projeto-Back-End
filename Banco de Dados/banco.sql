@@ -18,7 +18,7 @@
 --
 -- Table structure for table `clientes`
 --
-create database dr_agenda;
+Create database dr_agenda;
 use dr_agenda;
 DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -43,7 +43,7 @@ CREATE TABLE `clientes` (
   `senha` varchar(16) NOT NULL,
   `confirm_senha` varchar(16) NOT NULL,
   PRIMARY KEY (`pacientes`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +52,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','testlogin@gmail.com','Masculino','Rosangela Ferreira dos Santos','19176194228','21976527831','2125287478','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143'),(58,'Lucas Roberto Lopes','2004-06-25','l7@gmail.com','Discreto','PAtricia Ferreira Lopes','124.931.000-85','(21) 9 2381','(21) 3203-','21041180','Manguinhos','Rio de Janeiro','RJ','Rua Diogo de Vasconcelos',40,'lrlope','01020304','01020304'),(59,'Lucas Roberto Lopes Da Silva','2004-06-25','lucas@email.com','Masculino','Patricia dos Santos','574.201.260-89','(21) 9 9961','(21) 9999-','21041180','Manguinhos','Rio de Janeiro','RJ','Rua Diogo de Vasconcelos',40,'llopes','12345678','12345678'),(60,'Maria Oliveira ','1966-03-25','mo@gmail.com','Masculino','Maria do Céu Oliveira','148.320.020-58','(21) 9 9995','(21) 2222-','21021030','Penha','Rio de Janeiro','RJ','Rua Macapuri',40,'Mojcol','12345678','12345678'),(61,'João Roberto Souza','1986-12-25','jrs@gmail.com','Masculino','Judite de Souza','873.043.260-00','(21) 9 6565','(21) 2230-','21021480','Olaria','Rio de Janeiro','RJ','Rua André Azevedo',87,'jrsjs1','12345678','12345678'),(62,'Ana Clara Silva','2000-10-02','acs1@gmail.com','Masculino','Ana Luiza Silva','356.903.320-11','(21) 9 8745','(21) 2560-','21041120','Bonsucesso','Rio de Janeiro','RJ','Rua Júlio Maria',100,'acs123','12345678','12345678');
+INSERT INTO `clientes` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','testlogin@gmail.com','Masculino','Rosangela Ferreira dos Santos','19176194228','21976527831','2125287478','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143'),(59,'Lucas Roberto Lopes Da Silva','2004-06-25','lucas@email.com','Masculino','Patricia dos Santos','574.201.260-89','(21) 9 9961','(21) 9999-','21041180','Manguinhos','Rio de Janeiro','RJ','Rua Diogo de Vasconcelos',40,'llopes','12345678','12345678'),(60,'Maria Oliveira ','1966-03-25','mo@gmail.com','Masculino','Maria do Céu Oliveira','148.320.020-58','(21) 9 9995','(21) 2222-','21021030','Penha','Rio de Janeiro','RJ','Rua Macapuri',40,'Mojcol','12345678','12345678'),(61,'João Roberto Souza','1986-12-25','jrs@gmail.com','Masculino','Judite de Souza','873.043.260-00','(21) 9 6565','(21) 2230-','21021480','Olaria','Rio de Janeiro','RJ','Rua André Azevedo',87,'jrsjs1','12345678','12345678'),(62,'Ana Clara Silva','2000-10-02','acs1@gmail.com','Masculino','Ana Luiza Silva','356.903.320-11','(21) 9 8745','(21) 2560-','21041120','Bonsucesso','Rio de Janeiro','RJ','Rua Júlio Maria',100,'acs123','12345678','12345678'),(64,'Big Big Santos','1993-03-21','big@gmail.com','Masculino','Big big mae  da silva','575.085.790-54','(21) 3 2983','(21) 3213-','21021490','Olaria','Rio de Janeiro','RJ','Rua Angélica Mota',2139,'bigbig','12345678','12345678');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ CREATE TABLE `medicos` (
   `senha_medic` varchar(16) NOT NULL,
   `confirm_senha_medic` varchar(16) NOT NULL,
   PRIMARY KEY (`doutor`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `medicos` (
 
 LOCK TABLES `medicos` WRITE;
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
-INSERT INTO `medicos` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','medic@gmail.com','Cardiologista','Masculino','Rosangela Ferreira dos Santos','19176194228','21976527831','2125287478','130720','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143'),(46,'Mariana Thereza Costa','1970-02-07','mtc@gmail.com','Gastroenterologista','Masculino','Maria Thereza Costa','215.054.450-43','(21) 9 8545','(21) 2265-','567556','22640102','Barra da Tijuca','Rio de Janeiro','RJ','Avenida das Américas',4000,'mtc123','12345678','12345678'),(47,'Rogerio Vinicius Soares','1975-06-26','rlsm@gmail.com','Cardiologia','Masculino','Laura Maria Soares','352.695.170-51','(21) 9 4751','(21) 2777-','562015','22430060','Leblon','Rio de Janeiro','RJ','Avenida Afrânio de Melo Franco',200,'rvs562','12345678','12345678'),(48,'Pedro Antônio Patrício','1969-05-10','pap@gmail.com','Nutrologo','Masculino','Maria de Fátima Patrício','743.261.190-47','(21) 9 7124','(21) 3587-','441053','21021120','Penha','Rio de Janeiro','RJ','Rua São Basiliano',20,'pap123','12345678','12345678');
+INSERT INTO `medicos` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','medic@gmail.com','Cardiologista','Masculino','Rosangela Ferreira dos Santos','19176194228','21976527831','2125287478','130720','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143'),(46,'Mariana Thereza Costa','1970-02-07','mtc@gmail.com','Nutricionista','Masculino','Maria Thereza Costa','215.054.450-43','(21) 9 8545','(21) 2265-','567556','22640102','Barra da Tijuca','Rio de Janeiro','RJ','Avenida das Américas',4000,'mtc123','12345678','12345678'),(47,'Rogerio Vinicius Soares','1975-06-26','rlsm@gmail.com','Oftalmologista','Masculino','Laura Maria Soares','352.695.170-51','(21) 9 4751','(21) 2777-','562015','22430060','Leblon','Rio de Janeiro','RJ','Avenida Afrânio de Melo Franco',200,'rvs562','12345678','12345678'),(48,'Pedro Antônio Patrício','1969-05-10','pap@gmail.com','Psicologia','Masculino','Maria de Fátima Patrício','743.261.190-47','(21) 9 7124','(21) 3587-','441053','21021120','Penha','Rio de Janeiro','RJ','Rua São Basiliano',20,'pap123','12345678','12345678'),(49,'Jose Noberto Lopes','1995-03-10','josenoberto@gmail.com','Pediatria','Masculino','Janaina Lopes Soares','153.691.800-83','(21) 3 2091','(31) 2837-','435634','21021380','Olaria','Rio de Janeiro','RJ','Rua Filomena Nunes',102,'joseno','12345678','12345678');
 /*!40000 ALTER TABLE `medicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -107,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-15 17:56:31
+-- Dump completed on 2024-06-04 19:14:58
