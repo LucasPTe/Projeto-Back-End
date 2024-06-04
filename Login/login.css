@@ -1,0 +1,68 @@
+body {
+  /* background-color: #d5dcf1;  */ /* #d5dcf1 */
+  background-image: url("http://localhost/Projeto-Back-End-main/Login/Img/fundo.jpg");
+  background-size: cover; /* cobre toda a tela */
+  background-repeat: no-repeat; /* não repete a imagem */
+  background-position: center center; /* centraliza a imagem */
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+.conteiner-principal {
+  padding: 10px;
+}
+.box-area {
+  width: 920px;
+}
+.conteiner-esquerdo {
+  background-color: #d5dcf1;
+  color: #2d3f6c;
+}
+.conteiner-esquerdo p {
+  color: #2d3f6c;
+  font-weight: 600;
+}
+.conteiner-esquerdo small {
+  color: #2d3f6c;
+  font-size: 16px;
+}
+.conteiner_botão {
+  padding-top: 35px;
+}
+.conteiner_botão button {
+  background-color: #2d3f6c;
+  border: none;
+}
+
+.conteiner_botão:hover button {
+  background-color: #4a5c88;
+}
+
+.small-cadastro a {
+  text-decoration: none;
+  font-weight: 600;
+}
+.small-cadastro {
+  font-size: 15px;
+}
+
+.btn_voltar {
+  border: none;
+  background-color: #2d3f6c;
+}
+
+.btn_voltar:hover {
+  background-color: #4a5c88;
+}
+
+.right-box {
+  padding-left: 20px;
+}
+@media only screen and (max-width: 768px) {
+  .box-area {
+    margin-top: 240px;
+  }
+  .container-principal {
+    border-radius: 0px;
+  }
+}

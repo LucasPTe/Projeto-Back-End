@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  font-size: 16px;
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  background-image: linear-gradient(#d5dcf1, #2d3f6c);
+}
+
+/* Botão para Médicos */
+
+.bg-cor {
+  background-color: rgb(226, 223, 223);
+}
+
+#botao_medic {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Estilo para o título de cadastro */
+.cadastro_titulo {
+  margin-top: 10px;
+  color: #66cdaa;
+  font-family: "Urbanist", sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 20px; /* Adiciona margem abaixo do título */
+}
+
+/* Área do formulário */
+.box-area {
+  width: 90%; /* Alterado para 90% para se ajustar a diferentes tamanhos de tela */
+  max-width: 700px; /* Define uma largura máxima */
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Espaçamento interno para os elementos do formulário */
+.right-box {
+  padding: 10px;
+}
+
+/* Estilo para placeholders */
+::placeholder {
+  font-size: 16px;
+}
+
+/* Botões */
+.btn {
+  background-color: #2d3f6c;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #4a5c88;
+}
+
+/* Estilo para os botões lado a lado */
+.button-group {
+  display: flex; /* Use flexbox para alinhar os botões lado a lado */
+  justify-content: space-between; /* Distribui o espaço disponível entre os botões */
+  margin-top: 20px; /* Adiciona margem acima dos botões */
+}
+
+/* Estilo para os botões dentro da classe button-group */
+.button-group button {
+  flex: 1; /* Faz com que os botões compartilhem igualmente o espaço disponível */
+  font-size: 14px; /* Reduz o tamanho do texto nos botões */
+  padding: 8px 10px; /* Reduz o preenchimento dentro dos botões */
+}
+
+/* Ajuste de margem entre os botões */
+.button-group button + button {
+  margin-left: 10px; /* Adiciona uma margem à esquerda do segundo botão */
+}
+
+/* Ajuste de margem para dispositivos menores */
