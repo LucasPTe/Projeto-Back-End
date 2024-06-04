@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once('buscar.php');
+    //include_once('buscar.php');
     
     /* Informações de quem fez o login*/ 
     //print_r($_SESSION);
@@ -19,12 +19,19 @@
 
     // Irá manter o usuário logado na tela principal.
         $logado = $_SESSION['usuario'];
-        $pesquisa = $_GET['especialidade'];
-
-        $sql = "SELECT * FROM medicos WHERE '%$especialidade%'";
-        $result = $conexao->query($sql);
 
 
+        $dbHost ='localhost:3307';
+        $dbUsername ='root';
+        $dbPassword ='';
+        $dbName ='dr_agenda';
+        
+        $conexao = new mysqli($dbHost,$dbUsername,$dbPassword,$dbName);
+
+        if ($conexao->connect_error) {
+            die("Erro de conexão: " . $conexao->connect_error);
+        }
+        // Verifica se a especialidade foi selecionada
 
 ?>
 
@@ -135,24 +142,65 @@
         <div class="row align-items-center">
             <div class="col-lg-6 content">
                 <h1 class="title"><span>Buscar</span> especialistas nunca foi tão <span>fácil</span></h1>
-                <p class="descricao">Digite seu cep e a especialidade que deseja: </p>        
-                <form method="GET">
+                <p class="descricao">Escolha a especialidade que deseja: </p>        
+                <form method="POST">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="card-body-busca">
-                                <label for="especialidadeSelect" class="form-label"></label>
-                                <select name="especialidade" class="form-select" id="especialidadeSelect">
-                                <option value="" selected disabled hidden>Selecione uma especialidade</option>
-                                <option value="cardiologista">Cardiologista</option>
-                                <option value="nutricionista">Nutricionista</option>
-                                <option value="oftalmologista">Oftalmologista</option>
-                                <option value="psicologo">Psicólogo</option>
-                                <!-- Adicione mais especialidades conforme necessário -->
-                                </select>
+                                <?php 
+                                    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['especialidade'])) {
+                                        $especialidade = $_POST['especialidade'];
+                                    
+                                        // Consulta SQL para buscar médicos pela especialização selecionada
+                                        $sql = "SELECT nome_completo_medic, especializacao, endereco_medic, CRM FROM medicos WHERE especializacao = ?";
+                                        
+                                        $stmt = $conexao->prepare($sql);
+                                        $stmt->bind_param("s", $especialidade);
+                                        $stmt->execute();
+                                        $result = $stmt->get_result();
+                                    
+                                        // Verifica se há resultados
+                                        if ($result->num_rows > 0) {
+                                            echo "<table border='1'>";
+                                            echo "<tr><th>Nome Completo</th><th>Especialização</th><th>Endereço</th><th>CRM</th></tr>";
+                                    
+                                            // Exibe os resultados em uma tabela
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo "<tr>";
+                                                echo "<td>" . $row['nome_completo_medic'] . "</td>";
+                                                echo "<td>" . $row['especializacao'] . "</td>";
+                                                echo "<td>" . $row['endereco_medic'] . "</td>";
+                                                echo "<td>" . $row['CRM'] . "</td>";
+                                                echo "</tr>";
+                                            }
+                                            echo "</table>";
+                                        } else {
+                                            echo "Nenhum médico encontrado para a especialidade selecionada.";
+                                        }
+                                        
+                                        $stmt->close();
+                                    }
+                                    
+                                    $conexao->close();
+                                ?>
+                                <form method="POST">
+                                    <label for="especialidadeSelect" class="form-label"></label>
+                                    <select name="especialidade" class="form-select" id="especialidadeSelect">
+                                        <option value="" selected disabled hidden>Selecione uma especialidade</option>
+                                        <option value="cardiologista">Cardiologista</option>
+                                        <option value="nutricionista">Nutricionista</option>
+                                        <option value="oftalmologista">Oftalmologista</option>
+                                        <option value="psicologo">Psicólogo</option>
+                                        <option value="pediatria">Pediatria</option> 
+                                    <!-- Adicione mais especialidades conforme necessário -->
+                                    </select>
+                                    <button type="submit" class="btn_1">Buscar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <a href="/Projeto-Back-End/Busca/buscar.php" class="btn_1">Buscar</a>
+
+                    <!-- <a type="submit" href="" class="btn_1">Buscar</a> -->
                 </form>
             </div>
             <div class="col-lg-6 d-flex justify-content-end imagem">
