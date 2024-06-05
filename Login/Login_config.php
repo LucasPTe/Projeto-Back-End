@@ -50,6 +50,7 @@
 
                                 if(mysqli_num_rows($clientes_result) > 0) {
                                     // Se a conta for de um cliente, irá criar essas duas váriaveis quando o sistema for acessado, para manter o usuário ativo.
+                                    $conexao->query("UPDATE clientes SET ultimo_login = CURRENT_TIMESTAMP WHERE usuario = '$login'");
                                     $_SESSION['usuario'] = $login;
                                     $_SESSION['senha'] = $senha;
 
@@ -57,6 +58,7 @@
                                     header('Location: http://localhost/Projeto-Back-End/Busca/index.php');
                                 } elseif(mysqli_num_rows($medicos_result) > 0) {
                                     // Se a conta for de um médico, irá criar essas duas váriaveis quando o sistema for acessado, para manter o usuário ativo.
+                                    $conexao->query("UPDATE medicos SET ultimo_login = CURRENT_TIMESTAMP WHERE usuario_medic = '$login'");
                                     $_SESSION['usuario'] = $login;
                                     $_SESSION['senha'] = $senha;
 
