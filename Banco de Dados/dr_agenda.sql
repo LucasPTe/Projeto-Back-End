@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `dr_agenda` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `dr_agenda`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: dr_agenda
+-- Host: localhost    Database: dr_agenda
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.32-MariaDB
 
@@ -44,7 +46,7 @@ CREATE TABLE `clientes` (
   `data_criacao_login` timestamp NOT NULL DEFAULT current_timestamp(),
   `ultimo_login` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`pacientes`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +55,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','test@clientel.com','Masculino','Rosangela  Ferrete dos Santos','191.761.947-28','(21) 9 7652-7831','(21) 2528-7475','25080030','Parque Paulicéia','Duque de Caxias','RJ','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143','2024-06-05 15:00:25',NULL),(82,'','2000-07-13','test@gmail.com','','Rosangela Ferrete de Souza','191.761.947-28','(21) 9 7652-7831','(21) 2525-4454','25454541','','','','',173,'HD-TI6','Hugo9143','Hugo9143','2024-06-05 15:00:25',NULL),(83,'Annibal Gulias Moreira','2000-09-16','emailquefizerampramim@gmail.com','Masculino','Ana Carolina Santos','211.045.357-50','(21) 9 6415-4537','(21) 3181-5519','21021060','Penha','Rio de Janeiro','RJ','Rua Santa Camila Pia',168,'annibs','12345678','12345678','2024-06-05 15:00:25',NULL),(84,'Rodrigo da Silva','2000-01-01','aaaa@gmail.com','Masculino','Carolina da Silva','695.041.440-47','(21) 9 6415-4537','(21) 3181-5519','55008570','São Francisco','Caruaru','PE','Rua Heráclito Ramos',100,'Rodriz','12345678','12345678','2024-06-05 15:00:25','2024-06-05 15:15:50');
+INSERT INTO `clientes` VALUES (83,'Annibal Gulias Moreira','2000-09-16','emailquefizerampramim@gmail.com','Masculino','Ana Carolina Santos','211.045.357-50','(21) 9 6415-4537','(21) 3181-5519','21021060','Penha','Rio de Janeiro','RJ','Rua Santa Camila Pia',168,'annibs','12345678','12345678','2024-06-05 15:00:25',NULL),(84,'Rodrigo da Silva','2000-01-01','aaaa@gmail.com','Masculino','Carolina da Silva','695.041.440-47','(21) 9 6415-4537','(21) 3181-5519','55008570','São Francisco','Caruaru','PE','Rua Heráclito Ramos',100,'Rodriz','12345678','12345678','2024-06-05 15:00:25','2024-06-05 15:15:50'),(85,'Hugo Daniel Ferrete dos Santos','2000-07-13','test@cliente.com','Masculino','Rosangela Ferrete de Souza','191.761.947-28','(21) 9 7652-7831','(21) 2525-4454','25080030','Parque Paulicéia','Duque de Caxias','RJ','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143','2024-06-07 02:41:31','2024-06-07 02:42:16');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +88,7 @@ CREATE TABLE `medicos` (
   `senha_medic` varchar(16) NOT NULL,
   `confirm_senha_medic` varchar(16) NOT NULL,
   PRIMARY KEY (`doutor'a`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +97,7 @@ CREATE TABLE `medicos` (
 
 LOCK TABLES `medicos` WRITE;
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
-INSERT INTO `medicos` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','test@medic.com','Cardiologista','Masculino','Rosangela Ferrete de Souza','191.761.947-28','(21) 9 7652-783','(21) 2528-4454','151566','25080030','Parque Paulicéia','Duque de Caxias','RJ','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143');
+INSERT INTO `medicos` VALUES (46,'Hugo Daniel Ferrete dos Santos','2000-07-13','test@medico.com','Cardiologista','Masculino','Rosangela Ferrete de Souza','191.761.947-28','(21) 9 7652-783','(21) 2525-4465','165555','25080030','Parque Paulicéia','Duque de Caxias','RJ','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143');
 /*!40000 ALTER TABLE `medicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -108,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-06 14:39:45
+-- Dump completed on 2024-06-06 23:46:37
