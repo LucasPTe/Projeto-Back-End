@@ -2,7 +2,7 @@
 
 // Informações do banco de dados:
     
-    $dbHost = 'localhost:3307';
+    $dbHost = 'localhost:3306';
     $dbUsername = 'root';
     $dbPassword = '';
     $dbName = 'dr_agenda';
