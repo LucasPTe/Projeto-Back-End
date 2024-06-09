@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `dr_agenda` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `dr_agenda`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: dr_agenda
+-- Host: 127.0.0.1    Database: dr_agenda
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.21-MariaDB
+-- Server version	5.5.5-10.4.32-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,15 +24,14 @@ DROP TABLE IF EXISTS `clientes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
   `pacientes` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_completo` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nome_completo` varchar(80) NOT NULL,
   `data_nasc` date NOT NULL,
-<<<<<<< Updated upstream
   `email` varchar(110) NOT NULL,
   `sexo` varchar(15) NOT NULL,
   `nome_mae` varchar(80) NOT NULL,
   `CPF` varchar(15) NOT NULL,
-  `numero_cel` varchar(20) NOT NULL,
-  `numero_tel` varchar(20) NOT NULL,
+  `numero_cel` varchar(11) NOT NULL,
+  `numero_tel` varchar(10) NOT NULL,
   `CEP` varchar(10) NOT NULL,
   `bairro` varchar(45) NOT NULL,
   `municipio` varchar(45) NOT NULL,
@@ -44,34 +41,13 @@ CREATE TABLE `clientes` (
   `usuario` varchar(6) NOT NULL,
   `senha` varchar(16) NOT NULL,
   `confirm_senha` varchar(16) NOT NULL,
-  `data_criacao_login` timestamp NOT NULL DEFAULT current_timestamp(),
-  `ultimo_login` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`pacientes`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-=======
-  `email` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sexo` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nome_mae` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `CPF` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero_cel` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero_tel` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `CEP` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bairro` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `municipio` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `estado` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `endereco` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero` int(11) NOT NULL,
-  `usuario` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `senha` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `confirm_senha` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
   `codigo_autenticacao` int(11) DEFAULT NULL,
   `data_codigo` int(11) DEFAULT NULL,
   `data_criacao_login` timestamp NOT NULL DEFAULT current_timestamp(),
   `ultimo_login` timestamp NULL DEFAULT NULL,
-  `tipo_usuario` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo_usuario` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`pacientes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
->>>>>>> Stashed changes
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,11 +56,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-<<<<<<< Updated upstream
-INSERT INTO `clientes` VALUES (83,'Annibal Gulias Moreira','2000-09-16','emailquefizerampramim@gmail.com','Masculino','Ana Carolina Santos','211.045.357-50','(21) 9 6415-4537','(21) 3181-5519','21021060','Penha','Rio de Janeiro','RJ','Rua Santa Camila Pia',168,'annibs','12345678','12345678','2024-06-05 15:00:25',NULL),(84,'Rodrigo da Silva','2000-01-01','aaaa@gmail.com','Masculino','Carolina da Silva','695.041.440-47','(21) 9 6415-4537','(21) 3181-5519','55008570','São Francisco','Caruaru','PE','Rua Heráclito Ramos',100,'Rodriz','12345678','12345678','2024-06-05 15:00:25','2024-06-05 15:15:50'),(85,'Hugo Daniel Ferrete dos Santos','2000-07-13','test@cliente.com','Masculino','Rosangela Ferrete de Souza','191.761.947-28','(21) 9 7652-7831','(21) 2525-4454','25080030','Parque Paulicéia','Duque de Caxias','RJ','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143','2024-06-07 02:41:31','2024-06-07 02:42:16');
-=======
 INSERT INTO `clientes` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','testlogin@gmail.com','Masculino','Rosangela Ferreira dos Santos','19176194228','21976527831','2125287478','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL),(59,'Lucas Roberto Lopes Da Silva','2004-06-25','lucas@email.com','Masculino','Patricia dos Santos','574.201.260-89','(21) 9 9961','(21) 9999-','21041180','Manguinhos','Rio de Janeiro','RJ','Rua Diogo de Vasconcelos',40,'llopes','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL),(60,'Maria Oliveira ','1966-03-25','mo@gmail.com','Masculino','Maria do Céu Oliveira','148.320.020-58','(21) 9 9995','(21) 2222-','21021030','Penha','Rio de Janeiro','RJ','Rua Macapuri',40,'Mojcol','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL),(61,'João Roberto Souza','1986-12-25','jrs@gmail.com','Masculino','Judite de Souza','873.043.260-00','(21) 9 6565','(21) 2230-','21021480','Olaria','Rio de Janeiro','RJ','Rua André Azevedo',87,'jrsjs1','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL),(64,'Big Big Santos','1993-03-21','big@gmail.com','Masculino','Big big mae  da silva','575.085.790-54','(21) 3 2983','(21) 3213-','21021490','Olaria','Rio de Janeiro','RJ','Rua Angélica Mota',2139,'bigbig','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30','2024-06-08 22:25:23',NULL),(65,'kaua ddadasdasda','2004-12-14','afsdaf@gmail.com','Masculino','fsdfdsfsefefsdfews','811.012.297-30','(21) 9 6465','(21) 4587-','22765845','Anil','Rio de Janeiro','RJ','Rua Henrique',35,'kaaaaa','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30','2024-06-09 03:22:12',NULL);
->>>>>>> Stashed changes
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +74,7 @@ CREATE TABLE `login_attempts` (
   `ultima_tentativa` datetime DEFAULT NULL,
   `tipo_usuario` enum('cliente','medico') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,8 +94,7 @@ DROP TABLE IF EXISTS `medicos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medicos` (
-<<<<<<< Updated upstream
-  `doutor'a` int(11) NOT NULL AUTO_INCREMENT,
+  `doutor` int(11) NOT NULL AUTO_INCREMENT,
   `nome_completo_medic` varchar(80) NOT NULL,
   `data_nasc_medic` date NOT NULL,
   `email_medic` varchar(110) NOT NULL,
@@ -131,8 +102,8 @@ CREATE TABLE `medicos` (
   `sexo_medic` varchar(15) NOT NULL,
   `nome_mae_medic` varchar(80) NOT NULL,
   `CPF_medic` varchar(15) NOT NULL,
-  `numero_cel_medic` varchar(15) NOT NULL,
-  `numero_tel_medic` varchar(15) NOT NULL,
+  `numero_cel_medic` varchar(11) NOT NULL,
+  `numero_tel_medic` varchar(10) NOT NULL,
   `CRM` varchar(6) NOT NULL,
   `CEP_medic` varchar(10) NOT NULL,
   `bairro_medic` varchar(45) NOT NULL,
@@ -143,32 +114,8 @@ CREATE TABLE `medicos` (
   `usuario_medic` varchar(6) NOT NULL,
   `senha_medic` varchar(16) NOT NULL,
   `confirm_senha_medic` varchar(16) NOT NULL,
-  PRIMARY KEY (`doutor'a`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-=======
-  `doutor` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_completo_medic` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `data_nasc_medic` date NOT NULL,
-  `email_medic` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `especializacao` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sexo_medic` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nome_mae_medic` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `CPF_medic` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero_cel_medic` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero_tel_medic` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `CRM` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `CEP_medic` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bairro_medic` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `municipio_medic` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `estado_medic` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `endereco_medic` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero_medic` int(11) NOT NULL,
-  `usuario_medic` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `senha_medic` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `confirm_senha_medic` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`doutor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
->>>>>>> Stashed changes
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +124,7 @@ CREATE TABLE `medicos` (
 
 LOCK TABLES `medicos` WRITE;
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
-INSERT INTO `medicos` VALUES (46,'Hugo Daniel Ferrete dos Santos','2000-07-13','test@medico.com','Cardiologista','Masculino','Rosangela Ferrete de Souza','191.761.947-28','(21) 9 7652-783','(21) 2525-4465','165555','25080030','Parque Paulicéia','Duque de Caxias','RJ','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143');
+INSERT INTO `medicos` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','medic@gmail.com','Cardiologista','Masculino','Rosangela Ferreira dos Santos','19176194228','21976527831','2125287478','130720','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143'),(46,'Mariana Thereza Costa','1970-02-07','mtc@gmail.com','Nutricionista','Masculino','Maria Thereza Costa','215.054.450-43','(21) 9 8545','(21) 2265-','567556','22640102','Barra da Tijuca','Rio de Janeiro','RJ','Avenida das Américas',4000,'mtc123','12345678','12345678'),(47,'Rogerio Vinicius Soares','1975-06-26','rlsm@gmail.com','Oftalmologista','Masculino','Laura Maria Soares','352.695.170-51','(21) 9 4751','(21) 2777-','562015','22430060','Leblon','Rio de Janeiro','RJ','Avenida Afrânio de Melo Franco',200,'rvs562','12345678','12345678'),(48,'Pedro Antônio Patrício','1969-05-10','pap@gmail.com','Psicologia','Masculino','Maria de Fátima Patrício','743.261.190-47','(21) 9 7124','(21) 3587-','441053','21021120','Penha','Rio de Janeiro','RJ','Rua São Basiliano',20,'pap123','12345678','12345678'),(49,'Jose Noberto Lopes','1995-03-10','josenoberto@gmail.com','Pediatria','Masculino','Janaina Lopes Soares','153.691.800-83','(21) 3 2091','(31) 2837-','435634','21021380','Olaria','Rio de Janeiro','RJ','Rua Filomena Nunes',102,'joseno','12345678','12345678');
 /*!40000 ALTER TABLE `medicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +142,7 @@ CREATE TABLE `two_fa_codes` (
   `expira_em` datetime NOT NULL,
   `tipo_usuario` enum('cliente','medico') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,8 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< Updated upstream
--- Dump completed on 2024-06-06 23:46:37
-=======
--- Dump completed on 2024-06-09  1:46:44
->>>>>>> Stashed changes
+-- Dump completed on 2024-06-09  2:04:18
