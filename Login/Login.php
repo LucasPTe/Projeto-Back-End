@@ -1,8 +1,7 @@
 <?php
-$pic="fundo.jpg"
-
+session_start();
+$pic = "fundo.jpg";
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,25 +16,20 @@ $pic="fundo.jpg"
 </head>
 
 <style>
-
 body {
-  /* background-color: #d5dcf1;  */ /* #d5dcf1 */
-  background-image: url('<?php echo $pic;?>');
-  background-size: cover; /* cobre toda a tela */
-  background-repeat: no-repeat; /* não repete a imagem */
-  background-position: center center; /* centraliza a imagem */
-  min-height: 100vh;
+    background-image: url('<?php echo $pic; ?>');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 100vh;
 }
 </style>
-
 
 <body>
 
     <div class="container d-flex justify-content-center align-items-center vh-100 container-principal">
-
         <div class="row border rounded-5 p-3 bg-white shadow box-area">
-            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box text-center conteiner-esquerdo ">
-
+            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box text-center conteiner-esquerdo">
                 <div class="featured-image mb-3">
                     <img src="http://localhost/Projeto-Back-End/Login/Img/Enthusiastic-pana.png" alt="logo" class="img-fluid" style="width: 250px;">
                 </div>
@@ -64,13 +58,38 @@ body {
                             <input type="submit" name="submit" class="btn btn-primary login_botao" value="Acessar">
                         </div>
                     </form>
-                        <small class="text-center small-cadastro">Não tem uma conta? cadastre-se como <a href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php">Paciente</a> ou <a href="http://localhost/Projeto-Back-End/Cadastro/Medico/cadastro_medic.php">Médico</a> aqui.</small>
+                    <small class="text-center small-cadastro">Não tem uma conta? cadastre-se como <a href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php">Paciente</a> ou <a href="http://localhost/Projeto-Back-End/Cadastro/Medico/cadastro_medic.php">Médico</a> aqui.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login Bem-sucedido</h5>
+                </div>
+                <div class="modal-body">
+                    Seus dados foram confirmados com sucesso! Redirecionando...
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script>
+    <?php if (isset($_SESSION['login_sucesso']) && $_SESSION['login_sucesso'] == true): ?>
+        var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+        loginModal.show();
+        setTimeout(function() {
+            window.location.href = 'http://localhost/Projeto-Back-End/verificar_2fa.php';
+        }, 2000); // Redireciona após 3 segundos
+        <?php unset($_SESSION['login_sucesso']); // Limpa a variável de sessão ?>
+    <?php endif; ?>
+    </script>
 </body>
 
 </html>

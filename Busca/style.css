@@ -3,18 +3,65 @@
 /* DARKMODE INICIO */
 
 body.dark-mode {
-  background: #232c35;
-}
-
-.light-mode .navbar {
-  background-color: #2d3f6c;
-  color: white;
+  background: #2f373f;
 }
 
 .dark-mode .navbar {
-  background-color: #364553;
+  background-color: #2f373f;
+}
+
+.dark-mode .fundo_busca {
+  background: #3e4953;
+}
+
+.dark-mode .navbar .nav-link::before {
+  background-color: rgb(107, 107, 107);
+}
+
+.dark-mode .home .title span {
+  color: #90a7e2;
+}
+
+.dark-mode .offcanvas-header {
+  background-color: #3f4852;
+}
+
+.dark-mode .offcanvas-body {
+  background-color: #3f4852;
+}
+
+.dark-mode .offcanvas a {
   color: white;
 }
+
+.dark-mode .offcanvas a.nav-link.active {
+  color: white;
+}
+
+.dark-mode .offcanvas .nav-link::before {
+  background-color: #74808b;
+}
+
+.dark-mode .entrar_off {
+  background-color: #5d6977;
+}
+
+.dark-mode .entrar_off:hover {
+  background-color: #727e8b;
+}
+
+.dark-mode .btn-secondary {
+  background-color: #5d6977;
+}
+
+.dark-mode .btn-secondary:hover {
+  background-color: #5d6977;
+}
+
+.dark-mode .offcanvas-header {
+  background-color: #32353f;
+}
+
 /*DARKMODE FIM*/
 
 /*NAVBAR INICIO*/
@@ -37,6 +84,16 @@ body.dark-mode {
   width: 100%;
   top: 0;
   left: 0;
+}
+
+.btna {
+  font-weight: bold;
+  background-color: #d5dcf1;
+  color: rgb(53, 53, 61);
+}
+
+.btna:hover {
+  background-color: #b9c3e0;
 }
 
 .navbar .nav-link {
@@ -104,7 +161,7 @@ body.dark-mode {
   background-color: #b9c3e0;
 }
 
-.offcanvas h2 {
+.offcanvas a {
   font-size: 32px;
   font-family: "Urbanist", sans-serif;
   font-optical-sizing: auto;
@@ -192,11 +249,19 @@ body.dark-mode {
 }
 
 .entrar_off {
-  color: white;
-  margin-left: 0;
-  background-color: #2d3f6c;
   font-family: "Urbanist", sans-serif;
   font-weight: 600;
+  font-optical-sizing: auto;
+  position: absolute;
+  background-color: #2d3f6c;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.6s ease;
+  width: 20%;
+  color: white;
 }
 
 .entrar_off:hover {
@@ -208,6 +273,7 @@ body.dark-mode {
 }
 
 .btn-secondary {
+  margin-top: 20px;
   font-family: "Urbanist", sans-serif;
   font-weight: 600;
   background-color: #2d3f6c;
@@ -244,7 +310,7 @@ section .dark-mode {
 }
 
 .home .title span {
-  color: #2d3f6c;
+  color: #4b5f91;
 }
 
 .home .descricao {

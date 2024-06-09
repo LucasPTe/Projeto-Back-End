@@ -52,13 +52,13 @@
 <body>
     <!--NAVBAR-->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" id="logo" href="http://localhost/Projeto-Back-End/landingPage/index.php">Dr.Agenda</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar-offcanvas" aria-controls="navbar-offcanvas" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>            
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                </button>
+                <div class="collapse navbar-collapse" id="">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <div class="poschk">
                             <input type="checkbox" class="checkbox" id="chk">
@@ -70,6 +70,16 @@
                             <script src="script.js"></script>
                             <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
                         </div>
+                            <div class="nav-item ms-2">
+                                <button class="btn border-3 btna btn-fonte" id="increaseFontBtn">
+                                     A+
+                                </button>
+                            </div>
+                            <div class="nav-item ms-2">
+                                <button class="btn border-3 btna btn-fonte" id="decreaseFontBtn">
+                                    a-
+                                </button>
+                            </div>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="http://localhost/Projeto-Back-End/landingPage/index.php">Home</a>
                         </li>
@@ -77,10 +87,15 @@
                             <a class="nav-link" href="http://localhost/Projeto-Back-End/Busca/index.php">Busca</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre</a>
+                            <a class="nav-link me-3" href="#">Sobre</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="b" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</a>
+                            <a class="btn btna" href="/Projeto-Back-End/Sair.php" role="button">Sair</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="b" id="entrar" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</a>
                         </li>
                     </ul>
                 </div>
@@ -137,7 +152,7 @@
 
          <!--HERO-->
 <!--HERO-->
-<section class="d-flex allign-items-top h-75 home mb-5">
+<section class="d-flex allign-items-top h-75 home mb-5 fundo_busca">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 content">
@@ -206,18 +221,6 @@
             <div class="col-lg-6 d-flex justify-content-end imagem">
                 <img src="http://localhost/Projeto-Back-End/Busca/imgs/mapa.png" class="img-fluid" alt="mapa">
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="nav-item a+">
-            <button class="btn btn-primary border-3 btn-fonte" id="increaseFontBtn">
-                A+
-            </button>
-        </div>
-        <div class="nav-item a-">
-            <button class="btn btn-primary border-3 btn-fonte" id="decreaseFontBtn">
-                a-
-            </button>
         </div>
     </div>
 </section>
@@ -306,13 +309,13 @@
 
 
 
-    <script src="/landingPage/darkmode.js"></script>
+    <script src="http://localhost/Projeto-Back-End/landingPage/darkmode.js"></script>
     <!--GSAP CDN LINK-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="/landingPage/script2.js"></script>
-    <script src="/landingPage/script.js"></script>
-    <script src="/landingPage/aumento.js"></script>   
+    <script src="http://localhost/Projeto-Back-End/landingPage/script2.js"></script>
+    <script src="http://localhost/Projeto-Back-End/landingPage/script.js"></script>
+    <script src="http://localhost/Projeto-Back-End/landingPage/aumento.js"></script>   
     <script src="/Busca/especialista.js"></script>
 
 

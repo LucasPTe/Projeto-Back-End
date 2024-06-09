@@ -1,11 +1,7 @@
 <?php
-
 // Assim que apertar o botão de cadastrar, ele irá executar:
-if(isset($_POST["cadastrar"]))
-{
-
-
-// Criando às variáveis para as colunas da tabela "clientes":  
+if (isset($_POST["cadastrar"])) {
+    // Criando às variáveis para as colunas da tabela "clientes":  
     include_once('cadastro_config.php');
 
     $nome_completo = $_POST['nome_completo'];
@@ -26,8 +22,8 @@ if(isset($_POST["cadastrar"]))
     $senha = $_POST['senha'];
     $confirm = $_POST['confirmsenha'];
     
-    $result = mysqli_query($conexao, "INSERT INTO clientes(nome_completo,data_nasc,email,sexo,nome_mae,CPF,numero_cel,numero_tel,CEP,bairro,municipio,estado,endereco,numero,usuario,senha,confirm_senha) 
-    VALUES ('$nome_completo','$data','$email','$genero','$nome_da_mae','$CPF','$celular','$telefone','$CEP','$bairro','$municipio','$estado','$endereco','$numero','$login','$senha','$confirm')");
+    $result = mysqli_query($conexao, "INSERT INTO clientes (nome_completo, data_nasc, email, sexo, nome_mae, CPF, numero_cel, numero_tel, CEP, bairro, municipio, estado, endereco, numero, usuario, senha, confirm_senha, tipo_usuario) 
+    VALUES ('$nome_completo', '$data', '$email', '$genero', '$nome_da_mae', '$CPF', '$celular', '$telefone', '$CEP', '$bairro', '$municipio', '$estado', '$endereco', '$numero', '$login', '$senha', '$confirm', 'Paciente')");
 
     if ($result) {
         // Se a conta foi criada com sucesso, irá redirecionar para tela de aviso
@@ -36,10 +32,7 @@ if(isset($_POST["cadastrar"]))
         // Se houver um erro na execução da query, redireciona para a tela de erro
         header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_erro.php');
     }
-
-
- }
-
+}
 ?>
 
 
@@ -146,15 +139,7 @@ if(isset($_POST["cadastrar"]))
                             <label for="fixo" id="labelFixo">Telefone Fixo</label>
                             <div class="input-group mb-3">
                                 <input type="tel" class="form-control form-control-lg bg-light fs-6" minlength="10" maxlength="10" required id="fixo" name="fixo" autocomplete="off" placeholder="">
-                            </div>
-
-                            
-                            <div class="button-group">
-                                <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
-                                <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
-                            </div>
-
-                        
+                            </div>                        
                         </div>
 
                     </div>
@@ -209,7 +194,10 @@ if(isset($_POST["cadastrar"]))
                             </div>
 
                         </div>
-                
+                        <div class="button-group">
+                                <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
+                                <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
+                        </div>
                     </div>
 
             </div>

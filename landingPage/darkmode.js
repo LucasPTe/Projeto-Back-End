@@ -1,20 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const chk = document.getElementById("chk");
-  const body = document.body;
+  const darkModeToggle = document.getElementById("chk");
+  const isDarkMode = localStorage.getItem("darkMode") === "enabled";
 
-  const isDarkMode = localStorage.getItem("dark-mode") === "true";
   if (isDarkMode) {
-    body.classList.add("dark-mode");
-    chk.checked = true;
+    enableDarkMode();
+    darkModeToggle.checked = true;
   }
 
-  chk.addEventListener("change", function () {
-    if (chk.checked) {
-      body.classList.add("dark-mode");
-      localStorage.setItem("dark-mode", "true");
+  darkModeToggle.addEventListener("change", function () {
+    if (darkModeToggle.checked) {
+      enableDarkMode();
+      localStorage.setItem("darkMode", "enabled");
     } else {
-      body.classList.remove("dark-mode");
-      localStorage.setItem("dark-mode", "false");
+      disableDarkMode();
+      localStorage.setItem("darkMode", null);
     }
   });
+
+  function enableDarkMode() {
+    document.body.classList.add("dark-mode");
+    // Adiciona classe dark-mode apenas aos elementos que você quer estilizar
+    document.querySelectorAll(".light-mode").forEach(function (element) {
+      element.classList.add("dark-mode");
+    });
+  }
+
+  function disableDarkMode() {
+    document.body.classList.remove("dark-mode");
+    // Remove classe dark-mode apenas dos elementos estilizados
+    document.querySelectorAll(".dark-mode").forEach(function (element) {
+      element.classList.remove("dark-mode");
+    });
+  }
 });

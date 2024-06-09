@@ -4,7 +4,7 @@ $pic="esse.jpg"
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -34,13 +34,13 @@ $pic="esse.jpg"
 <body>
     <!--NAVBAR-->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" id="logo" href="http://localhost/Projeto-Back-End/landingPage/index.php">Dr.Agenda</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar-offcanvas" aria-controls="navbar-offcanvas" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <div class="poschk">
                             <input type="checkbox" class="checkbox" id="chk">
@@ -52,6 +52,16 @@ $pic="esse.jpg"
                             <script src="script.js"></script>
                             <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
                         </div>
+                            <div class="nav-item ms-2">
+                                <button class="btn border-3 btna btn-fonte" id="increaseFontBtn">
+                                     A+
+                                </button>
+                            </div>
+                            <div class="nav-item ms-2">
+                                <button class="btn border-3 btna btn-fonte" id="decreaseFontBtn">
+                                    a-
+                                </button>
+                            </div>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="http://localhost/Projeto-Back-End/landingPage/index.php">Home</a>
                         </li>
@@ -63,7 +73,7 @@ $pic="esse.jpg"
                         </li>
 
                         <li class="nav-item">
-                            <a class="btn btn-primary" href="/Projeto-Back-End/Sair.php" role="button">Sair</a>
+                            <a class="btn btna" href="/Projeto-Back-End/Sair.php" role="button">Sair</a>
                         </li>
                         
                         <li class="nav-item">
@@ -94,7 +104,7 @@ $pic="esse.jpg"
                     <div class="col-12 mt-3 mb-5">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="b entrar_off" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</a>
+                                <button type="button" class="btn entrar_off" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</button>
                             </li>
                         </ul>
                     </div>
@@ -114,6 +124,7 @@ $pic="esse.jpg"
                     </div>
                 </div>
             </div>
+        </div>
     </header>
     <!--FIM NAVBAR-->
     <!--HERO-->
@@ -129,23 +140,11 @@ $pic="esse.jpg"
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="nav-item a+">
-                <button class="btn btn-primary border-3 btn-fonte" id="increaseFontBtn">
-                    A+
-                </button>
-            </div>
-            <div class="nav-item a-">
-                <button class="btn btn-primary border-3 btn-fonte" id="decreaseFontBtn">
-                    a-
-                </button>
-            </div>
-        </div>
     </section>
     <!-- FIM HERO-->
 
     <!--SOBRE-->
-    <section id="sobre" class="section_sobre">
+    <section id="sobre" class="section_sobre light-mode">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -204,7 +203,7 @@ $pic="esse.jpg"
                     </div>
                 </div>
                 <div class="row text-center align-items-center">
-                    <div class="col-lg-3 col-sm-6 mb-3 icobox_1">
+                    <div class="col-lg-3 col-sm-6 mb-3 icobox_1 aa">
                         <div class="service theme-shadow p-lg-5 p-4">
                             <div class="iconbox">
                                 <i class="ri-stethoscope-line"></i>
@@ -281,7 +280,7 @@ $pic="esse.jpg"
     </footer>
 
 
-    <script src="darkmode.js"></script>
+    <script src="http://localhost/Projeto-Back-End/landingPage/darkmode.js"></script>
     <!--GSAP CDN LINK-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
