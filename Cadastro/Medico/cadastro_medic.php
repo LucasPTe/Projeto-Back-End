@@ -1,6 +1,5 @@
 <?php
 // Inclui as configurações do banco de dados
-
 $servidor = "localhost:3306";
 $usuario = "root";
 $senha = "";
@@ -14,14 +13,13 @@ if (!$conexao) {
     die("Falha na conexão: " . mysqli_connect_error());
 };
 
-
 // Verifica se o formulário foi enviado
 if (isset($_POST["cadastrar"])) {
     // Captura os valores do formulário
     $nome_completo = $_POST['nome_completo'];
     $data = $_POST['data'];
     $email = $_POST['email'];
-    $genero = $_POST['exampleRadios'];
+    $genero = $_POST['ExampleRadios'];
     $nome_da_mae = $_POST['mae'];
     $CPF = $_POST['cpf'];
     $celular = $_POST['celular'];
@@ -35,6 +33,7 @@ if (isset($_POST["cadastrar"])) {
     $login = $_POST['usuario'];
     $senha = $_POST['senha'];
     $confirm = $_POST['confirmsenha'];
+    $CRM = $_POST['CRM']; // Captura o CRM do formulário
 
     // Validação de senha
     if ($senha !== $confirm) {
@@ -43,8 +42,8 @@ if (isset($_POST["cadastrar"])) {
     }
 
     // Insere os dados no banco de dados
-    $sql = "INSERT INTO clientes (nome_completo, data_nasc, email, sexo, nome_mae, CPF, numero_cel, numero_tel, CEP, bairro, municipio, estado, endereco, numero, usuario, senha, confirm_senha, tipo_usuario) 
-            VALUES ('$nome_completo', '$data', '$email', '$genero', '$nome_da_mae', '$CPF', '$celular', '$telefone', '$CEP', '$bairro', '$municipio', '$estado', '$endereco', '$numero', '$login', '$senha', '$confirm', 'Médico')";
+    $sql = "INSERT INTO medicos (nome_completo_medic, data_nasc_medic, email_medic, sexo_medic, nome_mae_medic, CPF_medic, numero_cel_medic, numero_tel_medic, CRM, CEP_medic, bairro_medic, municipio_medic, estado_medic, endereco_medic, numero_medic, usuario_medic, senha_medic, confirm_senha_medic, tipo_usuario) 
+            VALUES ('$nome_completo', '$data', '$email', '$genero', '$nome_da_mae', '$CPF', '$celular', '$telefone', '$CRM', '$CEP', '$bairro', '$municipio', '$estado', '$endereco', '$numero', '$login', '$senha', '$confirm', 'Médico')";
 
     if (mysqli_query($conexao, $sql)) {
         header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_aviso.php');

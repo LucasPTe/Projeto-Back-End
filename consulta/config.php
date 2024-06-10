@@ -2,15 +2,15 @@
 <html>
 <head>
     <title>Tela de Log</title>
-<<<<<<< Updated upstream
-=======
     <script>
-        function confirmarExclusao(event, cpf) {
+        function confirmarExclusao(event, cpf, tabela) {
             event.preventDefault(); // Previna o envio do formulário
             
             var modal = document.getElementById("confirmModal");
             var cpfInput = document.getElementById("cpfToDelete");
+            var tabelaInput = document.getElementById("tabelaToDelete");
             cpfInput.value = cpf; // Define o CPF no input escondido
+            tabelaInput.value = tabela; // Define a tabela no input escondido
 
             modal.style.display = "block"; // Mostra o modal
         }
@@ -62,7 +62,6 @@
             cursor: pointer;
         }
     </style>
->>>>>>> Stashed changes
 </head>
 <body>
     <h2>Tela de Log</h2>
@@ -71,56 +70,6 @@
         <input type="text" id="search" name="search">
         <input type="submit" value="Buscar">
     </form>
-<<<<<<< Updated upstream
-</body>
-</html>
-
-
-<?php
-// Configurações do banco de dados
-$servername = "localhost:3307"; // Nome do servidor
-$username = "root"; // Nome de usuário do banco de dados
-$password = ""; // Senha do banco de dados
-$dbname = "dr_agenda"; // Nome do banco de dados
-
-// Conecta ao banco de dados
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verifica conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
-}
-
-// Inicia a sessão
-session_start();
-
-// Verifica se o formulário de login foi enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Captura o valor da barra de busca
-    $search = $_POST['search'];
-
-    // Query para buscar informações no banco de dados
-    $sql = "SELECT usuario, CPF, data_criacao_login, ultimo_login FROM clientes WHERE usuario LIKE '%$search%' OR CPF LIKE '%$search%'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // Exibe os resultados
-        echo "<table border='1'><tr><th>Usuário</th><th>CPF</th><th>Data de Criação do Login</th><th>Última Vez Logado</th></tr>";
-        while($row = $result->fetch_assoc()) {
-            echo "<tr><td>".$row["usuario"]."</td><td>".$row["CPF"]."</td><td>".$row["data_criacao_login"]."</td><td>".$row["ultimo_login"]."</td></tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "Nenhum resultado encontrado.";
-    }
-}
-?>
-
-<?php
-// Fecha a conexão com o banco de dados
-$conn->close();
-?>
-=======
 
     <?php
     // Configurações do banco de dados
@@ -143,7 +92,14 @@ $conn->close();
     // Função para excluir usuário
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user'])) {
         $cpf_to_delete = $_POST['delete_user'];
-        $delete_sql = "DELETE FROM clientes WHERE CPF = '$cpf_to_delete'";
+        $tabela = $_POST['tabela'];
+
+        if ($tabela == 'clientes') {
+            $delete_sql = "DELETE FROM clientes WHERE CPF = '$cpf_to_delete'";
+        } else if ($tabela == 'medicos') {
+            $delete_sql = "DELETE FROM medicos WHERE CPF_medic = '$cpf_to_delete'";
+        }
+
         if ($conn->query($delete_sql) === TRUE) {
             echo "Usuário excluído com sucesso.";
         } else {
@@ -156,22 +112,42 @@ $conn->close();
         // Captura o valor da barra de busca
         $search = $_POST['search'];
 
-        // Query para buscar informações no banco de dados
-        $sql = "SELECT usuario, CPF, data_criacao_login, ultimo_login, tipo_usuario FROM clientes WHERE usuario LIKE '%$search%' OR CPF LIKE '%$search%'";
-        $result = $conn->query($sql);
+        // Query para buscar informações na tabela clientes
+        $sql_clientes = "SELECT usuario, CPF, data_criacao_login, ultimo_login, tipo_usuario FROM clientes WHERE usuario LIKE '%$search%' OR CPF LIKE '%$search%'";
+        $result_clientes = $conn->query($sql_clientes);
 
-        if ($result->num_rows > 0) {
+        // Query para buscar informações na tabela medicos
+        $sql_medicos = "SELECT usuario_medic, CPF_medic, data_criacao_login, ultimo_login, tipo_usuario FROM medicos WHERE usuario_medic LIKE '%$search%' OR CPF_medic LIKE '%$search%'";
+        $result_medicos = $conn->query($sql_medicos);
+
+        if ($result_clientes->num_rows > 0 || $result_medicos->num_rows > 0) {
             // Exibe os resultados
             echo "<table border='1'><tr><th>Usuário</th><th>CPF</th><th>Data de Criação do Login</th><th>Última Vez Logado</th><th>Tipo de Usuário</th><th>Ações</th></tr>";
-            while($row = $result->fetch_assoc()) {
+            
+            // Exibindo dados da tabela clientes
+            while($row = $result_clientes->fetch_assoc()) {
                 echo "<tr><td>".$row["usuario"]."</td><td>".$row["CPF"]."</td><td>".$row["data_criacao_login"]."</td><td>".$row["ultimo_login"]."</td><td>".$row["tipo_usuario"]."</td>
                 <td>
                     <form method='post' action='".htmlspecialchars($_SERVER["PHP_SELF"])."' id='deleteForm' style='display:inline;'>
                         <input type='hidden' name='delete_user' value='".$row["CPF"]."' id='cpfToDelete'>
-                        <input type='button' value='Excluir' onclick=\"confirmarExclusao(event, '".$row["CPF"]."')\">
+                        <input type='hidden' name='tabela' value='clientes'>
+                        <input type='button' value='Excluir' onclick=\"confirmarExclusao(event, '".$row["CPF"]."', 'clientes')\">
                     </form>
                 </td></tr>";
             }
+
+            // Exibindo dados da tabela medicos
+            while($row = $result_medicos->fetch_assoc()) {
+                echo "<tr><td>".$row["usuario_medic"]."</td><td>".$row["CPF_medic"]."</td><td>".$row["data_criacao_login"]."</td><td>".$row["ultimo_login"]."</td><td>".$row["tipo_usuario"]."</td>
+                <td>
+                    <form method='post' action='".htmlspecialchars($_SERVER["PHP_SELF"])."' id='deleteForm' style='display:inline;'>
+                        <input type='hidden' name='delete_user' value='".$row["CPF_medic"]."' id='cpfToDelete'>
+                        <input type='hidden' name='tabela' value='medicos'>
+                        <input type='button' value='Excluir' onclick=\"confirmarExclusao(event, '".$row["CPF_medic"]."', 'medicos')\">
+                    </form>
+                </td></tr>";
+            }
+
             echo "</table>";
         } else {
             echo "Nenhum resultado encontrado.";
@@ -193,4 +169,3 @@ $conn->close();
     </div>
 </body>
 </html>
->>>>>>> Stashed changes
