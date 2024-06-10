@@ -19,6 +19,7 @@ if (isset($_POST["cadastrar"])) {
     $nome_completo = $_POST['nome_completo'];
     $data = $_POST['data'];
     $email = $_POST['email'];
+    $especializacao = $_POST['especializacao'];
     $genero = $_POST['ExampleRadios'];
     $nome_da_mae = $_POST['mae'];
     $CPF = $_POST['cpf'];
@@ -42,8 +43,8 @@ if (isset($_POST["cadastrar"])) {
     }
 
     // Insere os dados no banco de dados
-    $sql = "INSERT INTO medicos (nome_completo_medic, data_nasc_medic, email_medic, sexo_medic, nome_mae_medic, CPF_medic, numero_cel_medic, numero_tel_medic, CRM, CEP_medic, bairro_medic, municipio_medic, estado_medic, endereco_medic, numero_medic, usuario_medic, senha_medic, confirm_senha_medic, tipo_usuario) 
-            VALUES ('$nome_completo', '$data', '$email', '$genero', '$nome_da_mae', '$CPF', '$celular', '$telefone', '$CRM', '$CEP', '$bairro', '$municipio', '$estado', '$endereco', '$numero', '$login', '$senha', '$confirm', 'Médico')";
+    $sql = "INSERT INTO medicos (nome_completo_medic, data_nasc_medic, email_medic, especializacao, sexo_medic, nome_mae_medic, CPF_medic, numero_cel_medic, numero_tel_medic, CRM, CEP_medic, bairro_medic, municipio_medic, estado_medic, endereco_medic, numero_medic, usuario_medic, senha_medic, confirm_senha_medic, tipo_usuario) 
+    VALUES ('$nome_completo', '$data', '$email','$especializacao', '$genero', '$nome_da_mae', '$CPF', '$celular', '$telefone', '$CRM', '$CEP', '$bairro', '$municipio', '$estado', '$endereco', '$numero', '$login', '$senha', '$confirm', 'Médico')";
 
     if (mysqli_query($conexao, $sql)) {
         header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_aviso.php');
@@ -100,11 +101,15 @@ mysqli_close($conexao);
                             <input type="email" class="form-control form-control-lg bg-light fs-6" required id="email" name="email" autocomplete="off" placeholder="">
                         </div>
 
-                        <label for="especializacao" id="labelEspecializacao">Especialização</label>                   
+                        <label for="especializacao">Especialização</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" id="especializacao" autocomplete="off" name="especializacao" required placeholder="">
+                        <select class="form-control form-control-lg bg-light fs-6" aria-label="Default select example" required id="especializacao" name="especializacao">
+                                <option value="psicologia">Psicologia</option>
+                                <option value="cardiologista">Cardiologista</option>
+                                <option value="pediatria">Pediatria</option>
+                                <option value="oftalmologista">Oftalmologista</option>
+                        </select>
                         </div>
-
                         <p>Gênero</p>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Masculino" checked>

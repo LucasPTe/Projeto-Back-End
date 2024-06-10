@@ -128,11 +128,7 @@
             while($row = $result_clientes->fetch_assoc()) {
                 echo "<tr><td>".$row["usuario"]."</td><td>".$row["CPF"]."</td><td>".$row["data_criacao_login"]."</td><td>".$row["ultimo_login"]."</td><td>".$row["tipo_usuario"]."</td>
                 <td>
-                    <form method='post' action='".htmlspecialchars($_SERVER["PHP_SELF"])."' id='deleteForm' style='display:inline;'>
-                        <input type='hidden' name='delete_user' value='".$row["CPF"]."' id='cpfToDelete'>
-                        <input type='hidden' name='tabela' value='clientes'>
-                        <input type='button' value='Excluir' onclick=\"confirmarExclusao(event, '".$row["CPF"]."', 'clientes')\">
-                    </form>
+                    <button onclick=\"confirmarExclusao(event, '".$row["CPF"]."', 'clientes')\">Excluir</button>
                 </td></tr>";
             }
 
@@ -140,11 +136,7 @@
             while($row = $result_medicos->fetch_assoc()) {
                 echo "<tr><td>".$row["usuario_medic"]."</td><td>".$row["CPF_medic"]."</td><td>".$row["data_criacao_login"]."</td><td>".$row["ultimo_login"]."</td><td>".$row["tipo_usuario"]."</td>
                 <td>
-                    <form method='post' action='".htmlspecialchars($_SERVER["PHP_SELF"])."' id='deleteForm' style='display:inline;'>
-                        <input type='hidden' name='delete_user' value='".$row["CPF_medic"]."' id='cpfToDelete'>
-                        <input type='hidden' name='tabela' value='medicos'>
-                        <input type='button' value='Excluir' onclick=\"confirmarExclusao(event, '".$row["CPF_medic"]."', 'medicos')\">
-                    </form>
+                    <button onclick=\"confirmarExclusao(event, '".$row["CPF_medic"]."', 'medicos')\">Excluir</button>
                 </td></tr>";
             }
 
@@ -163,8 +155,12 @@
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
             <p>Você tem certeza que deseja excluir este usuário?</p>
-            <button onclick="confirmarAcao()">Sim</button>
-            <button onclick="fecharModal()">Não</button>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="deleteForm">
+                <input type="hidden" name="delete_user" id="cpfToDelete">
+                <input type="hidden" name="tabela" id="tabelaToDelete">
+                <button type="button" onclick="confirmarAcao()">Sim</button>
+                <button type="button" onclick="fecharModal()">Não</button>
+            </form>
         </div>
     </div>
 </body>
