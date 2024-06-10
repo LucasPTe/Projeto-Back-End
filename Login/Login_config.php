@@ -28,8 +28,8 @@ function enviarCodigo2FA($conexao, $user_id, $tipo_usuario, $email) {
         $mail->isSMTP();
         $mail->Host = 'sandbox.smtp.mailtrap.io';
         $mail->SMTPAuth = true;
-        $mail->Username   = '9f9c356a1dafdf';
-        $mail->Password   = 'e5ac1959a495f5';
+        $mail->Username   = 'a7e8021047fef0';
+        $mail->Password   = '06f12a3c882c51';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 2525;
         
