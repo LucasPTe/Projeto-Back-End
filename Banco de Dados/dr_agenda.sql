@@ -1,5 +1,3 @@
-create database dr_agenda;
-use dr_agenda;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: dr_agenda
@@ -32,7 +30,7 @@ CREATE TABLE `clientes` (
   `sexo` varchar(15) NOT NULL,
   `nome_mae` varchar(80) NOT NULL,
   `CPF` varchar(15) NOT NULL,
-  `numero_cel` varchar(15) NOT NULL,
+  `numero_cel` varchar(16) DEFAULT NULL,
   `numero_tel` varchar(14) NOT NULL,
   `CEP` varchar(10) NOT NULL,
   `bairro` varchar(45) NOT NULL,
@@ -48,6 +46,7 @@ CREATE TABLE `clientes` (
   `data_criacao_login` timestamp NOT NULL DEFAULT current_timestamp(),
   `ultimo_login` timestamp NULL DEFAULT NULL,
   `tipo_usuario` varchar(20) DEFAULT NULL,
+  `tipo_2fa` varchar(255) DEFAULT 'e-mail',
   PRIMARY KEY (`pacientes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -58,7 +57,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','testlogin@gmail.com','Masculino','Rosangela Ferreira dos Santos','19176194228','21976527831','2125287478','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL),(59,'Lucas Roberto Lopes Da Silva','2004-06-25','lucas@email.com','Masculino','Patricia dos Santos','574.201.260-89','(21) 9 9961','(21) 9999-','21041180','Manguinhos','Rio de Janeiro','RJ','Rua Diogo de Vasconcelos',40,'llopes','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL),(60,'Maria Oliveira ','1966-03-25','mo@gmail.com','Masculino','Maria do Céu Oliveira','148.320.020-58','(21) 9 9995','(21) 2222-','21021030','Penha','Rio de Janeiro','RJ','Rua Macapuri',40,'Mojcol','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL),(61,'João Roberto Souza','1986-12-25','jrs@gmail.com','Masculino','Judite de Souza','873.043.260-00','(21) 9 6565','(21) 2230-','21021480','Olaria','Rio de Janeiro','RJ','Rua André Azevedo',87,'jrsjs1','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL),(64,'Big Big Santos','1993-03-21','big@gmail.com','Masculino','Big big mae  da silva','575.085.790-54','(21) 3 2983','(21) 3213-','21021490','Olaria','Rio de Janeiro','RJ','Rua Angélica Mota',2139,'bigbig','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30','2024-06-08 22:25:23',NULL),(65,'kaua ddadasdasda','2004-12-14','afsdaf@gmail.com','Masculino','fsdfdsfsefefsdfews','811.012.297-30','(21) 9 6465','(21) 4587-','22765845','Anil','Rio de Janeiro','RJ','Rua Henrique',35,'kaaaaa','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30','2024-06-09 03:22:12',NULL),(71,'sdojfgnsdujofnsdjifnhsd','2000-01-01','asljdfhnsdhij@gmail.com','Masculino','sjfsduyhfgsdhfsdh','966.428.930-26','(21) 1 1111','(21) 1111-','64000919','Cabral','Teresina','PI','Praça Edgard Nogueira',23,'uiuiui','12345678','12345678',NULL,NULL,'2024-06-09 05:11:08','2024-06-10 01:38:01','Paciente'),(72,'Annibal Gulias Moreira','2000-09-16','aaa@gmail.com','','Monica da silva','736.690.220-90','(21) 1 1111','(21) 1111-','69074512','Santa Luzia','Manaus','AM','Beco Mataro',23,'Popopo','12345678','12345678',NULL,NULL,'2024-06-10 02:26:51','2024-06-10 02:28:53','Médico');
+INSERT INTO `clientes` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','testlogin@gmail.com','Masculino','Rosangela Ferreira dos Santos','19176194228','2197 52783-1','2125 87478-','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'HD-TI2','Hugo9143','Hugo9143',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL,'e-mail'),(59,'Lucas Roberto Lopes Da Silva','2004-06-25','lucas@email.com','Masculino','Patricia dos Santos','57420126089','(21) 9 996-1','(21) 9999--','21041180','Manguinhos','Rio de Janeiro','RJ','Rua Diogo de Vasconcelos',40,'llopes','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL,'e-mail'),(60,'Maria Oliveira ','1966-03-25','mo@gmail.com','Masculino','Maria do Céu Oliveira','14832002058','(21) 9 999-5','(21) 2222--','21021030','Penha','Rio de Janeiro','RJ','Rua Macapuri',40,'Mojcol','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL,'e-mail'),(61,'João Roberto Souza','1986-12-25','jrs@gmail.com','Masculino','Judite de Souza','87304326000','(21) 9 656-5','(21) 2230--','21021480','Olaria','Rio de Janeiro','RJ','Rua André Azevedo',87,'jrsjs1','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30',NULL,NULL,'e-mail'),(64,'Big Big Santos','1993-03-21','big@gmail.com','Masculino','Big big mae  da silva','57508579054','(21) 3 298-3','(21) 3213--','21021490','Olaria','Rio de Janeiro','RJ','Rua Angélica Mota',2139,'bigbig','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30','2024-06-08 22:25:23',NULL,'e-mail'),(65,'kaua ddadasdasda','2004-12-14','afsdaf@gmail.com','Masculino','fsdfdsfsefefsdfews','81101229730','(21) 9 646-5','(21) 4587--','22765845','Anil','Rio de Janeiro','RJ','Rua Henrique',35,'kaaaaa','12345678','12345678',NULL,NULL,'2024-06-08 20:59:30','2024-06-09 03:22:12',NULL,'e-mail'),(71,'sdojfgnsdujofnsdjifnhsd','2000-01-01','asljdfhnsdhij@gmail.com','Masculino','sjfsduyhfgsdhfsdh','96642893026','(21) 1 111-1','(21) 1111--','64000919','Cabral','Teresina','PI','Praça Edgard Nogueira',23,'uiuiui','12345678','12345678',NULL,NULL,'2024-06-09 05:11:08','2024-06-10 01:38:01','Paciente','e-mail'),(72,'Annibal Gulias Moreira','2000-09-16','aaa@gmail.com','','Monica da silva','73669022090','(21) 1 111-1','(21) 1111--','69074512','Santa Luzia','Manaus','AM','Beco Mataro',23,'Popopo','12345678','12345678',NULL,NULL,'2024-06-10 02:26:51','2024-06-10 02:28:53','Médico','e-mail');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,8 +103,8 @@ CREATE TABLE `medicos` (
   `sexo_medic` varchar(15) NOT NULL,
   `nome_mae_medic` varchar(80) NOT NULL,
   `CPF_medic` varchar(15) NOT NULL,
-  `numero_cel_medic` varchar(11) NOT NULL,
-  `numero_tel_medic` varchar(10) NOT NULL,
+  `numero_cel_medic` varchar(16) DEFAULT NULL,
+  `numero_tel_medic` varchar(14) DEFAULT NULL,
   `CRM` varchar(6) NOT NULL,
   `CEP_medic` varchar(10) NOT NULL,
   `bairro_medic` varchar(45) NOT NULL,
@@ -119,6 +118,7 @@ CREATE TABLE `medicos` (
   `data_criacao_login` timestamp NOT NULL DEFAULT current_timestamp(),
   `tipo_usuario` varchar(20) DEFAULT NULL,
   `ultimo_login` timestamp NULL DEFAULT NULL,
+  `tipo_2fa` varchar(255) DEFAULT 'e-mail',
   PRIMARY KEY (`doutor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -129,7 +129,7 @@ CREATE TABLE `medicos` (
 
 LOCK TABLES `medicos` WRITE;
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
-INSERT INTO `medicos` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','medic@gmail.com','Cardiologista','Masculino','Rosangela Ferreira dos Santos','19176194228','21976527831','2125287478','130720','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143','2024-06-10 02:36:18',NULL,NULL),(46,'Mariana Thereza Costa','1970-02-07','mtc@gmail.com','Nutricionista','Masculino','Maria Thereza Costa','215.054.450-43','(21) 9 8545','(21) 2265-','567556','22640102','Barra da Tijuca','Rio de Janeiro','RJ','Avenida das Américas',4000,'mtc123','12345678','12345678','2024-06-10 02:36:18',NULL,NULL),(47,'Rogerio Vinicius Soares','1975-06-26','rlsm@gmail.com','Oftalmologista','Masculino','Laura Maria Soares','352.695.170-51','(21) 9 4751','(21) 2777-','562015','22430060','Leblon','Rio de Janeiro','RJ','Avenida Afrânio de Melo Franco',200,'rvs562','12345678','12345678','2024-06-10 02:36:18',NULL,NULL),(48,'Pedro Antônio Patrício','1969-05-10','pap@gmail.com','Psicologia','Masculino','Maria de Fátima Patrício','743.261.190-47','(21) 9 7124','(21) 3587-','441053','21021120','Penha','Rio de Janeiro','RJ','Rua São Basiliano',20,'pap123','12345678','12345678','2024-06-10 02:36:18',NULL,NULL),(49,'Jose Noberto Lopes','1995-03-10','josenoberto@gmail.com','Pediatria','Masculino','Janaina Lopes Soares','153.691.800-83','(21) 3 2091','(31) 2837-','435634','21021380','Olaria','Rio de Janeiro','RJ','Rua Filomena Nunes',102,'joseno','12345678','12345678','2024-06-10 02:36:18',NULL,NULL),(51,'aaaaaaaaaaaaaaa','1999-12-12','aaaa@gmail.com','','N_informado','aaaaaaaaaaaaaaaaaaaaaaaa','548.469.080-38','(21) 1 1111','(21) 1111-','132456','19802171','Vila Fabiano','Assis','SP','Rua João Ribeiro',23,'tututu','12345678','12345678','2024-06-10 02:44:29','Médico',NULL),(52,'aaaaaaaaaaaaaaaaaaaaaaa','2001-01-11','aaa@gmail.com','','Masculino','tttttttttttttttttt','880.099.270-66','(21) 1 1111','(21) 1111-','545353','17054225','Vila Santa Inês','Bauru','SP','Praça Clementina Fernandes',10,'bagbag','12345678','12345678','2024-06-10 03:10:36','Médico',NULL);
+INSERT INTO `medicos` VALUES (1,'Hugo Daniel Ferrete dos Santos','2000-07-13','medic@gmail.com','Cardiologista','Masculino','Rosangela Ferreira dos Santos','19176194228','2197 52783-1','2125 87478-','130720','25080030','Parque Paulicéia','Duque de Caxias','Rio de Janeiro','Rua Pernambuco',173,'MED-TI','Hugo9143','Hugo9143','2024-06-10 02:36:18',NULL,NULL,'e-mail'),(46,'Mariana Thereza Costa','1970-02-07','mtc@gmail.com','Nutricionista','Masculino','Maria Thereza Costa','21505445043','(21) 9 854-5','(21) 2265--','567556','22640102','Barra da Tijuca','Rio de Janeiro','RJ','Avenida das Américas',4000,'mtc123','12345678','12345678','2024-06-10 02:36:18',NULL,NULL,'e-mail'),(47,'Rogerio Vinicius Soares','1975-06-26','rlsm@gmail.com','Oftalmologista','Masculino','Laura Maria Soares','35269517051','(21) 9 475-1','(21) 2777--','562015','22430060','Leblon','Rio de Janeiro','RJ','Avenida Afrânio de Melo Franco',200,'rvs562','12345678','12345678','2024-06-10 02:36:18',NULL,NULL,'e-mail'),(48,'Pedro Antônio Patrício','1969-05-10','pap@gmail.com','Psicologia','Masculino','Maria de Fátima Patrício','74326119047','(21) 9 712-4','(21) 3587--','441053','21021120','Penha','Rio de Janeiro','RJ','Rua São Basiliano',20,'pap123','12345678','12345678','2024-06-10 02:36:18',NULL,NULL,'e-mail'),(49,'Jose Noberto Lopes','1995-03-10','josenoberto@gmail.com','Pediatria','Masculino','Janaina Lopes Soares','15369180083','(21) 3 209-1','(31) 2837--','435634','21021380','Olaria','Rio de Janeiro','RJ','Rua Filomena Nunes',102,'joseno','12345678','12345678','2024-06-10 02:36:18',NULL,NULL,'e-mail'),(51,'aaaaaaaaaaaaaaa','1999-12-12','aaaa@gmail.com','','N_informado','aaaaaaaaaaaaaaaaaaaaaaaa','54846908038','(21) 1 111-1','(21) 1111--','132456','19802171','Vila Fabiano','Assis','SP','Rua João Ribeiro',23,'tututu','12345678','12345678','2024-06-10 02:44:29','Médico',NULL,'e-mail'),(52,'aaaaaaaaaaaaaaaaaaaaaaa','2001-01-11','aaa@gmail.com','','Masculino','tttttttttttttttttt','88009927066','(21) 1 111-1','(21) 1111--','545353','17054225','Vila Santa Inês','Bauru','SP','Praça Clementina Fernandes',10,'bagbag','12345678','12345678','2024-06-10 03:10:36','Médico',NULL,'e-mail');
 /*!40000 ALTER TABLE `medicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-10  0:13:49
+-- Dump completed on 2024-06-11 19:30:02
