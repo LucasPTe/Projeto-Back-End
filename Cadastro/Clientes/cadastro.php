@@ -175,7 +175,7 @@ if (isset($_POST["cadastrar"])) {
 
                             <label for="numero" id="labelNumero">Número</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control form-control-lg bg-light fs-6 numero-input" required id="numero" name="numero" autocomplete="off" placeholder="Ex: n° 105">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6 numero-input" required id="numero" name="numero" autocomplete="off" placeholder="Ex: n° 105" maxlength="6">
                             </div>
 
                             <label for="usuario" id="labelUsuario">Login</label>
@@ -216,14 +216,23 @@ if (isset($_POST["cadastrar"])) {
                 border-color: green;
             }
 
-            
-
         </style>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="/Projeto-Back-End/Cadastro/Clientes/validacao_usuario.js"></script>
+        <script>
+            // Script para validar usuário (permitindo apenas letras)
+            $(document).ready(function(){
+                $("#nome_completo, #mae").on("input", function(){
+                    // Remover caracteres não alfabéticos
+                    var sanitized = $(this).val().replace(/[^a-zA-Z\s]/g, '');
+                    // Atualizar valor do input
+                    $(this).val(sanitized);
+                });
+            });
+        </script>
 </body>
 
 </html>

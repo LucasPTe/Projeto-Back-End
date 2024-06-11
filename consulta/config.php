@@ -113,20 +113,20 @@
         $search = $_POST['search'];
 
         // Query para buscar informações na tabela clientes
-        $sql_clientes = "SELECT usuario, CPF, data_criacao_login, ultimo_login, tipo_usuario FROM clientes WHERE usuario LIKE '%$search%' OR CPF LIKE '%$search%'";
+        $sql_clientes = "SELECT usuario, CPF, data_criacao_login, ultimo_login, tipo_usuario, tipo_2fa FROM clientes WHERE usuario LIKE '%$search%' OR CPF LIKE '%$search%'";
         $result_clientes = $conn->query($sql_clientes);
 
         // Query para buscar informações na tabela medicos
-        $sql_medicos = "SELECT usuario_medic, CPF_medic, data_criacao_login, ultimo_login, tipo_usuario FROM medicos WHERE usuario_medic LIKE '%$search%' OR CPF_medic LIKE '%$search%'";
+        $sql_medicos = "SELECT usuario_medic, CPF_medic, data_criacao_login, ultimo_login, tipo_usuario, tipo_2fa FROM medicos WHERE usuario_medic LIKE '%$search%' OR CPF_medic LIKE '%$search%'";
         $result_medicos = $conn->query($sql_medicos);
 
         if ($result_clientes->num_rows > 0 || $result_medicos->num_rows > 0) {
             // Exibe os resultados
-            echo "<table border='1'><tr><th>Usuário</th><th>CPF</th><th>Data de Criação do Login</th><th>Última Vez Logado</th><th>Tipo de Usuário</th><th>Ações</th></tr>";
+            echo "<table border='1'><tr><th>Usuário</th><th>CPF</th><th>Data de Criação do Login</th><th>Última Vez Logado</th><th>Tipo de Usuário</th><th>Tipo de 2FA</th><th>Ações</th></tr>";
             
             // Exibindo dados da tabela clientes
             while($row = $result_clientes->fetch_assoc()) {
-                echo "<tr><td>".$row["usuario"]."</td><td>".$row["CPF"]."</td><td>".$row["data_criacao_login"]."</td><td>".$row["ultimo_login"]."</td><td>".$row["tipo_usuario"]."</td>
+                echo "<tr><td>".$row["usuario"]."</td><td>".$row["CPF"]."</td><td>".$row["data_criacao_login"]."</td><td>".$row["ultimo_login"]."</td><td>".$row["tipo_usuario"]."</td><td>".$row["tipo_2fa"]."</td>
                 <td>
                     <button onclick=\"confirmarExclusao(event, '".$row["CPF"]."', 'clientes')\">Excluir</button>
                 </td></tr>";
@@ -134,7 +134,7 @@
 
             // Exibindo dados da tabela medicos
             while($row = $result_medicos->fetch_assoc()) {
-                echo "<tr><td>".$row["usuario_medic"]."</td><td>".$row["CPF_medic"]."</td><td>".$row["data_criacao_login"]."</td><td>".$row["ultimo_login"]."</td><td>".$row["tipo_usuario"]."</td>
+                echo "<tr><td>".$row["usuario_medic"]."</td><td>".$row["CPF_medic"]."</td><td>".$row["data_criacao_login"]."</td><td>".$row["ultimo_login"]."</td><td>".$row["tipo_usuario"]."</td><td>".$row["tipo_2fa"]."</td>
                 <td>
                     <button onclick=\"confirmarExclusao(event, '".$row["CPF_medic"]."', 'medicos')\">Excluir</button>
                 </td></tr>";
