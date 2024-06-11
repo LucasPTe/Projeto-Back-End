@@ -150,7 +150,7 @@ if (isset($_POST["cadastrar"])) {
 
                             <label for="CEP" id="labelCep">CEP</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control form-control-lg bg-light fs-6" required id="CEP" name="cep" maxlength="8" autocomplete="off" placeholder="">
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" required id="CEP" name="cep" maxlength="8" autocomplete="off" placeholder="" onkeypress="return isNumberKey(event)">
                             </div>
 
                             <label for="bairro" id="labelBairro">Bairro</label>
@@ -233,6 +233,17 @@ if (isset($_POST["cadastrar"])) {
                 });
             });
         </script>
+<script>
+    //função para cep aceitar apenas números.
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    // Permitir apenas números (48-57 correspondem a '0'-'9')
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
 </body>
 
 </html>

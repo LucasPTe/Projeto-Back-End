@@ -64,7 +64,7 @@ mysqli_close($conexao);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Med+</title>
+    <title>Cadastro Dr.agenda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -156,12 +156,12 @@ mysqli_close($conexao);
                     <div class="row align-items-center">
                         <label for="CRM" id="labelCRM">Certificado de Registro Médico</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" required id="CRM" name="CRM" autocomplete="off" placeholder="Digite seu CRM">
+                            <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="9" maxlength="9" required id="CRM" name="CRM" autocomplete="off" placeholder="Digite seu CRM" oninput="validateCRM(this)">
                         </div>
 
                         <label for="CEP" id="labelCep">CEP</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" required id="CEP" name="cep" maxlength="8" autocomplete="off" placeholder="">
+                            <input type="text" class="form-control form-control-lg bg-light fs-6" required id="CEP" name="cep" maxlength="8" autocomplete="off" placeholder="" onkeypress="return isNumberKey(event)">
                         </div>
 
                         <label for="bairro" id="labelBairro">Bairro</label>
@@ -186,7 +186,7 @@ mysqli_close($conexao);
 
                         <label for="numero" id="labelNumero">Número</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-lg bg-light fs-6" required id="numero" name="numero" autocomplete="off" placeholder="Ex: n° 105">
+                            <input type="text" class="form-control form-control-lg bg-light fs-6" required id="numero" name="numero" autocomplete="off" placeholder="Ex: n° 105" maxlength="6">
                         </div>
 
                         <label for="usuario" id="labelUsuario">Login</label>
@@ -228,12 +228,16 @@ mysqli_close($conexao);
             $(document).ready(function(){
                 $("#nome_completo, #mae").on("input", function(){
                     // Remover caracteres não alfabéticos
-                    var sanitized = $(this).val().replace(/[^a-zA-Z]/g, '');
+                    var sanitized = $(this).val().replace(/[^a-zA-Z\s]/g, '');
                     // Atualizar valor do input
                     $(this).val(sanitized);
                 });
             });
         </script>
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
