@@ -73,7 +73,7 @@
 
     <?php
     // Configurações do banco de dados
-    $servername = "localhost:3306"; // Nome do servidor
+    $servername = "localhost:3307"; // Nome do servidor
     $username = "root"; // Nome de usuário do banco de dados
     $password = ""; // Senha do banco de dados
     $dbname = "dr_agenda"; // Nome do banco de dados

@@ -2,7 +2,7 @@
 session_start();
 require '\xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
 
-$dbHost = 'localhost:3306';
+$dbHost = 'localhost:3307';
 $dbUsername = 'root';
 $dbPassword = '';
 $dbName = 'dr_agenda';

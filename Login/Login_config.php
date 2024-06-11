@@ -11,7 +11,7 @@ use PHPMailer\PHPMailer\Exception;
 require '\xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
 
 // Configurações do banco de dados
-$dbHost = 'localhost:3306';
+$dbHost = 'localhost:3307';
 $dbUsername = 'root';
 $dbPassword = '';
 $dbName = 'dr_agenda';

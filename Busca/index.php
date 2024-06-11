@@ -21,7 +21,7 @@
         $logado = $_SESSION['usuario'];
 
 
-        $dbHost ='localhost:3306';
+        $dbHost ='localhost:3307';
         $dbUsername ='root';
         $dbPassword ='';
         $dbName ='dr_agenda';

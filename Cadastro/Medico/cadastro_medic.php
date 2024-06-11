@@ -1,6 +1,6 @@
 <?php
 // Inclui as configurações do banco de dados
-$servidor = "localhost:3306";
+$servidor = "localhost:3307";
 $usuario = "root";
 $senha = "";
 $banco = "dr_agenda";
