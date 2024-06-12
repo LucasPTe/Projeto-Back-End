@@ -46,6 +46,9 @@ if (isset($_POST['verificar'])) {
 
         if ($_SESSION['tentativas_2fa'] >= 3) {
             echo "Número de tentativas excedido. Tente novamente mais tarde.";
+
+            header('Location: http://localhost/Projeto-Back-End/Login/login.php');
+            
         } elseif ($row['codigo_2fa'] == $codigo2FA && time() < strtotime($row['expira_em'])) {
             unset($_SESSION['tentativas_2fa']);
             unset($_SESSION['ultima_tentativa_2fa']);
