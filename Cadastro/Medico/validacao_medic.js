@@ -250,7 +250,7 @@ function validateCRM(input) {
   var end = input.selectionEnd;
 
   // Filtra os caracteres permitidos (letras, números e '-')
-  var filteredValue = input.value.replace(/[^a-zA-Z0-9-]/g, "");
+  var filteredValue = input.value.replace(/[^a-zA-Z0-9-]/g, "").toUpperCase();
 
   // Atualiza o valor do campo
   input.value = filteredValue;

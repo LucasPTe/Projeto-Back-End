@@ -12,6 +12,12 @@ if ($conexao->connect_error) {
     die("Conexão falhou: " . $conexao->connect_error);
 }
 
+// Verifica se o usuário é "master" e redireciona diretamente para a página master.php
+if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'master') {
+    header('Location: http://localhost/Projeto-Back-End/Login/login.php');
+    exit;
+}
+
 if (!isset($_SESSION['tentativas_2fa'])) {
     $_SESSION['tentativas_2fa'] = 0;
 }

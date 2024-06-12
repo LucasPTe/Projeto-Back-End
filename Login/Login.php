@@ -12,6 +12,7 @@ $pic = "fundo.jpg";
     <title>Dr Agenda</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="login.css">
 </head>
 
@@ -53,6 +54,7 @@ body {
                         <label for="senha" id="labelSenha">Senha</label>
                         <div class="input-group mb-1">
                             <input required type="password" class="form-control form-control-lg bg-light fs-6" minlength="8" maxlength="8" id="senha" name="senha" autocomplete="off" placeholder="Digite sua senha">
+                            <button type="button" class="btn btn-outline-secondary ri-eye-line" id="toggleSenha"></button>
                         </div>
                         <div class="input-group mb-3">
                             <input type="submit" name="submit" class="btn btn-primary login_botao" value="Acessar">
@@ -81,15 +83,29 @@ body {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <script>
-    <?php if (isset($_SESSION['login_sucesso']) && $_SESSION['login_sucesso'] == true): ?>
+    <?php if (isset($_SESSION['login_sucesso']) && $_SESSION['login_sucesso'] == true && $_SESSION['tipo_usuario'] != 'master'): ?>
         var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
         loginModal.show();
         setTimeout(function() {
             window.location.href = 'http://localhost/Projeto-Back-End/verificar_2fa.php';
-        }, 2000); // Redireciona após 3 segundos
+        }, 2000); // Redireciona após 2 segundos
         <?php unset($_SESSION['login_sucesso']); // Limpa a variável de sessão ?>
     <?php endif; ?>
     </script>
+
+<script>
+    document.getElementById('toggleSenha').addEventListener('click', function() {
+        const senhaInput = document.getElementById('senha');
+        const senhaIcon = document.getElementById('toggleSenhaIcon');
+        if (senhaInput.type === 'password') {
+            senhaInput.type = 'text';
+            senhaIcon.src = 'eye-slash-icon.png'; // Mude para o ícone de olho aberto
+        } else {
+            senhaInput.type = 'password';
+            senhaIcon.src = 'eye-icon.png'; // Mude para o ícone de olho fechado
+        }
+    });
+</script>
 </body>
 
 </html>

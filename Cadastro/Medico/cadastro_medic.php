@@ -67,6 +67,7 @@ mysqli_close($conexao);
     <title>Cadastro Dr.agenda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -113,7 +114,7 @@ mysqli_close($conexao);
                         <p>Gênero</p>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Masculino" checked>
-                                    <label class="form-check-label" for="exampleRadios1">
+                                <label style="margin-left: 10px;" class="form-check-label" for="exampleRadios1">
                                         Masculino
                                     </label>
                             </div>
@@ -197,11 +198,13 @@ mysqli_close($conexao);
                         <label for="senha" id="labelSenha">Senha</label>
                         <div class="input-group mb-3">
                             <input type="password" class="form-control form-control-lg bg-light fs-6" required id="senha" name="senha" minlength="8" maxlength="8" autocomplete="off" placeholder="">
+                            <button type="button" class="btn btn-outline-secondary ri-eye-line" id="toggleSenha"></button>
                         </div>
 
                         <label for="confirmSenha" id="labelConfirmSenha">Confirmar Senha</label>
                             <div class="input-group mb-3">
                                 <input type="password" class="form-control form-control-lg bg-light fs-6" required id="confirmSenha" name="confirmsenha" minlength="8" maxlength="8" autocomplete="off" placeholder="">
+                                <button type="button" class="btn btn-outline-secondary ri-eye-line" id="toggleConfirmSenha"></button>
                             </div>
                     </div>
                 </div>
@@ -228,14 +231,39 @@ mysqli_close($conexao);
             $(document).ready(function(){
                 $("#nome_completo, #mae").on("input", function(){
                     // Remover caracteres não alfabéticos
-                    var sanitized = $(this).val().replace(/[^a-zA-Z\s]/g, '');
+                    var sanitized = $(this).val().replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
                     // Atualizar valor do input
                     $(this).val(sanitized);
                 });
             });
         </script>
 
-
+<script>
+    document.getElementById('toggleSenha').addEventListener('click', function() {
+        const senhaInput = document.getElementById('senha');
+        const senhaIcon = document.getElementById('toggleSenhaIcon');
+        if (senhaInput.type === 'password') {
+            senhaInput.type = 'text';
+            senhaIcon.src = 'eye-slash-icon.png'; // Mude para o ícone de olho aberto
+        } else {
+            senhaInput.type = 'password';
+            senhaIcon.src = 'eye-icon.png'; // Mude para o ícone de olho fechado
+        }
+    });
+</script>
+<script>
+document.getElementById('toggleConfirmSenha').addEventListener('click', function() {
+        const confirmSenhaInput = document.getElementById('confirmSenha');
+        const confirmSenhaIcon = document.getElementById('toggleConfirmSenhaIcon');
+        if (confirmSenhaInput.type === 'password') {
+            confirmSenhaInput.type = 'text';
+            confirmSenhaIcon.src = 'eye-slash-icon.png'; // Mude para o ícone de olho aberto
+        } else {
+            confirmSenhaInput.type = 'password';
+            confirmSenhaIcon.src = 'eye-icon.png'; // Mude para o ícone de olho fechado
+        }
+    });
+</script>
 
 
 

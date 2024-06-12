@@ -86,3 +86,16 @@ body {
 }
 
 /* Ajuste de margem para dispositivos menores */
+
+#toggleSenha,
+#toggleConfirmSenha {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#toggleSenhaIcon,
+#toggleConfirmSenhaIcon {
+  width: 20px;
+  height: 20px;
+}
