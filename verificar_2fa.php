@@ -79,7 +79,7 @@ if (isset($_POST['verificar'])) {
                 <p>Insira o código enviado ao seu email.</p>
                 <form action="verificar_2fa.php" method="POST">
                     <div class="input-group mb-3">
-                        <input required type="text" class="form-control form-control-lg bg-light fs-6" id="codigo2FA" name="codigo2FA" placeholder="Digite o código 2FA" minlength="6" maxlength="6" >
+                        <input required type="text" autocomplete="off" class="form-control form-control-lg bg-light fs-6" id="codigo2FA" name="codigo2FA" placeholder="Digite o código 2FA" minlength="6" maxlength="6" >
                     </div>
                     <div class="input-group mb-3">
                         <input type="submit" name="verificar" class="btn btn-primary" value="Verificar">

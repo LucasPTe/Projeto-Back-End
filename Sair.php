@@ -12,4 +12,3 @@
     unset ($_SESSION['senha_medic']);
     header('Location: http://localhost/Projeto-Back-End/Login/Login.php');
 
-?>

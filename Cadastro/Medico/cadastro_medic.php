@@ -113,7 +113,7 @@ mysqli_close($conexao);
                         <p>Gênero</p>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Masculino" checked>
-                                    <label class="form-check-label" for="exampleRadios1">
+                                <label style="margin-left: 10px;" class="form-check-label" for="exampleRadios1">
                                         Masculino
                                     </label>
                             </div>
