@@ -12,6 +12,8 @@ if ($conexao->connect_error) {
     die("Conexão falhou: " . $conexao->connect_error);
 }
 
+$error_message = '';
+
 // Verifica se o usuário é "master" e redireciona diretamente para a página master.php
 if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'master') {
     header('Location: http://localhost/Projeto-Back-End/Login/login.php');
@@ -45,10 +47,9 @@ if (isset($_POST['verificar'])) {
         $row = $result->fetch_assoc();
 
         if ($_SESSION['tentativas_2fa'] >= 3) {
-            echo "Número de tentativas excedido. Tente novamente mais tarde.";
-
+            $error_message = "Número de tentativas excedido. Tente novamente mais tarde.";
             header('Location: http://localhost/Projeto-Back-End/Login/login.php');
-            
+            exit;
         } elseif ($row['codigo_2fa'] == $codigo2FA && time() < strtotime($row['expira_em'])) {
             unset($_SESSION['tentativas_2fa']);
             unset($_SESSION['ultima_tentativa_2fa']);
@@ -62,10 +63,10 @@ if (isset($_POST['verificar'])) {
         } else {
             $_SESSION['tentativas_2fa'] += 1;
             $_SESSION['ultima_tentativa_2fa'] = time();
-            echo "Código de autenticação inválido ou expirado.";
+            $error_message = "Código de autenticação inválido ou expirado.";
         }
     } else {
-        echo "Código de autenticação não encontrado.";
+        $error_message = "Código de autenticação não encontrado.";
     }
 }
 ?>
@@ -83,12 +84,17 @@ if (isset($_POST['verificar'])) {
 <body style="background-image: linear-gradient(#d5dcf1, #2d3f6c);">
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="row border rounded-5 p-3 bg-white shadow box-area">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <h2>Verificação 2FA</h2>
                 <p>Insira o código enviado ao seu email.</p>
+                <?php if (!empty($error_message)): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $error_message; ?>
+                    </div>
+                <?php endif; ?>
                 <form action="verificar_2fa.php" method="POST">
                     <div class="input-group mb-3">
-                        <input required type="text" class="form-control form-control-lg bg-light fs-6" id="codigo2FA" name="codigo2FA" placeholder="Digite o código 2FA" minlength="6" maxlength="6" >
+                        <input required type="text" class="form-control form-control-lg bg-light fs-6" id="codigo2FA" name="codigo2FA" placeholder="Digite o código 2FA" minlength="6" maxlength="6">
                     </div>
                     <div class="input-group mb-3">
                         <input type="submit" name="verificar" class="btn btn-primary" value="Verificar">
@@ -99,4 +105,4 @@ if (isset($_POST['verificar'])) {
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
-</html>
+</html

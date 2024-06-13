@@ -55,7 +55,7 @@ body {
 .btn {
   background-color: #2d3f6c;
   border: none;
-  color: #fff;
+  color: #ffffff;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
@@ -89,7 +89,6 @@ body {
 
 #toggleSenha,
 #toggleConfirmSenha {
-  background: none;
   border: none;
   cursor: pointer;
 }

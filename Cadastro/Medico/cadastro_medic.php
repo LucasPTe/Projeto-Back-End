@@ -204,7 +204,7 @@ mysqli_close($conexao);
                         <label for="confirmSenha" id="labelConfirmSenha">Confirmar Senha</label>
                             <div class="input-group mb-3">
                                 <input type="password" class="form-control form-control-lg bg-light fs-6" required id="confirmSenha" name="confirmsenha" minlength="8" maxlength="8" autocomplete="off" placeholder="">
-                                <button type="button" class="btn btn-outline-secondary ri-eye-line" id="toggleConfirmSenha"></button>
+                                <button type="button" class="aa btn ri-eye-line" id="toggleConfirmSenha"></button>
                             </div>
                     </div>
                 </div>
