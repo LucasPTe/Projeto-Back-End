@@ -128,14 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Chama a função de login
     fazerLogin($conexao, $login, $senha);
 }
-// Verificação adicional para redirecionar o usuário "master" diretamente após o login
-if (isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'master') {
-    header('Location: http://localhost/Projeto-Back-End/Login/login.php');
-    exit;
-}
 ?>
-?>
-
 <!-- 
        Assim que apertar o botão de acessar, ele irá buscar no banco de dados o usuario e senha através do input:
  */

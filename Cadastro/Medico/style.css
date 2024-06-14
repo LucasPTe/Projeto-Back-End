@@ -55,7 +55,7 @@ body {
 .btn {
   background-color: #2d3f6c;
   border: none;
-  color: #fff;
+  color: #ffffff;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
@@ -86,3 +86,15 @@ body {
 }
 
 /* Ajuste de margem para dispositivos menores */
+
+#toggleSenha,
+#toggleConfirmSenha {
+  border: none;
+  cursor: pointer;
+}
+
+#toggleSenhaIcon,
+#toggleConfirmSenhaIcon {
+  width: 20px;
+  height: 20px;
+}
