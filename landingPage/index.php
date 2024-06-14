@@ -66,7 +66,7 @@ $pic="esse.jpg";
             session_start();
                 if (isset($_SESSION['usuario'])) {
                     $logado = $_SESSION['usuario'];
-                    echo "Olá, $logado. Deseja sair?";
+                    echo "Olá, <b>$logado</b>. Deseja sair?<br>";
                     echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Sair.php">Sair</a>';
                 } else {
                     if (isset($_SESSION['usuario_medic'])) {

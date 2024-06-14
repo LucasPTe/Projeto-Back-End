@@ -12,6 +12,7 @@
 - Kaua Bezerra (Kbezerra)
 - Lucas Lopes (LucasPTe)
 - Annibal Gulias (annibalgulias)
+- Caio Nery (caionr)
 
 ## Banco de Dados
 
