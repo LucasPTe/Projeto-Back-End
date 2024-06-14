@@ -11,10 +11,17 @@ $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
 // Verifica a conexão
 if (!$conexao) {
     die("Falha na conexão: " . mysqli_connect_error());
-};
+}
+
+$cpf_error = '';
+$login_error = '';
+$email_error = '';
+$crm_error = '';
+$cadastro_sucesso = '';
 
 // Verifica se o formulário foi enviado
-if (isset($_POST["cadastrar"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     // Captura os valores do formulário
     $nome_completo = $_POST['nome_completo'];
     $data = $_POST['data'];
@@ -36,38 +43,114 @@ if (isset($_POST["cadastrar"])) {
     $confirm = $_POST['confirmsenha'];
     $CRM = $_POST['CRM']; // Captura o CRM do formulário
 
+    // Remover caracteres não numéricos do CPF
+    $CPF = preg_replace('/\D/', '', $CPF);
+
+    // Remover caracteres não numéricos do Celular
+    $celular = preg_replace('/\D/', '', $celular);
+
+    // Remover caracteres não numéricos do Telefone Fixo
+    $telefone = preg_replace('/\D/', '', $telefone);
+
+    // Verifica se o CPF já está cadastrado
+    $query_cpf = "SELECT * FROM medicos WHERE CPF_medic = ?";
+    $stmt_cpf = mysqli_prepare($conexao, $query_cpf);
+    mysqli_stmt_bind_param($stmt_cpf, "s", $CPF);
+    mysqli_stmt_execute($stmt_cpf);
+    mysqli_stmt_store_result($stmt_cpf);
+    $num_rows_cpf = mysqli_stmt_num_rows($stmt_cpf);
+
+    if ($num_rows_cpf > 0) {
+        // CPF já cadastrado, define mensagem de erro
+        $cpf_error = 'CPF já cadastrado.';
+        $CPF = '';
+    }
+
+    // Verifica se o Login já está em uso
+    $query_login = "SELECT * FROM medicos WHERE usuario_medic = ?";
+    $stmt_login = mysqli_prepare($conexao, $query_login);
+    mysqli_stmt_bind_param($stmt_login, "s", $login);
+    mysqli_stmt_execute($stmt_login);
+    mysqli_stmt_store_result($stmt_login);
+    $num_rows_login = mysqli_stmt_num_rows($stmt_login);
+
+    if ($num_rows_login > 0) {
+        // Login já em uso, define mensagem de erro
+        $login_error = 'Login já em uso.';
+        $login = '';
+    }
+
+    // Verifica se o e-mail já está em uso
+    $query_email = "SELECT * FROM medicos WHERE email_medic = ?";
+    $stmt_email = mysqli_prepare($conexao, $query_email);
+    mysqli_stmt_bind_param($stmt_email, "s", $email);
+    mysqli_stmt_execute($stmt_email);
+    mysqli_stmt_store_result($stmt_email);
+    $num_rows_email = mysqli_stmt_num_rows($stmt_email);
+
+    if ($num_rows_email > 0) {
+        // E-mail já em uso, define mensagem de erro
+        $email_error = 'E-mail já cadastrado.';
+        $email = '';
+    }
+
+    // Verifica se o CRM já está em uso
+    $query_crm = "SELECT * FROM medicos WHERE CRM = ?";
+    $stmt_crm = mysqli_prepare($conexao, $query_crm);
+    mysqli_stmt_bind_param($stmt_crm, "s", $CRM);
+    mysqli_stmt_execute($stmt_crm);
+    mysqli_stmt_store_result($stmt_crm);
+    $num_rows_crm = mysqli_stmt_num_rows($stmt_crm);
+
+    if ($num_rows_crm > 0) {
+        // CRM já em uso, define mensagem de erro
+        $crm_error = 'CRM já cadastrado.';
+        $CRM = '';
+    }
+
     // Validação de senha
     if ($senha !== $confirm) {
         echo "Senhas não coincidem!";
         exit();
     }
 
-    // Remover caracteres não numéricos do CPF
-        $CPF = preg_replace('/\D/', '', $CPF);
+    // Se não houver erros de validação, procede com a inserção no banco de dados
+    if ($num_rows_cpf == 0 && $num_rows_login == 0 && $num_rows_email == 0 && $num_rows_crm == 0) {
+        $query_insert = "INSERT INTO medicos (nome_completo_medic, data_nasc_medic, email_medic, sexo_medic, nome_mae_medic, CPF_medic, numero_cel_medic, numero_tel_medic, CEP_medic, bairro_medic, municipio_medic, estado_medic, endereco_medic, numero_medic, usuario_medic, senha_medic, confirm_senha_medic, especializacao, CRM, tipo_usuario) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Médico')";
+        
+        $stmt_insert = mysqli_prepare($conexao, $query_insert);
+        mysqli_stmt_bind_param($stmt_insert, "sssssssssssssssssss", 
+            $nome_completo, $data, $email, $genero, $nome_da_mae, $CPF, $celular, 
+            $telefone, $CEP, $bairro, $municipio, $estado, $endereco, $numero, 
+            $login, $senha, $confirm, $especializacao, $CRM);
 
-    // Remover caracteres não numéricos do Celular
-        $celular = preg_replace('/\D/', '', $celular);
+        $result = mysqli_stmt_execute($stmt_insert);
 
-    // Remover caracteres não numéricos do Celular
-        $telefone = preg_replace('/\D/', '', $telefone);
+        if ($result) {
+            // Limpa os campos após o cadastro bem-sucedido (opcional)
+            $nome_completo = $data = $email = $genero = $nome_da_mae = $CPF = $celular = '';
+            $telefone = $CEP = $bairro = $municipio = $estado = $endereco = $numero = $login = '';
+            $senha = $confirm = $especializacao = $CRM = '';
 
+            // Exibe mensagem de sucesso (opcional)
+            $cadastro_sucesso = '<div class="alert alert-success" role="alert">Cadastro realizado com sucesso!</div>';
+        } else {
+            // Exibe mensagem de erro em caso de falha na inserção (opcional)
+            echo '<div class="alert alert-danger" role="alert">Erro ao cadastrar. Por favor, tente novamente.</div>';
+        }
 
-    
-
-    // Insere os dados no banco de dados
-    $sql = "INSERT INTO medicos (nome_completo_medic, data_nasc_medic, email_medic, especializacao, sexo_medic, nome_mae_medic, CPF_medic, numero_cel_medic, numero_tel_medic, CRM, CEP_medic, bairro_medic, municipio_medic, estado_medic, endereco_medic, numero_medic, usuario_medic, senha_medic, confirm_senha_medic, tipo_usuario) 
-    VALUES ('$nome_completo', '$data', '$email','$especializacao', '$genero', '$nome_da_mae', '$CPF', '$celular', '$telefone', '$CRM', '$CEP', '$bairro', '$municipio', '$estado', '$endereco', '$numero', '$login', '$senha', '$confirm', 'Médico')";
-
-    if (mysqli_query($conexao, $sql)) {
-        header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_aviso.php');
-    } else {
-        // Exibe o erro do SQL
-        echo "Erro: " . $sql . "<br>" . mysqli_error($conexao);
+        // Fecha a declaração SQL
+        mysqli_stmt_close($stmt_insert);
     }
-}
 
-// Fecha a conexão com o banco de dados
-mysqli_close($conexao);
+    // Fecha as declarações SQL
+    mysqli_stmt_close($stmt_cpf);
+    mysqli_stmt_close($stmt_login);
+    mysqli_stmt_close($stmt_email);
+    mysqli_stmt_close($stmt_crm);
+    mysqli_close($conexao);
+}
 ?>
     <!DOCTYPE html>
 <html lang="pt-br">
@@ -93,7 +176,7 @@ mysqli_close($conexao);
                     <a style="border-radius: 15px" class="btn btn-primary botao_card" href="http://localhost/Projeto-Back-End/Login/Login.php" role="button">Tenho Login</a>
                     <a style=" border-radius: 15px;" class="btn btn-primary botao_card" id="botao_medic" href="http://localhost/Projeto-Back-End/Cadastro/Clientes/cadastro.php" role="button">Sou Paciente</a>
                 </div>
-                
+                <?php echo $cadastro_sucesso; ?>
                 <p class="d-flex justify-content-center cadastro_titulo" id="cadastro_titulo">CADASTRE-SE</p>
 
                 <!--Left Box-->
@@ -108,6 +191,12 @@ mysqli_close($conexao);
                         <div class="input-group mb-3">
                             <input type="date" class="form-control form-control-lg bg-light fs-6" id="data" name="data" autocomplete="off" required placeholder="">
                         </div>
+
+                        <?php if (!empty($email_error)) : ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?php echo $email_error; ?>
+                                </div>
+                        <?php endif; ?>
 
                         <label for="email">E-mail</label>
                         <div class="input-group mb-3">
@@ -147,6 +236,12 @@ mysqli_close($conexao);
                             <input type="text" class="form-control form-control-lg bg-light fs-6" id="mae" name="mae" autocomplete="off" minlength="15" maxlength="80" required placeholder="">
                         </div>
                         
+                        <?php if (!empty($cpf_error)) : ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?php echo $cpf_error; ?>
+                                </div>
+                        <?php endif; ?>
+
                         <label for="cpf" id="labelCpf">CPF</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control form-control-lg bg-light fs-6" required id="cpf" name="cpf" maxlength="11" autocomplete="off" placeholder="">
@@ -161,22 +256,29 @@ mysqli_close($conexao);
                         <div class="input-group mb-3">
                             <input type="tel" class="form-control form-control-lg bg-light fs-6" minlength="10" maxlength="10" required id="fixo" name="fixo" autocomplete="off" placeholder="">
                         </div>
-
-                        <div class="d-grid gap-2 d-md-block">
-                            <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
-                            <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
-                        </div>
-
                     </div>
+
+                    <div class="d-grid gap-2 d-md-block">
+                        <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
+                        <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
+                    </div>
+                    
                 </div>
 
                 <!--Right Box-->
+
                 <div class="col-md-6 right-box" id="right-box">
                     <div class="row align-items-center">
                         <label for="CRM" id="labelCRM">Certificado de Registro Médico</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="9" maxlength="9" required id="CRM" name="CRM" autocomplete="off" placeholder="Digite seu CRM" oninput="validateCRM(this)">
                         </div>
+
+                        <?php if (!empty($crm_error)) : ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $crm_error; ?>
+                            </div>
+                        <?php endif; ?>
 
                         <label for="CEP" id="labelCep">CEP</label>
                         <div class="input-group mb-3">
@@ -208,6 +310,13 @@ mysqli_close($conexao);
                             <input type="text" class="form-control form-control-lg bg-light fs-6" required id="numero" name="numero" autocomplete="off" placeholder="Ex: n° 105" maxlength="6">
                         </div>
 
+                        <?php if (!empty($login_error)) : ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $login_error; ?>
+                            </div>
+                        <?php endif; ?>
+
+
                         <label for="usuario" id="labelUsuario">Login</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" id="usuario" name="usuario" autocomplete="off" required placeholder="">
@@ -226,6 +335,7 @@ mysqli_close($conexao);
                             </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </form>
@@ -250,6 +360,19 @@ mysqli_close($conexao);
                     $(this).val(sanitized);
                 });
             });
+
+            /* // Script para validar usuário (permitindo apenas letras)
+                $(document).ready(function(){
+                $("#senha").on("input", function(){
+                    // Remover caracteres não alfabéticos
+                    var sanitized = $(this).val().replace(/[^a-zA-Z]/g, '');
+                    // Atualizar valor do input
+                    $(this).val(sanitized);
+                });
+            }); */
+
+
+
         </script>
 
 <script>

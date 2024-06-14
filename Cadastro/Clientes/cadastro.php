@@ -1,6 +1,27 @@
 <?php
+
+// Inclui as configurações do banco de dados
+$servidor = "localhost:3307";
+$usuario = "root";
+$senha = "";
+$banco = "dr_agenda";
+
+// Cria a conexão
+$conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
+
+// Verifica a conexão
+if (!$conexao) {
+    die("Falha na conexão: " . mysqli_connect_error());
+};
+
+$cpf_error = '';
+$login_error = '';
+$email_error = '';
+$crm_error = '';
+$cadastro_sucesso = '';
+
 // Assim que apertar o botão de cadastrar, ele irá executar:
-if (isset($_POST["cadastrar"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Criando às variáveis para as colunas da tabela "clientes":  
     include_once('cadastro_config.php');
 
@@ -30,17 +51,84 @@ if (isset($_POST["cadastrar"])) {
 
     // Remover caracteres não numéricos do Celular
         $telefone = preg_replace('/\D/', '', $telefone);
-    
-    $result = mysqli_query($conexao, "INSERT INTO clientes (nome_completo, data_nasc, email, sexo, nome_mae, CPF, numero_cel, numero_tel, CEP, bairro, municipio, estado, endereco, numero, usuario, senha, confirm_senha, tipo_usuario) 
-    VALUES ('$nome_completo', '$data', '$email', '$genero', '$nome_da_mae', '$CPF', '$celular', '$telefone', '$CEP', '$bairro', '$municipio', '$estado', '$endereco', '$numero', '$login', '$senha', '$confirm', 'Paciente')");
 
-    if ($result) {
-        // Se a conta foi criada com sucesso, irá redirecionar para tela de aviso
-        header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_aviso.php');
-    } else {
-        // Se houver um erro na execução da query, redireciona para a tela de erro
-        header('Location: http://localhost/Projeto-Back-End/Cadastro/Tela_erro.php');
+    
+    // Verifica se o CPF já está cadastrado
+    $query_cpf = "SELECT * FROM clientes WHERE CPF = ?";
+    $stmt_cpf = mysqli_prepare($conexao, $query_cpf);
+    mysqli_stmt_bind_param($stmt_cpf, "s", $CPF);
+    mysqli_stmt_execute($stmt_cpf);
+    mysqli_stmt_store_result($stmt_cpf);
+    $num_rows_cpf = mysqli_stmt_num_rows($stmt_cpf);
+
+    if ($num_rows_cpf > 0) {
+        // CPF já cadastrado, define mensagem de erro
+        $cpf_error = 'CPF já cadastrado.';
+        $CPF = '';
     }
+
+        // Verifica se o Login já está em uso
+    $query_login = "SELECT * FROM clientes WHERE usuario = ?";
+    $stmt_login = mysqli_prepare($conexao, $query_login);
+    mysqli_stmt_bind_param($stmt_login, "s", $login);
+    mysqli_stmt_execute($stmt_login);
+    mysqli_stmt_store_result($stmt_login);
+    $num_rows_login = mysqli_stmt_num_rows($stmt_login);
+     
+    if ($num_rows_login > 0) {
+        // Login já em uso, define mensagem de erro
+        $login_error = 'Login já em uso.';
+        $login = '';
+    }
+
+    // Verifica se o e-mail já está em uso
+    $query_email = "SELECT * FROM clientes WHERE email = ?";
+    $stmt_email = mysqli_prepare($conexao, $query_email);
+    mysqli_stmt_bind_param($stmt_email, "s", $email);
+    mysqli_stmt_execute($stmt_email);
+    mysqli_stmt_store_result($stmt_email);
+    $num_rows_email = mysqli_stmt_num_rows($stmt_email);
+
+    if ($num_rows_email > 0) {
+        // e-mail já em uso, define mensagem de erro
+        $email_error = 'E-mail já cadastrado.';
+        $email = '';
+    }
+    
+    // Insere os dados no banco de dados
+    if ($num_rows_cpf == 0 && $num_rows_login == 0) {
+        $query_insert = "INSERT INTO clientes (nome_completo, data_nasc, email, sexo, nome_mae, CPF, numero_cel, numero_tel, CEP, bairro, municipio, estado, endereco, numero, usuario, senha, confirm_senha, tipo_usuario) 
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Paciente')";
+
+        $stmt_insert = mysqli_prepare($conexao, $query_insert);
+        mysqli_stmt_bind_param($stmt_insert, "sssssssssssssssss", 
+            $nome_completo, $data, $email, $genero, $nome_da_mae, $CPF, $celular, 
+            $telefone, $CEP, $bairro, $municipio, $estado, $endereco, $numero, 
+            $login, $senha, $confirm);
+
+        $result = mysqli_stmt_execute($stmt_insert);
+
+        if ($result) {
+            // Limpa os campos após o cadastro bem-sucedido (opcional)
+            $nome_completo = $data = $email = $genero = $nome_da_mae = $CPF = $celular = '';
+            $telefone = $CEP = $bairro = $municipio = $estado = $endereco = $numero = $login = '';
+            $senha = $confirm = '';
+
+            // Exibe mensagem de sucesso (opcional)
+            $cadastro_sucesso = '<div class="alert alert-success" role="alert">Cadastro realizado com sucesso!</div>';
+        } else {
+            // Exibe mensagem de erro em caso de falha na inserção (opcional)
+            echo '<div class="alert alert-danger" role="alert">Erro ao cadastrar. Por favor, tente novamente.</div>';
+        }
+
+        // Fecha a declaração SQL
+        mysqli_stmt_close($stmt_insert);
+    }
+
+    // Fecha as declarações SQL
+    mysqli_stmt_close($stmt_cpf);
+    mysqli_stmt_close($stmt_login);
+    mysqli_close($conexao);
 }
 ?>
 
@@ -79,7 +167,7 @@ if (isset($_POST["cadastrar"])) {
                         <a style="margin-left: 20rem; border-radius: 15px;" class="btn btn-primary botao_card" id="botao_medic" href="http://localhost/Projeto-Back-End/Cadastro/Medico/cadastro_medic.php" role="button">Sou Médico</a>
 
                     </div>
-                    
+                    <?php echo $cadastro_sucesso; ?>
                     <p class="d-flex justify-content-center cadastro_titulo" id="cadastro_titulo">CADASTRE-SE</p>
 
                     <!--Left Box-->
@@ -96,6 +184,12 @@ if (isset($_POST["cadastrar"])) {
                             <div class="input-group mb-3">
                                 <input type="date" class="form-control form-control-lg bg-light fs-6" id="data" name="data" autocomplete="off" required placeholder="">
                             </div>
+
+                            <?php if (!empty($email_error)) : ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?php echo $email_error; ?>
+                                </div>
+                            <?php endif; ?>
 
                             <label for="email">E-mail</label>
                             <div class="input-group mb-3">
@@ -135,7 +229,13 @@ if (isset($_POST["cadastrar"])) {
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control form-control-lg bg-light fs-6" id="mae" name="mae" autocomplete="off" minlength="15" maxlength="80" required placeholder="">
                             </div>
-                            
+
+                            <?php if (!empty($cpf_error)) : ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?php echo $cpf_error; ?>
+                                </div>
+                            <?php endif; ?>
+                        
                             <label for="cpf" id="labelCpf">CPF</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control form-control-lg bg-light fs-6 cpf-input" required id="cpf" name="cpf" maxlength="11" autocomplete="off" placeholder="">
@@ -149,12 +249,12 @@ if (isset($_POST["cadastrar"])) {
                             <label for="fixo" id="labelFixo">Telefone Fixo</label>
                             <div class="input-group mb-3">
                                 <input type="tel" class="form-control form-control-lg bg-light fs-6" minlength="10" maxlength="10" required id="fixo" name="fixo" autocomplete="off" placeholder="">
-                            </div>                        
-                        </div>
-
-                        <div class="button-group">
-                            <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
-                            <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
+                                <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
+                            </div>
                         </div>
 
                     </div>
@@ -193,6 +293,12 @@ if (isset($_POST["cadastrar"])) {
                                 <input type="text" class="form-control form-control-lg bg-light fs-6 numero-input" required id="numero" name="numero" autocomplete="off" placeholder="Ex: n° 105" maxlength="6">
                             </div>
 
+                            <?php if (!empty($login_error)) : ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?php echo $login_error; ?>
+                                </div>
+                            <?php endif; ?>
+
                             <label for="usuario" id="labelUsuario">Login</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control form-control-lg bg-light fs-6" minlength="6" maxlength="6" id="usuario" name="usuario" autocomplete="off" required placeholder="">
@@ -207,10 +313,12 @@ if (isset($_POST["cadastrar"])) {
                             <label for="confirmSenha" id="labelConfirmSenha">Confirmar Senha</label>
                             <div class="input-group mb-3">
                                 <input type="password" class="form-control form-control-lg bg-light fs-6" required id="confirmSenha" name="confirmsenha" minlength="8" maxlength="8" autocomplete="off" placeholder="">
-                                <button type="button" class="btn btn-outline-secondary ri-eye-line" id="toggleConfirmSenha"></button>
+                                <button type="button" class="aa btn ri-eye-line" id="toggleConfirmSenha"></button>
                             </div>
 
                         </div>
+
+                    </div>
 
             </div>
 
@@ -239,26 +347,22 @@ if (isset($_POST["cadastrar"])) {
             $(document).ready(function(){
                 $("#nome_completo, #mae").on("input", function(){
                     // Remover caracteres não alfabéticos
-                    var sanitized = $(this).val().replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+                    var sanitized = $(this).val().replace(/[^a-zA-Z\s]/g, '');
                     // Atualizar valor do input
                     $(this).val(sanitized);
                 });
             });
-        </script>
-<script>
-    //função para cep aceitar apenas números.
-function isNumberKey(evt) {
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    // Permitir apenas números (48-57 correspondem a '0'-'9')
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
-</script>
 
-<script>
-    document.getElementById('toggleSenha').addEventListener('click', function() {
+            //função para cep aceitar apenas números.
+            function isNumberKey(evt) {
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+            // Permitir apenas números (48-57 correspondem a '0'-'9')
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                        return false;
+                    }
+                 return true;
+                }
+                document.getElementById('toggleSenha').addEventListener('click', function() {
         const senhaInput = document.getElementById('senha');
         const senhaIcon = document.getElementById('toggleSenhaIcon');
         if (senhaInput.type === 'password') {
@@ -269,9 +373,7 @@ function isNumberKey(evt) {
             senhaIcon.src = 'eye-icon.png'; // Mude para o ícone de olho fechado
         }
     });
-</script>
-<script>
-document.getElementById('toggleConfirmSenha').addEventListener('click', function() {
+    document.getElementById('toggleConfirmSenha').addEventListener('click', function() {
         const confirmSenhaInput = document.getElementById('confirmSenha');
         const confirmSenhaIcon = document.getElementById('toggleConfirmSenhaIcon');
         if (confirmSenhaInput.type === 'password') {
@@ -282,7 +384,7 @@ document.getElementById('toggleConfirmSenha').addEventListener('click', function
             confirmSenhaIcon.src = 'eye-icon.png'; // Mude para o ícone de olho fechado
         }
     });
-</script>
+        </script>
 </body>
 
 </html>

@@ -408,9 +408,11 @@ document.getElementById("senha").addEventListener("input", function (event) {
   if (senha.length < 8) {
     this.classList.remove("is-valid");
     this.classList.add("is-invalid");
+    labelSenha.textContent = "Senha deve conter 8 caracteres.";
   } else {
     this.classList.remove("is-invalid");
     this.classList.add("is-valid");
+    labelSenha.textContent = "Senha";
   }
 
   // Verificar se a confirmação de senha é idêntica à senha
@@ -434,9 +436,11 @@ function validarConfirmacaoSenha() {
   if (senha === confirmacaoSenha && senha.length >= 8) {
     document.getElementById("confirmSenha").classList.remove("is-invalid");
     document.getElementById("confirmSenha").classList.add("is-valid");
+    labelConfirmSenha.textContent = "Confirmar senha";
   } else {
     document.getElementById("confirmSenha").classList.remove("is-valid");
     document.getElementById("confirmSenha").classList.add("is-invalid");
+    labelConfirmSenha.textContent = "As senhas não coincidem.";
   }
 }
 
@@ -510,3 +514,4 @@ function validarFormulario() {
 
   return formularioValido; // Retorna verdadeiro se todos os inputs forem válidos
 }
+

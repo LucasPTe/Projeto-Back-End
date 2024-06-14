@@ -36,7 +36,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -167,7 +167,7 @@
                                         $especialidade = $_POST['especialidade'];
                                     
                                         // Consulta SQL para buscar médicos pela especialização selecionada
-                                        $sql = "SELECT nome_completo_medic, especializacao, endereco_medic, CRM FROM medicos WHERE especializacao = ?";
+                                        $sql = "SELECT nome_completo_medic, especializacao, endereco_medic, CRM, numero_cel_medic FROM medicos WHERE especializacao = ?";
                                         
                                         $stmt = $conexao->prepare($sql);
                                         $stmt->bind_param("s", $especialidade);
@@ -177,17 +177,18 @@
                                         // Verifica se há resultados
                                         if ($result->num_rows > 0) {
                                             echo "<table border='1'>";
-                                            echo "<tr><th>Nome Completo</th><th>Especialização</th><th>Endereço</th><th>CRM</th></tr>";
+                                            /* echo "<tr><th class='fixed-header'>Nome</th><th>Especialização</th><th>Endereço</th><th>CRM</th><th>Celular</th></tr>"; */
                                     
                                             // Exibe os resultados em uma tabela
-                                            while ($row = $result->fetch_assoc()) {
+                                            /* while ($row = $result->fetch_assoc()) {
                                                 echo "<tr>";
-                                                echo "<td>" . $row['nome_completo_medic'] . "</td>";
+                                                echo "<td class='fixed-column'>" . $row['nome_completo_medic'] . "</td>";
                                                 echo "<td>" . $row['especializacao'] . "</td>";
                                                 echo "<td>" . $row['endereco_medic'] . "</td>";
                                                 echo "<td>" . $row['CRM'] . "</td>";
+                                                echo "<td>" . $row['numero_cel_medic'] . "</td>";
                                                 echo "</tr>";
-                                            }
+                                            } */
                                             echo "</table>";
                                         } else {
                                             echo "Nenhum médico encontrado para a especialidade selecionada.";
@@ -227,45 +228,68 @@
 <!-- FIM HERO-->
 
 <!-- FIM HERO-->
-    
-<div class="container mt-4">
-    <div class="row">
-      <div class="col-md-6 card_especialista">
-        <div class="card">
-          <div class="card-header">
-            Dr. Rodrigo Menezes Gomes
-          </div>
-          <div class="card-body">
-            <p><i class="bi bi-geo-alt-fill"></i> xKm de distância</p>
-            <p><i class="bi bi-telephone-fill"></i> (21) 94256-5486</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            Dr. Claudia Piris
-          </div>
-          <div class="card-body">
-            <p><i class="bi bi-geo-alt-fill"></i> xKm de distância</p>
-            <p><i class="bi bi-telephone-fill"></i> (21) 9745-3594</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            Dr. Gabriel Monteiro
-          </div>
-          <div class="card-body">
-            <p><i class="bi bi-geo-alt-fill"></i> xKm de distância</p>
-            <p><i class="bi bi-telephone-fill"></i> (21) 94256-5486</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="map"></div>
-      </div>
-    </div>
-  </div>
 
+<div>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['especialidade'])) {
+            $especialidade = $_POST['especialidade'];
 
+            // Conexão com o banco de dados
+            $dbHost = 'localhost:3307';
+            $dbUsername = 'root';
+            $dbPassword = '';
+            $dbName = 'dr_agenda';
+
+            $conexao = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
+
+            if ($conexao->connect_error) {
+                die("Conexão falhou: " . $conexao->connect_error);
+            }
+
+            // Consulta SQL
+            $sql = "SELECT nome_completo_medic, especializacao, endereco_medic, CRM, numero_cel_medic FROM medicos WHERE especializacao = ?";
+            $stmt = $conexao->prepare($sql);
+            $stmt->bind_param("s", $especialidade);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                echo '<div class="container mt-5">';
+                echo '  <div class="row">';
+                while ($row = $result->fetch_assoc()) {
+                    // Dados do médico
+                    $nomeCompleto = htmlspecialchars($row['nome_completo_medic']);
+                    $especializacao = htmlspecialchars($row['especializacao']);
+                    $endereco = htmlspecialchars($row['endereco_medic']);
+                    $CRM = htmlspecialchars($row['CRM']);
+                    $numeroCelular = htmlspecialchars($row['numero_cel_medic']);
+        
+                    // Card de cada médico
+                    echo '      <div class="col-md-4 mb-4">';
+                    echo '          <div class="card">';
+                    echo '              <div class="card-body">';
+                    echo '                  <h5 class="card-title" >' . $nomeCompleto . '</h5> ';
+                    echo '                  <h6 class="card-subtitle mb-2 text-muted">' . $especializacao . '</h6>';
+                    echo '                  <p class="card-text">';
+                    echo '                      <strong>Endereço:</strong> ' . $endereco . '<br>';
+                    echo '                      <strong>CRM:</strong> ' . $CRM . '<br>';
+                    echo '                      <strong>Telefone:</strong> ' . $numeroCelular;
+                    echo '                  </p>';
+                    echo '              </div>';
+                    echo '          </div>';
+                    echo '      </div>';
+                }
+                echo '  </div>';
+                echo '</div>';
+            } else {
+                echo "Nenhum médico encontrado para a especialidade selecionada.";
+            }
+        
+            $stmt->close();
+        }
+?>
+        </div>
+<!-- Footer -->
   <footer class="bg-dark text-white pt-5 pb-4">
     <section>
         <div class="container">
@@ -301,14 +325,8 @@
         </div>
     </section>
 </footer>
-
-
-
-
-
-
-
-
+    
+    <script src="cards.js"></script>
     <script src="http://localhost/Projeto-Back-End/landingPage/darkmode.js"></script>
     <!--GSAP CDN LINK-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -317,6 +335,7 @@
     <script src="http://localhost/Projeto-Back-End/landingPage/script.js"></script>
     <script src="http://localhost/Projeto-Back-End/landingPage/aumento.js"></script>   
     <script src="/Busca/especialista.js"></script>
+    
 
 
 </body>

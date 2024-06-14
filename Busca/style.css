@@ -396,8 +396,6 @@ section .dark-mode {
   background-color: #2d3f6c;
   color: white;
   font-weight: bold;
-  display: flex;
-  justify-content: space-between;
 }
 .card-body {
   padding-right: -50000px;
