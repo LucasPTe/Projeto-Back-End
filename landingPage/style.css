@@ -115,6 +115,7 @@ body.dark-mode {
 }
 
 .btna {
+  margin-right: 10px;
   font-weight: bold;
   background-color: #d5dcf1;
   color: rgb(53, 53, 61);
