@@ -38,7 +38,7 @@ body {
             </div>
             <div class="col-md-6 right-box">
                 <div class="input-group mb-3 conteiner_botão">
-                    <a class="btn btn-lg btn-primary fs-6 btn_voltar" href="http://localhost/Projeto-Back-End/landingPage/index.php">Voltar</a>
+                    <a class="btn btn-lg btn-primary fs-6 btn_voltar" href="http://localhost/Projeto-Back-End/landingPage/index.php">Home</a>
                 </div>
                 <div class="row align-items-center">
                     <div class="header-text mb-4">

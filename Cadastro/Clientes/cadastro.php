@@ -21,6 +21,15 @@ if (isset($_POST["cadastrar"])) {
     $login = $_POST['usuario'];
     $senha = $_POST['senha'];
     $confirm = $_POST['confirmsenha'];
+
+    // Remover caracteres não numéricos do CPF
+        $CPF = preg_replace('/\D/', '', $CPF);
+
+    // Remover caracteres não numéricos do Celular
+        $celular = preg_replace('/\D/', '', $celular);
+
+    // Remover caracteres não numéricos do Celular
+        $telefone = preg_replace('/\D/', '', $telefone);
     
     $result = mysqli_query($conexao, "INSERT INTO clientes (nome_completo, data_nasc, email, sexo, nome_mae, CPF, numero_cel, numero_tel, CEP, bairro, municipio, estado, endereco, numero, usuario, senha, confirm_senha, tipo_usuario) 
     VALUES ('$nome_completo', '$data', '$email', '$genero', '$nome_da_mae', '$CPF', '$celular', '$telefone', '$CEP', '$bairro', '$municipio', '$estado', '$endereco', '$numero', '$login', '$senha', '$confirm', 'Paciente')");
@@ -142,6 +151,11 @@ if (isset($_POST["cadastrar"])) {
                             </div>                        
                         </div>
 
+                        <div class="button-group">
+                            <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
+                            <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
+                        </div>
+
                     </div>
 
                     <!--Right Box-->
@@ -194,11 +208,6 @@ if (isset($_POST["cadastrar"])) {
                             </div>
 
                         </div>
-                        <div class="button-group">
-                                <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
-                                <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
-                        </div>
-                    </div>
 
             </div>
 

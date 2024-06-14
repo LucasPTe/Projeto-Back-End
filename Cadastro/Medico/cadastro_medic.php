@@ -42,6 +42,18 @@ if (isset($_POST["cadastrar"])) {
         exit();
     }
 
+    // Remover caracteres não numéricos do CPF
+        $CPF = preg_replace('/\D/', '', $CPF);
+
+    // Remover caracteres não numéricos do Celular
+        $celular = preg_replace('/\D/', '', $celular);
+
+    // Remover caracteres não numéricos do Celular
+        $telefone = preg_replace('/\D/', '', $telefone);
+
+
+    
+
     // Insere os dados no banco de dados
     $sql = "INSERT INTO medicos (nome_completo_medic, data_nasc_medic, email_medic, especializacao, sexo_medic, nome_mae_medic, CPF_medic, numero_cel_medic, numero_tel_medic, CRM, CEP_medic, bairro_medic, municipio_medic, estado_medic, endereco_medic, numero_medic, usuario_medic, senha_medic, confirm_senha_medic, tipo_usuario) 
     VALUES ('$nome_completo', '$data', '$email','$especializacao', '$genero', '$nome_da_mae', '$CPF', '$celular', '$telefone', '$CRM', '$CEP', '$bairro', '$municipio', '$estado', '$endereco', '$numero', '$login', '$senha', '$confirm', 'Médico')";
@@ -148,6 +160,12 @@ mysqli_close($conexao);
                         <div class="input-group mb-3">
                             <input type="tel" class="form-control form-control-lg bg-light fs-6" minlength="10" maxlength="10" required id="fixo" name="fixo" autocomplete="off" placeholder="">
                         </div>
+
+                        <div class="d-grid gap-2 d-md-block">
+                            <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
+                            <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -204,10 +222,6 @@ mysqli_close($conexao);
                                 <input type="password" class="form-control form-control-lg bg-light fs-6" required id="confirmSenha" name="confirmsenha" minlength="8" maxlength="8" autocomplete="off" placeholder="">
                             </div>
                     </div>
-                </div>
-                <div class="d-grid gap-2 d-md-block">
-                    <button style="font-size: 18px;" class="btn btn-primary" id="cadastrar" name="cadastrar" type="submit">Cadastre-se</button>
-                    <button style="font-size: 18px;" class="btn btn-primary" id="botaoLimpar" type="button" onclick="limparInputs()">Limpar Dados</button>
                 </div>
             </div>
         </div>

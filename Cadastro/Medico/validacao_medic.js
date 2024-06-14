@@ -1,3 +1,4 @@
+
 // Validação para o input "Nome Completo".
 const inputNomeCompleto = document.getElementById("nome_completo");
 
