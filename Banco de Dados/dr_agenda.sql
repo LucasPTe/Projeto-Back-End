@@ -19,7 +19,8 @@ use dr_agenda;
 --
 -- Table structure for table `clientes`
 --
-
+create database dr_agenda;
+use dr_agenda;
 DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;

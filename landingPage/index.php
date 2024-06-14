@@ -1,5 +1,6 @@
 <?php
-$pic="esse.jpg"
+$pic="esse.jpg";
+
 
 ?>
 
@@ -33,99 +34,88 @@ $pic="esse.jpg"
 
 <body>
     <!--NAVBAR-->
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" id="logo" href="http://localhost/Projeto-Back-End/landingPage/index.php">Dr.Agenda</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar-offcanvas" aria-controls="navbar-offcanvas" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <div class="poschk">
-                            <input type="checkbox" class="checkbox" id="chk">
-                            <label class="labelchk" for="chk">
-                                <i class="fas fa-moon"></i>
-                                <i class="fas fa-sun"></i>
-                                <div class="ball"></div>
-                            </label>
-                            <script src="script.js"></script>
-                            <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
-                        </div>
-                            <div class="nav-item ms-2">
-                                <button class="btn border-3 btna btn-fonte" id="increaseFontBtn">
-                                     A+
-                                </button>
-                            </div>
-                            <div class="nav-item ms-2">
-                                <button class="btn border-3 btna btn-fonte" id="decreaseFontBtn">
-                                    a-
-                                </button>
-                            </div>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="http://localhost/Projeto-Back-End/landingPage/index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/Projeto-Back-End/Busca/index.php">Busca</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre</a>
-                        </li>
 
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" id="logo" href="http://localhost/Projeto-Back-End/landingPage/index.php">Dr.Agenda</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar-offcanvas" aria-controls="navbar-offcanvas" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="0" id="navbar-offcanvas" aria-labelledby="navbar-offcanvas-label">
+        <div class="offcanvas-header">
+            <h5 id="navbar-offcanvas-label">Dr.Agenda</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+                
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="http://localhost/Projeto-Back-End/landingPage/index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/Projeto-Back-End/Busca/index.php">Busca</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sobre</a>
+                </li>
+            </ul>
+            <?php
+            session_start();
+                if (isset($_SESSION['usuario'])) {
+                    $logado = $_SESSION['usuario'];
+                    echo "Olá, $logado. Deseja sair?";
+                    echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Sair.php">Sair</a>';
+                } else {
+                    if (isset($_SESSION['usuario_medic'])) {
+                        $logado_medico = $_SESSION['usuario_medic'];
+                        echo "Olá, <b>$logado_medico</b>. Deseja sair?";
+                        echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Sair.php">Sair</a>';
+                    } else {
+                        echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Login/Login.php">Login</a>';
+                    }                   
+                }
+                ?>
+            <div class="row">
+                <div class="col-12 mt-3 mb-4">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="btn btna" href="/Projeto-Back-End/Sair.php" role="button">Sair</a>
+                            
                         </li>
+                        <!-- <li class="nav-item">
+                            <a type="button" class="btn entrar_off" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</a>
+                        </li> -->
                         
-                        <li class="nav-item">
-                            <a class="b" id="entrar" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</a>
-                        </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-        <!--Modal-->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="navbar-offcanvas" aria-labelledby="navbar-offcanvas-label">
-            <div class="offcanvas-header">
-                <a id="navbar-offcanvas-label" href="http://localhost/Projeto-Back-End/landingPage/index.php">Dr.Agenda</a>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="http://localhost/Projeto-Back-End/landingPage/index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://localhost/Projeto-Back-End/Busca/index.php">Busca</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre</a>
-                    </li>
-                </ul>
-                <div class="row">
-                    <div class="col-12 mt-3 mb-5">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <button type="button" class="btn entrar_off" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-6 mt-3">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">
-                            Fechar
-                        </button>
-                    </div>
-                    <div class="col-6 mt-3">
-                        <input type="checkbox" class="checkbox" id="chk">
-                        <label class="labelchk" for="chk">
-                            <i class="fas fa-moon"></i>
-                            <i class="fas fa-sun"></i>
-                            <div class="ball"></div>
-                        </label>
-                        </label>
-                    </div>
+                <div class="nav-item mt-5 ms-2 row">
+                    <button class="btn border-3 btna btn-fonte col-2" id="increaseFontBtn">
+                        A+
+                    </button>
+                    <button class="btn border-3 btna btn-fonte col-2" id="decreaseFontBtn">
+                        a-
+                    </button>
+                    <input type="checkbox" class="checkbox row" id="chk">
+                    <label class="labelchk" for="chk">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                
+                <div class="col-6 mt-1">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">
+                        Fechar
+                    </button>
+                    <!-- <a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Sair.php">Sair</a> -->
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
+
     <!--FIM NAVBAR-->
     <!--HERO-->
     <section class="d-flex allign-items-top h-75 home mb-5">
