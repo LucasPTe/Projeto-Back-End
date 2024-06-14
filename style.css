@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  font-family: "Urbanist", sans-serif;
+  background: linear-gradient(to bottom, #d5dcf1, #2d3f6c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.master-container {
+  text-align: center;
+  background-color: rgba(45, 63, 108, 0.85);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 100%;
+  animation: slideIn 1s ease-out;
+}
+
+.welcome-message {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 1.25rem;
+  color: #d5dcf1;
+  margin-bottom: 2rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.master-btn {
+  display: inline-block;
+  font-family: "Urbanist", sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #4a5c88;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.master-btn:hover {
+  background-color: #3b4b72;
+  transform: scale(1.05);
+}
+
+/* Animations */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
