@@ -1,7 +1,28 @@
+<?php
+    // Configurações do banco de dados
+    $servername = "localhost:3307"; // Nome do servidor
+    $username = "root"; // Nome de usuário do banco de dados
+    $password = ""; // Senha do banco de dados
+    $dbname = "dr_agenda"; // Nome do banco de dados
+
+    // Conecta ao banco de dados
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Verifica conexão
+    if ($conn->connect_error) {
+        die("Falha na conexão: " . $conn->connect_error);
+    }
+
+    // Inicia a sessão
+    session_start();
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Tela de Log</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         function confirmarExclusao(event, cpf, tabela) {
             event.preventDefault(); // Previna o envio do formulário
@@ -22,6 +43,61 @@
 
         function confirmarAcao() {
             document.getElementById("deleteForm").submit(); // Envia o formulário
+        }
+
+        // Função para gerar o PDF a partir da tabela
+        function gerarPDF() {
+            var { jsPDF } = window.jspdf;
+            var doc = new jsPDF();
+
+            // Obter a tabela
+            var table = document.querySelector("table");
+            var rows = table.rows;
+            var rowCount = rows.length;
+
+            // Configurações iniciais para o PDF
+            var startX = 10;
+            var startY = 10;
+            var lineHeight = 15; // Aumente este valor para mais espaçamento
+            var colWidths = [40, 40, 40]; // Largura de cada coluna no PDF
+            var tableWidth = colWidths.reduce((a, b) => a + b, 0);
+
+            // Adiciona o cabeçalho da tabela ao PDF
+            doc.text("Usuário", startX, startY);
+            doc.text("CPF", startX + colWidths[0], startY);
+            doc.text("Tipo de Usuário", startX + colWidths[0] + colWidths[1], startY);
+
+            // Adiciona linhas horizontais para o cabeçalho
+            doc.line(startX, startY + 2, startX + tableWidth, startY + 2);
+
+            // Adiciona as linhas da tabela ao PDF
+            for (var i = 1; i < rowCount; i++) {
+                var cells = rows[i].cells;
+                var rowY = startY + (i * lineHeight);
+
+                doc.text(cells[0].innerText, startX, rowY); // Usuário
+                doc.text(cells[1].innerText, startX + colWidths[0], rowY); // CPF
+
+                // Centraliza o texto na coluna "Tipo de Usuário"
+                var tipoUsuarioText = cells[4].innerText;
+                var textWidth = doc.getTextWidth(tipoUsuarioText);
+                var cellX = startX + colWidths[0] + colWidths[1];
+                var centeredX = cellX + (colWidths[2] - textWidth) / 2;
+
+                doc.text(tipoUsuarioText, centeredX, rowY); // Tipo de Usuário
+
+                // Adiciona linhas horizontais para as células
+                doc.line(startX, rowY + 2, startX + tableWidth, rowY + 2);
+            }
+
+            // Adiciona linhas verticais para as células
+            for (var j = 0; j <= colWidths.length; j++) {
+                var colX = startX + colWidths.slice(0, j).reduce((a, b) => a + b, 0);
+                doc.line(colX, startY, colX, startY + rowCount * lineHeight);
+            }
+
+            // Salva o PDF
+            doc.save('tabela.pdf');
         }
     </script>
     <style>
@@ -71,24 +147,8 @@
         <input type="submit" value="Buscar">
     </form>
 
-    <?php
-    // Configurações do banco de dados
-    $servername = "localhost:3307"; // Nome do servidor
-    $username = "root"; // Nome de usuário do banco de dados
-    $password = ""; // Senha do banco de dados
-    $dbname = "dr_agenda"; // Nome do banco de dados
 
-    // Conecta ao banco de dados
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Verifica conexão
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
-
-    // Inicia a sessão
-    session_start();
-
+<?php
     // Função para excluir usuário
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_user'])) {
         $cpf_to_delete = $_POST['delete_user'];
@@ -149,6 +209,9 @@
     // Fecha a conexão com o banco de dados
     $conn->close();
     ?>
+
+    <!-- Botão para gerar o PDF -->
+    <button onclick="gerarPDF()">Gerar PDF</button>
 
     <!-- Modal de confirmação -->
     <div id="confirmModal" class="modal">

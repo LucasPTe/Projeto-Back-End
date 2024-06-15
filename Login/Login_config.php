@@ -82,7 +82,7 @@ function fazerLogin($conexao, $login, $senha) {
     }
 
     // Prepara e executa a consulta para verificar as credenciais do usuário nas tabelas clientes e medicos
-    $stmt = $conexao->prepare("SELECT pacientes AS id, email, 'cliente' AS tipo_usuario FROM clientes WHERE usuario = ? AND senha = ? UNION SELECT doutor AS id, email_medic AS email, 'medico' AS tipo_usuario FROM medicos WHERE usuario_medic = ? AND senha_medic = ?");
+    $stmt = $conexao->prepare("SELECT pacientes AS id, email, CEP, 'cliente' AS tipo_usuario FROM clientes WHERE usuario = ? AND senha = ? UNION SELECT doutor AS id, email_medic AS email, CEP_medic AS CEP, 'medico' AS tipo_usuario FROM medicos WHERE usuario_medic = ? AND senha_medic = ?");
     $stmt->bind_param("ssss", $login, $senha, $login, $senha);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -97,6 +97,7 @@ function fazerLogin($conexao, $login, $senha) {
         $user_id = $user['id'];
         $email = $user['email'];
         $tipo_usuario = $user['tipo_usuario'];
+        $CEP = $user['CEP']; // Captura o CEP do usuário encontrado
 
         // Armazena as informações do usuário na sessão
         $_SESSION['usuario'] = $login;
@@ -104,6 +105,7 @@ function fazerLogin($conexao, $login, $senha) {
         $_SESSION['tipo_usuario'] = $tipo_usuario;
         $_SESSION['user_id'] = $user_id;
         $_SESSION['login_sucesso'] = true;
+        $_SESSION['CEP'] = $CEP; // Armazena o CEP na sessão
 
         // Envia o código 2FA e redireciona o usuário com base no sucesso do envio
         if (enviarCodigo2FA($conexao, $user_id, $tipo_usuario, $email)) {
@@ -119,7 +121,6 @@ function fazerLogin($conexao, $login, $senha) {
         exit;
     }
 }
-
 // Verifica se a requisição é do tipo POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $_POST['usuario'];

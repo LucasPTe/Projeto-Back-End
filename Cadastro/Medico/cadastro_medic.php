@@ -19,6 +19,29 @@ $email_error = '';
 $crm_error = '';
 $cadastro_sucesso = '';
 
+function geocodeAddress($address, $api_key) {
+    $address = urlencode($address);
+    $api_url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$api_key}";
+
+    $response = file_get_contents($api_url);
+
+    if ($response === false) {
+        echo 'Erro ao obter resposta da API do Google Maps';
+        return [null, null];
+    }
+
+    $json = json_decode($response);
+
+    if ($json->status == 'OK') {
+        $latitude = $json->results[0]->geometry->location->lat;
+        $longitude = $json->results[0]->geometry->location->lng;
+        return [$latitude, $longitude];
+    } else {
+        echo 'Erro ao obter coordenadas. Status da API: ' . $json->status;
+        return [null, null];
+    }
+}
+
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -49,81 +72,91 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Remover caracteres não numéricos do Celular
     $celular = preg_replace('/\D/', '', $celular);
 
-    // Remover caracteres não numéricos do Telefone Fixo
+    // Remover caracteres não numéricos do Telefone
     $telefone = preg_replace('/\D/', '', $telefone);
 
-    // Verifica se o CPF já está cadastrado
-    $query_cpf = "SELECT * FROM medicos WHERE CPF_medic = ?";
-    $stmt_cpf = mysqli_prepare($conexao, $query_cpf);
-    mysqli_stmt_bind_param($stmt_cpf, "s", $CPF);
-    mysqli_stmt_execute($stmt_cpf);
-    mysqli_stmt_store_result($stmt_cpf);
-    $num_rows_cpf = mysqli_stmt_num_rows($stmt_cpf);
+    // Monta o endereço completo para geocodificação
+    $endereco_completo = "{$endereco}, {$numero}, {$bairro}, {$municipio}, {$estado}, Brasil";
 
-    if ($num_rows_cpf > 0) {
-        // CPF já cadastrado, define mensagem de erro
-        $cpf_error = 'CPF já cadastrado.';
-        $CPF = '';
+    // Chave da API do Google Maps
+    $api_key = 'AIzaSyAltS5otXiMPc2aLJTWSfDEyxcwfpmwwcA'; // Substitua pela sua chave de API
+
+    // Geocodificar o endereço completo para obter latitude e longitude usando a API do Google Maps
+    list($latitude, $longitude) = geocodeAddress($endereco_completo, $api_key);
+
+    // Verifica se as coordenadas foram obtidas com sucesso
+    if ($latitude === null || $longitude === null) {
+        die('Erro ao obter coordenadas. Por favor, verifique o endereço.');
     }
 
-    // Verifica se o Login já está em uso
-    $query_login = "SELECT * FROM medicos WHERE usuario_medic = ?";
-    $stmt_login = mysqli_prepare($conexao, $query_login);
-    mysqli_stmt_bind_param($stmt_login, "s", $login);
-    mysqli_stmt_execute($stmt_login);
-    mysqli_stmt_store_result($stmt_login);
-    $num_rows_login = mysqli_stmt_num_rows($stmt_login);
+        // Verifica se o CPF já está cadastrado
+        $query_cpf = "SELECT * FROM medicos WHERE CPF_medic = ?";
+        $stmt_cpf = mysqli_prepare($conexao, $query_cpf);
+        mysqli_stmt_bind_param($stmt_cpf, "s", $CPF);
+        mysqli_stmt_execute($stmt_cpf);
+        mysqli_stmt_store_result($stmt_cpf);
+        $num_rows_cpf = mysqli_stmt_num_rows($stmt_cpf);
+    
+        if ($num_rows_cpf > 0) {
+            // CPF já cadastrado, define mensagem de erro
+            $cpf_error = 'CPF já cadastrado.';
+            $CPF = '';
+        }
+    
+        // Verifica se o Login já está em uso
+        $query_login = "SELECT * FROM medicos WHERE usuario_medic = ?";
+        $stmt_login = mysqli_prepare($conexao, $query_login);
+        mysqli_stmt_bind_param($stmt_login, "s", $login);
+        mysqli_stmt_execute($stmt_login);
+        mysqli_stmt_store_result($stmt_login);
+        $num_rows_login = mysqli_stmt_num_rows($stmt_login);
+    
+        if ($num_rows_login > 0) {
+            // Login já em uso, define mensagem de erro
+            $login_error = 'Login já em uso.';
+            $login = '';
+        }
+    
+        // Verifica se o e-mail já está em uso
+        $query_email = "SELECT * FROM medicos WHERE email_medic = ?";
+        $stmt_email = mysqli_prepare($conexao, $query_email);
+        mysqli_stmt_bind_param($stmt_email, "s", $email);
+        mysqli_stmt_execute($stmt_email);
+        mysqli_stmt_store_result($stmt_email);
+        $num_rows_email = mysqli_stmt_num_rows($stmt_email);
+    
+        if ($num_rows_email > 0) {
+            // e-mail já em uso, define mensagem de erro
+            $email_error = 'E-mail já cadastrado.';
+            $email = '';
+        }
 
-    if ($num_rows_login > 0) {
-        // Login já em uso, define mensagem de erro
-        $login_error = 'Login já em uso.';
-        $login = '';
-    }
-
-    // Verifica se o e-mail já está em uso
-    $query_email = "SELECT * FROM medicos WHERE email_medic = ?";
-    $stmt_email = mysqli_prepare($conexao, $query_email);
-    mysqli_stmt_bind_param($stmt_email, "s", $email);
-    mysqli_stmt_execute($stmt_email);
-    mysqli_stmt_store_result($stmt_email);
-    $num_rows_email = mysqli_stmt_num_rows($stmt_email);
-
-    if ($num_rows_email > 0) {
-        // E-mail já em uso, define mensagem de erro
-        $email_error = 'E-mail já cadastrado.';
-        $email = '';
-    }
-
-    // Verifica se o CRM já está em uso
-    $query_crm = "SELECT * FROM medicos WHERE CRM = ?";
-    $stmt_crm = mysqli_prepare($conexao, $query_crm);
-    mysqli_stmt_bind_param($stmt_crm, "s", $CRM);
-    mysqli_stmt_execute($stmt_crm);
-    mysqli_stmt_store_result($stmt_crm);
-    $num_rows_crm = mysqli_stmt_num_rows($stmt_crm);
-
-    if ($num_rows_crm > 0) {
-        // CRM já em uso, define mensagem de erro
-        $crm_error = 'CRM já cadastrado.';
-        $CRM = '';
-    }
-
-    // Validação de senha
-    if ($senha !== $confirm) {
-        echo "Senhas não coincidem!";
-        exit();
-    }
+        // Verifica se o e-mail já está em uso
+        $query_crm = "SELECT * FROM medicos WHERE CRM = ?";
+        $stmt_crm = mysqli_prepare($conexao, $query_crm);
+        mysqli_stmt_bind_param($stmt_crm, "s", $crm);
+        mysqli_stmt_execute($stmt_crm);
+        mysqli_stmt_store_result($stmt_crm);
+        $num_rows_crm = mysqli_stmt_num_rows($stmt_crm);
+            
+        if ($num_rows_crm > 0) {
+            // e-mail já em uso, define mensagem de erro
+            $crm_error = 'CRM já cadastrado.';
+            $crm = '';
+        }
+        
 
     // Se não houver erros de validação, procede com a inserção no banco de dados
+    // Se não houver erros de validação, procede com a inserção no banco de dados
     if ($num_rows_cpf == 0 && $num_rows_login == 0 && $num_rows_email == 0 && $num_rows_crm == 0) {
-        $query_insert = "INSERT INTO medicos (nome_completo_medic, data_nasc_medic, email_medic, sexo_medic, nome_mae_medic, CPF_medic, numero_cel_medic, numero_tel_medic, CEP_medic, bairro_medic, municipio_medic, estado_medic, endereco_medic, numero_medic, usuario_medic, senha_medic, confirm_senha_medic, especializacao, CRM, tipo_usuario) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Médico')";
+        $query_insert = "INSERT INTO medicos (nome_completo_medic, data_nasc_medic, email_medic, sexo_medic, nome_mae_medic, CPF_medic, numero_cel_medic, numero_tel_medic, CEP_medic, bairro_medic, municipio_medic, estado_medic, endereco_medic, numero_medic, usuario_medic, senha_medic, confirm_senha_medic, especializacao, CRM, tipo_usuario, latitude, longitude) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Médico', ?, ?)";
         
         $stmt_insert = mysqli_prepare($conexao, $query_insert);
-        mysqli_stmt_bind_param($stmt_insert, "sssssssssssssssssss", 
+        mysqli_stmt_bind_param($stmt_insert, "sssssssssssssssssssdd", 
             $nome_completo, $data, $email, $genero, $nome_da_mae, $CPF, $celular, 
             $telefone, $CEP, $bairro, $municipio, $estado, $endereco, $numero, 
-            $login, $senha, $confirm, $especializacao, $CRM);
+            $login, $senha, $confirm, $especializacao, $CRM, $latitude, $longitude);
 
         $result = mysqli_stmt_execute($stmt_insert);
 

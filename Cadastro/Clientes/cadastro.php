@@ -1,5 +1,4 @@
 <?php
-
 // Inclui as configurações do banco de dados
 $servidor = "localhost:3307";
 $usuario = "root";
@@ -12,19 +11,40 @@ $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
 // Verifica a conexão
 if (!$conexao) {
     die("Falha na conexão: " . mysqli_connect_error());
-};
+}
 
 $cpf_error = '';
 $login_error = '';
 $email_error = '';
-$crm_error = '';
 $cadastro_sucesso = '';
+
+// Função para geocodificar usando API do Google Maps
+function geocodeAddress($address, $api_key) {
+    $address = urlencode($address);
+    $api_url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$api_key}";
+
+    $response = file_get_contents($api_url);
+
+    if ($response === false) {
+        echo 'Erro ao obter resposta da API do Google Maps';
+        return [null, null];
+    }
+
+    $json = json_decode($response);
+
+    if ($json->status == 'OK') {
+        $latitude = $json->results[0]->geometry->location->lat;
+        $longitude = $json->results[0]->geometry->location->lng;
+        return [$latitude, $longitude];
+    } else {
+        echo 'Erro ao obter coordenadas. Status da API: ' . $json->status;
+        return [null, null];
+    }
+}
 
 // Assim que apertar o botão de cadastrar, ele irá executar:
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Criando às variáveis para as colunas da tabela "clientes":  
-    include_once('cadastro_config.php');
-
+    // Criando às variáveis para as colunas da tabela "clientes":
     $nome_completo = $_POST['nome_completo'];
     $data = $_POST['data'];
     $email = $_POST['email'];
@@ -44,15 +64,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm = $_POST['confirmsenha'];
 
     // Remover caracteres não numéricos do CPF
-        $CPF = preg_replace('/\D/', '', $CPF);
+    $CPF = preg_replace('/\D/', '', $CPF);
 
     // Remover caracteres não numéricos do Celular
-        $celular = preg_replace('/\D/', '', $celular);
+    $celular = preg_replace('/\D/', '', $celular);
 
-    // Remover caracteres não numéricos do Celular
-        $telefone = preg_replace('/\D/', '', $telefone);
+    // Remover caracteres não numéricos do Telefone
+    $telefone = preg_replace('/\D/', '', $telefone);
 
-    
+    // Monta o endereço completo para geocodificação
+    $endereco_completo = "{$endereco}, {$numero}, {$bairro}, {$municipio}, {$estado}, Brasil";
+
+    // Chave da API do Google Maps
+    $api_key = 'AIzaSyAltS5otXiMPc2aLJTWSfDEyxcwfpmwwcA'; // Substitua pela sua chave de API
+
+    // Geocodificar o endereço completo para obter latitude e longitude usando a API do Google Maps
+    list($latitude, $longitude) = geocodeAddress($endereco_completo, $api_key);
+
+    // Verifica se as coordenadas foram obtidas com sucesso
+    if ($latitude === null || $longitude === null) {
+        die('Erro ao obter coordenadas. Por favor, verifique o endereço.');
+    }
+
     // Verifica se o CPF já está cadastrado
     $query_cpf = "SELECT * FROM clientes WHERE CPF = ?";
     $stmt_cpf = mysqli_prepare($conexao, $query_cpf);
@@ -67,14 +100,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $CPF = '';
     }
 
-        // Verifica se o Login já está em uso
+    // Verifica se o Login já está em uso
     $query_login = "SELECT * FROM clientes WHERE usuario = ?";
     $stmt_login = mysqli_prepare($conexao, $query_login);
     mysqli_stmt_bind_param($stmt_login, "s", $login);
     mysqli_stmt_execute($stmt_login);
     mysqli_stmt_store_result($stmt_login);
     $num_rows_login = mysqli_stmt_num_rows($stmt_login);
-     
+
     if ($num_rows_login > 0) {
         // Login já em uso, define mensagem de erro
         $login_error = 'Login já em uso.';
@@ -94,17 +127,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email_error = 'E-mail já cadastrado.';
         $email = '';
     }
-    
+
     // Insere os dados no banco de dados
-    if ($num_rows_cpf == 0 && $num_rows_login == 0) {
-        $query_insert = "INSERT INTO clientes (nome_completo, data_nasc, email, sexo, nome_mae, CPF, numero_cel, numero_tel, CEP, bairro, municipio, estado, endereco, numero, usuario, senha, confirm_senha, tipo_usuario) 
-                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Paciente')";
+    if ($num_rows_cpf == 0 && $num_rows_login == 0 && $num_rows_email == 0) {
+        $query_insert = "INSERT INTO clientes (nome_completo, data_nasc, email, sexo, nome_mae, CPF, numero_cel, numero_tel, CEP, bairro, municipio, estado, endereco, numero, usuario, senha, confirm_senha, tipo_usuario, latitude, longitude) 
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Paciente', ?, ?)";
 
         $stmt_insert = mysqli_prepare($conexao, $query_insert);
-        mysqli_stmt_bind_param($stmt_insert, "sssssssssssssssss", 
-            $nome_completo, $data, $email, $genero, $nome_da_mae, $CPF, $celular, 
-            $telefone, $CEP, $bairro, $municipio, $estado, $endereco, $numero, 
-            $login, $senha, $confirm);
+        mysqli_stmt_bind_param($stmt_insert, "sssssssssssssssssdd",
+            $nome_completo, $data, $email, $genero, $nome_da_mae, $CPF, $celular,
+            $telefone, $CEP, $bairro, $municipio, $estado, $endereco, $numero,
+            $login, $senha, $confirm, $latitude, $longitude);
 
         $result = mysqli_stmt_execute($stmt_insert);
 
@@ -128,11 +161,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Fecha as declarações SQL
     mysqli_stmt_close($stmt_cpf);
     mysqli_stmt_close($stmt_login);
+    mysqli_stmt_close($stmt_email);
     mysqli_close($conexao);
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
