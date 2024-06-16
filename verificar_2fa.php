@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'D:\Programas\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
+require '\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
 
 $dbHost = 'localhost:3307';
 $dbUsername = 'root';
@@ -14,7 +14,6 @@ if ($conexao->connect_error) {
 
 $error_message = '';
 
-// Verifica se o usuário é "master" e redireciona diretamente para a página master.php
 if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] == 'master') {
     header('Location: http://localhost/Projeto-Back-End/Login/login.php');
     exit;
@@ -28,7 +27,7 @@ if (!isset($_SESSION['ultima_tentativa_2fa'])) {
     $_SESSION['ultima_tentativa_2fa'] = time();
 }
 
-if (time() - $_SESSION['ultima_tentativa_2fa'] > 30) { // 300 segundos = 5 minutos
+if (time() - $_SESSION['ultima_tentativa_2fa'] > 30) {
     $_SESSION['tentativas_2fa'] = 0;
     $_SESSION['ultima_tentativa_2fa'] = time();
 }

@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Inclui o arquivo autoload do Composer para carregar automaticamente as classes do PHPMailer
-require 'D:\Programas\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
+require '\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
 
 // Configurações do banco de dados
 $dbHost = 'localhost:3307';
@@ -39,8 +39,8 @@ function enviarCodigo2FA($conexao, $user_id, $tipo_usuario, $email) {
         $mail->isSMTP();
         $mail->Host = 'sandbox.smtp.mailtrap.io';
         $mail->SMTPAuth = true;
-        $mail->Username = 'a7e8021047fef0';
-        $mail->Password = '06f12a3c882c51';
+        $mail->Username = '6013f574e2d537';
+        $mail->Password = '925e2650c2e4c4';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 2525;
         
@@ -65,11 +65,9 @@ function enviarCodigo2FA($conexao, $user_id, $tipo_usuario, $email) {
 
 // Função para realizar o login
 function fazerLogin($conexao, $login, $senha) {
-    // Verificação do usuário "master"
     $master_username = 'master';
     $master_password = '12345678';
 
-    // Se o login e a senha forem do usuário "master"
     if ($login === $master_username && $senha === $master_password) {
         $_SESSION['usuario'] = $login;
         $_SESSION['senha'] = $senha;
@@ -81,33 +79,25 @@ function fazerLogin($conexao, $login, $senha) {
         exit;
     }
 
-    // Prepara e executa a consulta para verificar as credenciais do usuário nas tabelas clientes e medicos
     $stmt = $conexao->prepare("SELECT pacientes AS id, email, CEP, 'cliente' AS tipo_usuario FROM clientes WHERE usuario = ? AND senha = ? UNION SELECT doutor AS id, email_medic AS email, CEP_medic AS CEP, 'medico' AS tipo_usuario FROM medicos WHERE usuario_medic = ? AND senha_medic = ?");
     $stmt->bind_param("ssss", $login, $senha, $login, $senha);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Atualiza o timestamp de último login no banco de dados para clientes e medicos
-    $conexao->query("UPDATE clientes SET ultimo_login = CURRENT_TIMESTAMP WHERE usuario = '$login'");
-    $conexao->query("UPDATE medicos SET ultimo_login = CURRENT_TIMESTAMP WHERE usuario_medic = '$login'");
-
-    // Se o usuário for encontrado
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         $user_id = $user['id'];
         $email = $user['email'];
         $tipo_usuario = $user['tipo_usuario'];
-        $CEP = $user['CEP']; // Captura o CEP do usuário encontrado
+        $CEP = $user['CEP'];
 
-        // Armazena as informações do usuário na sessão
         $_SESSION['usuario'] = $login;
         $_SESSION['senha'] = $senha;
         $_SESSION['tipo_usuario'] = $tipo_usuario;
         $_SESSION['user_id'] = $user_id;
         $_SESSION['login_sucesso'] = true;
-        $_SESSION['CEP'] = $CEP; // Armazena o CEP na sessão
+        $_SESSION['CEP'] = $CEP;
 
-        // Envia o código 2FA e redireciona o usuário com base no sucesso do envio
         if (enviarCodigo2FA($conexao, $user_id, $tipo_usuario, $email)) {
             header('Location: http://localhost/Projeto-Back-End/Login/login.php');
             exit;
@@ -116,17 +106,15 @@ function fazerLogin($conexao, $login, $senha) {
             exit;
         }
     } else {
-        // Se o usuário não for encontrado, redireciona para a tela de aviso
         header('Location: http://localhost/Projeto-Back-End/Login/tela_aviso.php');
         exit;
     }
 }
-// Verifica se a requisição é do tipo POST
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $_POST['usuario'];
     $senha = $_POST['senha'];
 
-    // Chama a função de login
     fazerLogin($conexao, $login, $senha);
 }
 ?>

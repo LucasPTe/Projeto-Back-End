@@ -61,6 +61,12 @@ $pic="esse.jpg";
                 <li class="nav-item">
                     <a class="nav-link" href="#">Sobre</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/Projeto-Back-End/DashboardMedicos/tela_medico.php">Perfil medico</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/Projeto-Back-End/DashboardPacientes/tela_Paciente.php">Perfil Paciente</a>
+                </li>
             </ul>
             <?php
             session_start();

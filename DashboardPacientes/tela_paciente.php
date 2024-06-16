@@ -12,35 +12,33 @@ if ($conexao->connect_error) {
     die("Erro de conexão: " . $conexao->connect_error);
 }
 
-// Verifica se o usuário está logado como médico
-if (!isset($_SESSION['usuario']) || $_SESSION['tipo_usuario'] != 'medico') {
+// Verifica se o usuário está logado como cliente
+if (!isset($_SESSION['usuario']) || $_SESSION['tipo_usuario'] != 'cliente') {
     header('Location: http://localhost/Projeto-Back-End/Login/tela_aviso.php');
     exit;
 }
 
-// Obtém informações do médico logado
+// Obtém informações do cliente logado
 if (isset($_SESSION['user_id'])) {
-    $doutor_id = $_SESSION['user_id'];
+    $paciente_id = $_SESSION['user_id'];
 
-    $sql_medico = "SELECT nome_completo_medic, especializacao, CRM, numero_cel_medic, email_medic, usuario_medic FROM medicos WHERE doutor = ?";
-    $stmt_medico = $conexao->prepare($sql_medico);
-    $stmt_medico->bind_param("i", $doutor_id);
-    $stmt_medico->execute();
-    $result_medico = $stmt_medico->get_result();
+    $sql_cliente = "SELECT nome_completo, numero_cel, email, usuario FROM clientes WHERE pacientes = ?";
+    $stmt_cliente = $conexao->prepare($sql_cliente);
+    $stmt_cliente->bind_param("i", $paciente_id);
+    $stmt_cliente->execute();
+    $result_cliente = $stmt_cliente->get_result();
 
-    if ($result_medico->num_rows > 0) {
-        $row_medico = $result_medico->fetch_assoc();
-        $nomeMedico = $row_medico['nome_completo_medic'];
-        $especialidade = $row_medico['especializacao'];
-        $crm = $row_medico['CRM'];
-        $celular = $row_medico['numero_cel_medic'];
-        $email = $row_medico['email_medic'];
-        $login_medico = $row_medico['usuario_medic'];
+    if ($result_cliente->num_rows > 0) {
+        $row_cliente = $result_cliente->fetch_assoc();
+        $nomeCompleto = $row_cliente['nome_completo'];
+        $celular = $row_cliente['numero_cel'];
+        $email = $row_cliente['email'];
+        $login_cliente = $row_cliente['usuario'];
     } else {
-        die("Erro: Não foi possível obter as informações do médico logado.");
+        die("Erro: Não foi possível obter as informações do cliente logado.");
     }
 } else {
-    die("Erro: ID do médico não encontrado na sessão.");
+    die("Erro: ID do cliente não encontrado na sessão.");
 }
 
 // Mensagem de feedback após alteração de senha
@@ -56,7 +54,7 @@ unset($_SESSION['alterar_senha_msg']); // Limpa a variável de sessão após exi
     <title>Dr agenda</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="tela_medico.css">
+    <link rel="stylesheet" href="tela_paciente.css">
     <style>
         .card {
             height: 100%;
@@ -65,7 +63,7 @@ unset($_SESSION['alterar_senha_msg']); // Limpa a variável de sessão após exi
 </head>
 <body>
     <div class="container" style="margin-top: 20px;">
-        <h1 class="titulo">Olá <?php echo htmlspecialchars($login_medico); ?></h1>
+        <h1 class="titulo">Olá <?php echo htmlspecialchars($login_cliente); ?></h1>
         <p class="titulo">Abaixo estão suas informações:</p>
 
         <?php if ($alterarSenhaMsg): ?>
@@ -77,11 +75,9 @@ unset($_SESSION['alterar_senha_msg']); // Limpa a variável de sessão após exi
         <div class="row gx-4">
             <div class="col-md-6" style="margin-top: 20px;">
                 <div class="card mb-3 h-100">
-                    <div class="card-body d-flex flex-column" id="conteiner_informações_medicos">
+                    <div class="card-body d-flex flex-column" id="conteiner_informacoes_clientes">
                         <h5 class="card-title">Suas Informações!</h5>
-                        <p><strong>Nome Completo:</strong><span class="letras_php"><?php echo htmlspecialchars($nomeMedico); ?></span></p>
-                        <p><strong>Especialização:</strong><span class="letras_php"><?php echo htmlspecialchars($especialidade); ?></span></p>
-                        <p><strong>CRM:</strong><span class="letras_php"><?php echo htmlspecialchars($crm); ?></span></p>
+                        <p><strong>Nome Completo:</strong><span class="letras_php"><?php echo htmlspecialchars($nomeCompleto); ?></span></p>
                         <p><strong>Celular:</strong><span class="letras_php"><?php echo htmlspecialchars($celular); ?></span></p>
                         <p><strong>Email:</strong><span class="letras_php"><?php echo htmlspecialchars($email); ?></span></p>
                     </div>
@@ -89,10 +85,10 @@ unset($_SESSION['alterar_senha_msg']); // Limpa a variável de sessão após exi
             </div>
             <div class="col-md-6" style="margin-top: 20px;">
                 <div class="card h-100 conteiner_cards_pica">
-                    <div class="card-body d-flex flex-column ">
+                    <div class="card-body d-flex flex-column">
                         <h4>Alterar Senha</h4>
-                        <a href="http://localhost/Projeto-Back-End/landingPage/index.php" style="width: 50px; text-decoretion: none;">Voltar</a>
-                        <form method="post" action="alterar_senha_medic.php">
+                        <a href="http://localhost/Projeto-Back-End/landingPage/index.php" style="width: 50px; text-decoration: none;">Voltar</a>
+                        <form method="post" action="alterar_senha_cliente.php">
                             <div class="mb-3">
                                 <label for="senhaAtual" class="form-label">Senha Atual</label>
                                 <input type="password" class="form-control" id="senhaAtual" name="senhaAtual" minlength="8" maxlength="8" required>
