@@ -239,10 +239,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="especializacao">Especialização</label>
                         <div class="input-group mb-3">
                         <select class="form-control form-control-lg bg-light fs-6" aria-label="Default select example" required id="especializacao" name="especializacao">
-                                <option value="psicologia">Psicologia</option>
-                                <option value="cardiologista">Cardiologista</option>
-                                <option value="pediatria">Pediatria</option>
-                                <option value="oftalmologista">Oftalmologista</option>
+                                <option value="Psicologia">Psicologia</option>
+                                <option value="Cardiologista">Cardiologista</option>
+                                <option value="Pediatria">Pediatria</option>
+                                <option value="Oftalmologista">Oftalmologista</option>
+                                <option value="Nutrologia">Nutrologia</option>
+
                         </select>
                         </div>
                         <p>Gênero</p>
@@ -253,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </label>
                             </div>
                             <div class="form-check" >
-                                <input style="margin-right: 20px;" class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Feminio" checked>
+                                <input style="margin-right: 20px;" class="form-check-input" type="radio" name="ExampleRadios" id="exampleRadios1" value="Feminino" checked>
                                      <label class="form-check-label" for="exampleRadios1">
                                          Feminino
                                     </label>

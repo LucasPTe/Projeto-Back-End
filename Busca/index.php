@@ -226,11 +226,11 @@ $conexao->close();
                                     <label for="especialidadeSelect" class="form-label"></label>
                                     <select name="especialidade" class="form-select" id="especialidadeSelect">
                                         <option value="" selected disabled hidden>Selecione uma especialidade</option>
-                                        <option value="cardiologista">Cardiologista</option>
-                                        <option value="nutricionista">Nutricionista</option>
-                                        <option value="oftalmologista">Oftalmologista</option>
-                                        <option value="psicologo">Psicólogo</option>
-                                        <option value="pediatria">Pediatria</option>
+                                        <option value="Cardiologista">Cardiologista</option>
+                                        <option value="Nutrologia">Nutrologia</option>
+                                        <option value="Oftalmologista">Oftalmologista</option>
+                                        <option value="Psicologo">Psicólogo</option>
+                                        <option value="Pediatria">Pediatria</option>
                                         <!-- Adicione mais especialidades conforme necessário -->
                                     </select>
                                     <button type="submit" class="btn_1">Buscar</button>
