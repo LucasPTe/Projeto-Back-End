@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'D:\Programas\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
+require '\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
 
 $dbHost = 'localhost:3307';
 $dbUsername = 'root';
@@ -91,7 +91,7 @@ unset($_SESSION['alterar_senha_msg']); // Limpa a variável de sessão após exi
                 <div class="card h-100 conteiner_cards_pica">
                     <div class="card-body d-flex flex-column ">
                         <h4>Alterar Senha</h4>
-                        <a href="http://localhost/Projeto-Back-End/landingPage/index.php" style="width: 50px; text-decoretion: none;">Voltar</a>
+                        <a href="http://localhost/Projeto-Back-End/landingPage/index.php" style="width: 50px; text-decoration: none;">Voltar</a>
                         <form method="post" action="alterar_senha_medic.php">
                             <div class="mb-3">
                                 <label for="senhaAtual" class="form-label">Senha Atual</label>

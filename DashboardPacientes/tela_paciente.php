@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'D:\Programas\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
+require '\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
 
 $dbHost = 'localhost:3307';
 $dbUsername = 'root';

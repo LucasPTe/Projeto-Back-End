@@ -4,7 +4,7 @@ echo '<pre>';
 var_dump($_SESSION);
 echo '</pre>';
 
-require 'D:\Programas\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
+require '\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
 
 
 // Conexão com o banco de dados
@@ -88,4 +88,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: http://localhost/Projeto-Back-End/Login/tela_aviso.php');
     exit;
 }
-?>
+

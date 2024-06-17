@@ -1,6 +1,3 @@
-.letras_php{
-    
-}
 #conteiner_informações_pacientes p{
     font-size: 20px;
 }
@@ -9,8 +6,7 @@ body{
     background: radial-gradient(circle, rgba(35,48,91,1) 0%, rgba(45,63,108,1) 29%);
     height: 100vh;
 }
-.conteiner_cards_pica{
-}
+
 .titulo{
     color: white;
 }
