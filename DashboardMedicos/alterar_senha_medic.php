@@ -6,6 +6,7 @@ echo '</pre>';
 
 require 'D:\Programas\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
 
+
 // Conexão com o banco de dados
 $dbHost = 'localhost:3307';
 $dbUsername = 'root';
