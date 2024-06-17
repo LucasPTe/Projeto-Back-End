@@ -229,7 +229,7 @@ $conexao->close();
                                         <option value="Cardiologista">Cardiologista</option>
                                         <option value="Nutrologia">Nutrologia</option>
                                         <option value="Oftalmologista">Oftalmologista</option>
-                                        <option value="Psicologo">Psicólogo</option>
+                                        <option value="Psicologia">Psicologia</option>
                                         <option value="Pediatria">Pediatria</option>
                                         <!-- Adicione mais especialidades conforme necessário -->
                                     </select>
