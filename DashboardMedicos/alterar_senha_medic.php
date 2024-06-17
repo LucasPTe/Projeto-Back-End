@@ -1,71 +1,90 @@
 <?php
 session_start();
-require '\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
+echo '<pre>';
+var_dump($_SESSION);
+echo '</pre>';
 
+require 'D:\Programas\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
+
+// Conexão com o banco de dados
 $dbHost = 'localhost:3307';
 $dbUsername = 'root';
 $dbPassword = '';
 $dbName = 'dr_agenda';
 $conexao = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
+// Verifica se a conexão foi estabelecida
 if ($conexao->connect_error) {
-    die("Erro de conexão: " . $conexao->connect_error);
-}
-
-// Verifica se o usuário está logado como médico
-if (!isset($_SESSION['usuario']) || $_SESSION['tipo_usuario'] != 'medico') {
-    header('Location: http://localhost/Projeto-Back-End/Login/tela_aviso.php');
-    exit;
+    die("Falha na conexão: " . $conexao->connect_error);
 }
 
 // Verifica se o método da requisição é POST
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $doutor_id = $_SESSION['user_id'];
-    $senhaAtual = $_POST['senhaAtual'];
-    $novaSenha = $_POST['novaSenha'];
-    $confirmarSenha = $_POST['confirmarSenha'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Verificar se todos os campos foram submetidos
+    if (isset($_POST['senhaAtual']) && isset($_POST['novaSenha']) && isset($_POST['confirmarSenha'])) {
+        $senhaAtual = $_POST['senhaAtual'];
+        $novaSenha = $_POST['novaSenha'];
+        $confirmarSenha = $_POST['confirmarSenha'];
 
-    // Verifica se a nova senha e a confirmação são iguais
-    if ($novaSenha !== $confirmarSenha) {
-        $_SESSION['alterar_senha_msg'] = "Erro: A nova senha e a confirmação da nova senha não correspondem.";
-        header('Location: tela_medico.php');
+        // Verificar se o usuário está logado
+        if (!isset($_SESSION['usuario_medic'])) {
+            $_SESSION['alterar_senha_msg'] = "Acesso não autorizado.";
+            header('Location: http://localhost/Projeto-Back-End/Login/tela_aviso.php');
+            exit;
+        }
+
+        // Nome de usuário
+        $usuario = $_SESSION['usuario_medic'];
+
+        // Consultar o banco de dados para obter a senha atual do cliente
+        $sql_verifica_senha = "SELECT senha_medic FROM medicos WHERE usuario_medic = ?";
+        $stmt_verifica_senha = $conexao->prepare($sql_verifica_senha);
+        $stmt_verifica_senha->bind_param("s", $usuario);
+        $stmt_verifica_senha->execute();
+        $result_verifica_senha = $stmt_verifica_senha->get_result();
+
+        if ($result_verifica_senha->num_rows == 1) {
+            $row = $result_verifica_senha->fetch_assoc();
+            $senha_atual = $row['senha_medic'];
+
+            // Verifica se a senha atual está correta (comparação em texto plano)
+            if ($senhaAtual == $senha_atual) {
+                // Verifica se a nova senha e a confirmação são iguais
+                if ($novaSenha === $confirmarSenha) {
+                    // Atualiza a senha e confirm_senha no banco de dados
+                    $sql_atualiza_senha = "UPDATE medicos SET senha_medic = ?, confirm_senha_medic = ? WHERE usuario_medic = ?";
+                    $stmt_atualiza_senha = $conexao->prepare($sql_atualiza_senha);
+                    $stmt_atualiza_senha->bind_param("sss", $novaSenha, $novaSenha, $usuario);
+
+                    if ($stmt_atualiza_senha->execute()) {
+                        $_SESSION['alterar_senha_msg'] = "Senha alterada com sucesso.";
+                        $_SESSION['senha_medic'] = $novaSenha; // Atualiza a sessão com a nova senha
+                        header('Location: http://localhost/Projeto-Back-End/DashboardMedicos/tela_medico.php');
+                        exit;
+                    } else {
+                        $_SESSION['alterar_senha_msg'] = "Erro ao alterar a senha.";
+                    }
+                } else {
+                    $_SESSION['alterar_senha_msg'] = "A nova senha e a confirmação não correspondem.";
+                }
+            } else {
+                $_SESSION['alterar_senha_msg'] = "A senha atual está incorreta.";
+            }
+        } else {
+            $_SESSION['alterar_senha_msg'] = "Erro: Não foi possível verificar a senha atual.";
+        }
+
+        // Redireciona de volta para a página de alteração de senha
+        header('Location: http://localhost/Projeto-Back-End/DashboardMedicos/tela_medico.php');
+        exit;
+    } else {
+        $_SESSION['alterar_senha_msg'] = "Por favor, preencha todos os campos.";
+        header('Location: http://localhost/Projeto-Back-End/DashboardMedicos/tela_medico.php');
         exit;
     }
-
-    // Obtém a senha atual do banco de dados
-    $sql = "SELECT senha_medic FROM medicos WHERE doutor = ?";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("i", $doutor_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-
-    // Debug: Verificar o valor da senha armazenada
-    $senhaArmazenada = $row['senha_medic'];
-    error_log("Senha armazenada no banco: $senhaArmazenada");
-    error_log("Senha atual fornecida: $senhaAtual");
-
-    // Verifica se a senha atual digitada corresponde à senha do banco de dados
-    if (password_verify($senhaAtual, $senhaArmazenada)) {
-        // Gera o hash da nova senha
-        $novaSenhaHash = password_hash($novaSenha, PASSWORD_DEFAULT);
-
-        // Atualiza a senha no banco de dados
-        $sql_update = "UPDATE medicos SET senha_medic = ? WHERE doutor = ?";
-        $stmt_update = $conexao->prepare($sql_update);
-        $stmt_update->bind_param("si", $novaSenhaHash, $doutor_id);
-
-        // Verifica se a atualização ocorreu com sucesso
-        if ($stmt_update->execute()) {
-            $_SESSION['alterar_senha_msg'] = "Senha alterada com sucesso.";
-        } else {
-            $_SESSION['alterar_senha_msg'] = "Erro ao alterar a senha.";
-        }
-    } else {
-        $_SESSION['alterar_senha_msg'] = "Erro: A senha atual está incorreta12.";
-    }
+} else {
+    $_SESSION['alterar_senha_msg'] = "Acesso inválido.";
+    header('Location: http://localhost/Projeto-Back-End/Login/tela_aviso.php');
+    exit;
 }
-
-header('Location: http://localhost/Projeto-Back-End/DashboardMedicos/tela_medico.php');
-exit;
 ?>

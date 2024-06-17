@@ -1,97 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.letras_php{
+    
+}
+#conteiner_informações_pacientes p{
+    font-size: 20px;
+}
+body{
     background: rgb(35,48,91);
     background: radial-gradient(circle, rgba(35,48,91,1) 0%, rgba(45,63,108,1) 29%);
-    margin: 0;
+    height: 100vh;
+}
+.conteiner_cards_pica{
+}
+.titulo{
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.container {
-    max-width: 600px;
-    width: 100%;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    color: #333;
-}
-.titulo {
-    text-align: center;
-    margin-bottom: 20px;
-    color: rgb(10, 6, 6);
-    
-}
-.card {
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-.alert {
-    text-align: center;
-}
-.btn-primary {
-    align-self: center;
-    width: 100%;
-    background-color: #007bff;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.btn-primary:active {
-    background-color: #004494;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.voltar-link {
-    position:absolute;
-    top: 10px;
-    right: 10px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    
-}
-
-a.voltar-link:hover {
-    background-color: #0056b3;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-a.voltar-link:active {
-    background-color: #004494;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transform: translateY(0);
-}
-
-.Alterar{
-
-font-family: "Bebas Neue", Helvetica, sans-serif;
-
 }
