@@ -59,7 +59,7 @@ $pic="esse.jpg";
                     <a class="nav-link" href="http://localhost/Projeto-Back-End/Busca/index.php">Busca</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sobre</a>
+                    <a class="nav-link" href="https://github.com/LucasPTe/Projeto-Back-End" target="_blank">Sobre</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="http://localhost/Projeto-Back-End/DashboardMedicos/tela_medico.php">Perfil medico</a>
@@ -262,7 +262,7 @@ $pic="esse.jpg";
 
                         <div class="col-md-7 col-lg-8">
                             <p>Copyright ©2024 All rights reserved by:
-                                <a href="">
+                                <a href="https://github.com/LucasPTe/Projeto-Back-End" target="_blank">
                                     <strong>Dr.Agenda</strong>
                                 </a>
                             </p>

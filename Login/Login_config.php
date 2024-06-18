@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Inclui o arquivo autoload do Composer para carregar automaticamente as classes do PHPMailer
-require '\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
+require 'D:\Programas\Xampp\htdocs\Projeto-Back-End\lib\vendor\autoload.php';
 
 
 // Configurações do banco de dados
