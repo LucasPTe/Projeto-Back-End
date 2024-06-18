@@ -48,10 +48,29 @@ $pic="esse.jpg";
             <h5 id="navbar-offcanvas-label">Dr.Agenda</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+
         <div class="offcanvas-body">
                 
+        <?php
+            session_start();
+                if (isset($_SESSION['usuario'])) {
+                    $logado = $_SESSION['usuario'];
+                    echo "<span class='mensagem-completa'>Olá, <b class='usu_logado'>$logado</b>. Deseja sair?</span>";
+                    echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Sair.php">Sair</a>';
+                } else {
+                    if (isset($_SESSION['usuario_medic'])) {
+                        $logado_medico = $_SESSION['usuario_medic'];
+                        echo "Olá, <b>$logado_medico</b>. Deseja sair?";
+                        echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Sair.php">Sair</a>';
+                    } else {
+                        echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Login/Login.php">Entrar</a>';
+                    }                   
+                }
+                ?>
+
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                
+                <br>
+                <br>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="http://localhost/Projeto-Back-End/landingPage/index.php">Home</a>
                 </li>
@@ -68,35 +87,7 @@ $pic="esse.jpg";
                     <a class="nav-link" href="http://localhost/Projeto-Back-End/DashboardPacientes/tela_Paciente.php">Perfil Paciente</a>
                 </li>
             </ul>
-            <?php
-            session_start();
-                if (isset($_SESSION['usuario'])) {
-                    $logado = $_SESSION['usuario'];
-                    echo "Olá, <b>$logado</b>. Deseja sair?<br>";
-                    echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Sair.php">Sair</a>';
-                } else {
-                    if (isset($_SESSION['usuario_medic'])) {
-                        $logado_medico = $_SESSION['usuario_medic'];
-                        echo "Olá, <b>$logado_medico</b>. Deseja sair?";
-                        echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Sair.php">Sair</a>';
-                    } else {
-                        echo '<a type="button" class="mb-5 btn entrar_off" href="/Projeto-Back-End/Login/Login.php">Login</a>';
-                    }                   
-                }
-                ?>
-            <div class="row">
-                <div class="col-12 mt-3 mb-4">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a type="button" class="btn entrar_off" href="http://localhost/Projeto-Back-End/Login/login.php">Entrar</a>
-                        </li> -->
-                        
-                    </ul>
-                </div>
-                <div class="nav-item mt-5 ms-2 row">
+            <div class="nav-item mt-5 ms-2 row">
                     <button class="btn border-3 btna btn-fonte col-2" id="increaseFontBtn">
                         A+
                     </button>
@@ -110,7 +101,7 @@ $pic="esse.jpg";
                         <div class="ball"></div>
                     </label>
                 </div>
-                
+
                 <div class="col-6 mt-1">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">
                         Fechar

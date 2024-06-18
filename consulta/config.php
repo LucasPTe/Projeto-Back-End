@@ -23,6 +23,7 @@
 <head>
     <title>Tela de Log</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="http://localhost/Projeto-Back-End/consulta/style.css"/>
     <script>
         function confirmarExclusao(event, cpf, tabela) {
             event.preventDefault(); // Previna o envio do formulário
@@ -143,7 +144,7 @@
     <h2>Tela de Log</h2>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <label for="search">Pesquisar:</label>
-        <input type="text" id="search" name="search">
+        <input type="text" id="search" name="search" placeholder="Digite o CPF ou Usuário">
         <input type="submit" value="Buscar">
     </form>
 
