@@ -396,16 +396,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 });
             });
 
-            /* // Script para validar usuário (permitindo apenas letras)
-                $(document).ready(function(){
-                $("#senha").on("input", function(){
-                    // Remover caracteres não alfabéticos
-                    var sanitized = $(this).val().replace(/[^a-zA-Z]/g, '');
-                    // Atualizar valor do input
-                    $(this).val(sanitized);
-                });
-            }); */
-
+            $(document).ready(function(){
+            $("#CEP, #numero").on("input", function(){
+             // Remover caracteres não numéricos
+            var sanitized = $(this).val().replace(/[^0-9]/g, '');
+            // Atualizar valor do input
+            $(this).val(sanitized);
+         });
+    });
 
 
         </script>

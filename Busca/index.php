@@ -3,7 +3,6 @@ session_start();
 
 // Função para calcular a distância entre dois pontos usando a fórmula Haversine
 function calcularDistanciaHaversine($lat1, $lon1, $lat2, $lon2) {
-    // Raio da Terra em km
     $raio_terra = 6371;
 
     // Conversão de graus para radianos
@@ -32,21 +31,21 @@ $dbUsername = 'root';
 $dbPassword = '';
 $dbName = 'dr_agenda';
 
-// Criação da conexão
+
 $conexao = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
-// Verificação de erro na conexão
+
 if ($conexao->connect_error) {
     die("Erro de conexão: " . $conexao->connect_error);
 }
 
-// Obtém o ID do usuário logado e o tipo de usuário
+// ID do usuário logado e o tipo de usuário
 $user_id = $_SESSION['user_id'];
 $tipo_usuario = $_SESSION['tipo_usuario'];
 $latitude_usuario = null;
 $longitude_usuario = null;
 
-// Obtém as coordenadas do usuário logado
+// coordenadas do usuário logado
 if ($tipo_usuario === 'cliente') {
     $stmt = $conexao->prepare("SELECT latitude, longitude FROM clientes WHERE pacientes = ?");
     $stmt->bind_param("i", $user_id);
@@ -84,34 +83,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['especialidade']) && $
     WHERE especializacao = ? 
     ORDER BY distancia ASC";
 
-    // Prepara a consulta
+    
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param("ddds", $latitude_usuario, $longitude_usuario, $latitude_usuario, $especialidade);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Array para armazenar os médicos encontrados
+    
     $medicos = [];
 
     // Verifica se há médicos encontrados
     if ($result->num_rows > 0) {
-        // Obtém todos os médicos encontrados
+        
         while ($row = $result->fetch_assoc()) {
-            // Calcula a distância usando a fórmula Haversine
+            
             $distancia = calcularDistanciaHaversine($latitude_usuario, $longitude_usuario, $row['latitude'], $row['longitude']);
             $row['distancia'] = round($distancia, 1); // Arredonda a distância para 1 casa decimal
             $medicos[] = $row;
         }
     } else {
-        // Caso não encontre nenhum médico para a especialidade selecionada
+        
         $no_results = true;
     }
 
-    // Fecha a consulta
+    
     $stmt->close();
 }
 
-// Fecha a conexão com o banco de dados
+
 $conexao->close();
 ?>
 <!DOCTYPE html>
@@ -254,6 +253,8 @@ $conexao->close();
                     $nomeCompleto = htmlspecialchars($medico['nome_completo_medic']);
                     $especializacao = htmlspecialchars($medico['especializacao']);
                     $endereco = htmlspecialchars($medico['endereco_medic']);
+                    $numero = htmlspecialchars($medico['numero_medic']);
+                    $bairro = htmlspecialchars($medico['bairro_medic']);
                     $CRM = htmlspecialchars($medico['CRM']);
                     $numeroCelular = htmlspecialchars($medico['numero_cel_medic']);
                     $distancia = round($medico['distancia'], 2);
@@ -265,6 +266,8 @@ $conexao->close();
                     echo '<h6 class="card-subtitle mb-2 text-muted">' . $especializacao . '</h6>';
                     echo '<p class="card-text">';
                     echo '<strong>Endereço:</strong> ' . $endereco . '<br>';
+                    echo '<strong>N°:</strong> ' . $numero . '<br>';
+                    echo '<strong>Bairro:</strong> ' . $bairro . '<br>';
                     echo '<strong>CRM:</strong> ' . $CRM . '<br>';
                     echo '<strong>Telefone:</strong> ' . $numeroCelular . '<br>';
                     echo '<strong>Distância:</strong> ' . number_format($distancia, 1, ',', '.') . ' Km';

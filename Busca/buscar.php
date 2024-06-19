@@ -20,7 +20,6 @@
                     <option value="oftalmologista">Oftalmologista</option>
                     <option value="psicologo">Psicólogo</option>
                     <option value="pediatria">Pediatria</option>
-                    <!-- Adicione mais especialidades conforme necessário -->
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Buscar</button>
@@ -51,13 +50,13 @@
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                $firstRow = $result->fetch_assoc(); // Pega a primeira linha dos resultados
+                $firstRow = $result->fetch_assoc();
 
                 // Preenche o cartão com os dados da primeira linha
                 $nomeCompleto = $firstRow['nome_completo_medic'];
                 $endereco = $firstRow['endereco_medic'];
                 $numeroCelular = $firstRow['numero_cel_medic'];
-                $distancia = "xKm de distância"; // Você pode ajustar essa lógica para calcular a distância real
+                $distancia = "xKm de distância";
 
                 echo '<div class="card-especialista">';
                 echo '  <div class="card">';

@@ -5,10 +5,10 @@ $usuario = "root";
 $senha = "";
 $banco = "dr_agenda";
 
-// Cria a conexão
+
 $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
 
-// Verifica a conexão
+
 if (!$conexao) {
     die("Falha na conexão: " . mysqli_connect_error());
 }
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $endereco_completo = "{$endereco}, {$numero}, {$bairro}, {$municipio}, {$estado}, Brasil";
 
     // Chave da API do Google Maps
-    $api_key = 'AIzaSyAltS5otXiMPc2aLJTWSfDEyxcwfpmwwcA'; // Substitua pela sua chave de API
+    $api_key = 'AIzaSyAltS5otXiMPc2aLJTWSfDEyxcwfpmwwcA';
 
     // Geocodificar o endereço completo para obter latitude e longitude usando a API do Google Maps
     list($latitude, $longitude) = geocodeAddress($endereco_completo, $api_key);
@@ -95,7 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_rows_cpf = mysqli_stmt_num_rows($stmt_cpf);
 
     if ($num_rows_cpf > 0) {
-        // CPF já cadastrado, define mensagem de erro
         $cpf_error = 'CPF já cadastrado.';
         $CPF = '';
     }
@@ -109,7 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_rows_login = mysqli_stmt_num_rows($stmt_login);
 
     if ($num_rows_login > 0) {
-        // Login já em uso, define mensagem de erro
         $login_error = 'Login já em uso.';
         $login = '';
     }
@@ -123,7 +121,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_rows_email = mysqli_stmt_num_rows($stmt_email);
 
     if ($num_rows_email > 0) {
-        // e-mail já em uso, define mensagem de erro
         $email_error = 'E-mail já cadastrado.';
         $email = '';
     }
@@ -147,18 +144,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $telefone = $CEP = $bairro = $municipio = $estado = $endereco = $numero = $login = '';
             $senha = $confirm = '';
 
-            // Exibe mensagem de sucesso (opcional)
+            // Exibe mensagem de sucesso
             $cadastro_sucesso = '<div class="alert alert-success" role="alert">Cadastro realizado com sucesso!</div>';
         } else {
-            // Exibe mensagem de erro em caso de falha na inserção (opcional)
+            // Exibe mensagem de erro em caso de falha na inserção
             echo '<div class="alert alert-danger" role="alert">Erro ao cadastrar. Por favor, tente novamente.</div>';
         }
 
-        // Fecha a declaração SQL
+        
         mysqli_stmt_close($stmt_insert);
     }
 
-    // Fecha as declarações SQL
+   
     mysqli_stmt_close($stmt_cpf);
     mysqli_stmt_close($stmt_login);
     mysqli_stmt_close($stmt_email);
@@ -378,43 +375,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Script para validar usuário (permitindo apenas letras)
             $(document).ready(function(){
                 $("#nome_completo, #mae").on("input", function(){
-                    // Remover caracteres não alfabéticos
                     var sanitized = $(this).val().replace(/[^a-zA-Z\s]/g, '');
-                    // Atualizar valor do input
                     $(this).val(sanitized);
                 });
             });
 
+
             //função para cep aceitar apenas números.
             function isNumberKey(evt) {
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
-            // Permitir apenas números (48-57 correspondem a '0'-'9')
                 if (charCode > 31 && (charCode < 48 || charCode > 57)) {
                         return false;
                     }
                  return true;
                 }
                 document.getElementById('toggleSenha').addEventListener('click', function() {
-        const senhaInput = document.getElementById('senha');
-        const senhaIcon = document.getElementById('toggleSenhaIcon');
-        if (senhaInput.type === 'password') {
-            senhaInput.type = 'text';
-            senhaIcon.src = 'eye-slash-icon.png'; // Mude para o ícone de olho aberto
-        } else {
-            senhaInput.type = 'password';
-            senhaIcon.src = 'eye-icon.png'; // Mude para o ícone de olho fechado
-        }
-    });
+                const senhaInput = document.getElementById('senha');
+                const senhaIcon = document.getElementById('toggleSenhaIcon');
+                if (senhaInput.type === 'password') {
+                    senhaInput.type = 'text';
+                } else {
+                    senhaInput.type = 'password';
+                }
+            });
     document.getElementById('toggleConfirmSenha').addEventListener('click', function() {
         const confirmSenhaInput = document.getElementById('confirmSenha');
         const confirmSenhaIcon = document.getElementById('toggleConfirmSenhaIcon');
         if (confirmSenhaInput.type === 'password') {
             confirmSenhaInput.type = 'text';
-            confirmSenhaIcon.src = 'eye-slash-icon.png'; // Mude para o ícone de olho aberto
         } else {
             confirmSenhaInput.type = 'password';
-            confirmSenhaIcon.src = 'eye-icon.png'; // Mude para o ícone de olho fechado
         }
+    });
+
+            $(document).ready(function(){
+            $("#numero").on("input", function(){
+             // Remover caracteres não numéricos
+            var sanitized = $(this).val().replace(/[^0-9]/g, '');
+            // Atualizar valor do input
+            $(this).val(sanitized);
+         });
     });
         </script>
 </body>

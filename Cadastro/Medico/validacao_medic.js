@@ -374,7 +374,7 @@ document.getElementById("numero").addEventListener("input", function (event) {
   let numero = this.value.trim(); // Remove espaços em branco
 
   // Verifica se o número é válido (não está vazio)
-  if (numero.length > 0) {
+  if (numero.length > 0 && /^\d+$/.test(numero)) {
     this.classList.remove("is-invalid");
     this.classList.add("is-valid");
   } else {

@@ -65,7 +65,6 @@ inputNomeCompleto.addEventListener('input', function() {
 
     // Função para validar CPF
     function validarCPF(cpf) {
-        // Remover caracteres não numéricos
         cpf = cpf.replace(/\D/g, '');
 
         // Verificar se todos os dígitos são iguais
@@ -114,7 +113,7 @@ inputNomeCompleto.addEventListener('input', function() {
 
     // Adicione um listener de evento de input ao campo CPF
     document.getElementById('cpf').addEventListener('input', function(event) {
-        let cpf = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        let cpf = this.value.replace(/\D/g, '');
 
         // Formatar CPF no formato (191.761.947-28)
         this.value = formatarCPF(cpf);
@@ -134,7 +133,7 @@ inputNomeCompleto.addEventListener('input', function() {
 
     // Adicione um listener de evento de input ao campo celular
     document.getElementById('celular').addEventListener('input', function(event) {
-    let celular = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    let celular = this.value.replace(/\D/g, '');
     let formattedCelular = formatarCelular(celular); // Formata o número de celular
 
     // Atualiza o valor do campo com o número formatado
@@ -171,8 +170,8 @@ inputNomeCompleto.addEventListener('input', function() {
     
     // Adicione um listener de evento de input ao campo telefone fixo
     document.getElementById('fixo').addEventListener('input', function(event) {
-    let fixo = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-    let formattedFixo = formatarFixo(fixo); // Formata o número de telefone fixo
+    let fixo = this.value.replace(/\D/g, '');
+    let formattedFixo = formatarFixo(fixo);
 
     // Atualiza o valor do campo com o número formatado
     this.value = formattedFixo;
@@ -312,7 +311,7 @@ inputNomeCompleto.addEventListener('input', function() {
         let numero = this.value.trim(); // Remove espaços em branco
 
         // Verifica se o número é válido (não está vazio)
-        if (numero.length > 0) {
+        if (numero.length > 0 && /^\d+$/.test(numero)) {
             this.classList.remove('is-invalid');
             this.classList.add('is-valid');
         } else {

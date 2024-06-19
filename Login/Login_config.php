@@ -85,6 +85,9 @@ function fazerLogin($conexao, $login, $senha) {
     $stmt->execute();
     $result = $stmt->get_result();
 
+    $conexao->query("UPDATE clientes SET ultimo_login = CURRENT_TIMESTAMP WHERE usuario = '$login'");
+    $conexao->query("UPDATE medicos SET ultimo_login = CURRENT_TIMESTAMP WHERE usuario_medic = '$login'");
+
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         $user_id = $user['id'];
